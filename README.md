@@ -36,6 +36,11 @@ PowerBridge does not currently support:
 * Built-in smart-home wake
 * Built-in home-device relay wake
 
+Architecture status note:
+
+* `Home Device Relay` is currently a documented future architecture, not a live feature
+* see [docs/HOME-DEVICE-RELAY-ARCHITECTURE.md](docs/HOME-DEVICE-RELAY-ARCHITECTURE.md)
+
 ## Repository Layout
 
 ```text

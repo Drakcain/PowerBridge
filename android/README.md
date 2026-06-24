@@ -74,7 +74,7 @@ These methods are planned or under research. They are not live wake engines yet.
 
 | Method                   | Intended shape                                                                                                      | Current status |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------- | -------------- |
-| `Home Device Relay`      | Use an old phone, tablet, Fire TV, Android TV, or Google TV device left plugged in at home as a local wake anchor   | Coming later   |
+| `Home Device Relay`      | Use an old phone, tablet, Fire TV, Android TV, or Google TV device left plugged in at home as a local wake anchor   | Architecture only |
 | `Smart Plug Boot Assist` | Power-cycle a smart plug and rely on BIOS or UEFI restore-after-power-loss behavior to boot the PC                  | Coming later   |
 | `Smart Home Wake`        | Integrate with smart-home ecosystems such as Alexa, Google Home, or Home Assistant where platform support allows it | Research       |
 | `Advanced Network Setup` | Provide router, VPN, NAS, server, and custom-network guidance                                                       | Guides later   |
@@ -86,7 +86,7 @@ These methods are planned or under research. They are not live wake engines yet.
 | Phone and PC are on the same Wi-Fi or LAN                          | `Local Wi-Fi Wake`                      |
 | User wants fast setup for the current Windows PC                   | PowerBridge Windows Companion QR import |
 | User already has a home server, NAS, Raspberry Pi, or router relay | `Home Relay Server`                     |
-| User wants remote wake over cellular without a server              | Future `Home Device Relay`              |
+| User wants remote wake over cellular without a server              | Future `Home Device Relay` path after prototype work |
 | PC does not wake reliably through normal Wake-on-LAN               | Future `Smart Plug Boot Assist`         |
 
 ## Honest Technical Limits
@@ -268,10 +268,11 @@ These categories guide future development. They are not all implemented today.
 | Phase      | Name                             | Purpose                                                        |
 | ---------- | -------------------------------- | -------------------------------------------------------------- |
 | `Phase 10` | Setup + Method UX Cleanup        | Clean method names, setup wording, warnings, and public docs   |
-| `Phase 11` | Home Device Relay Architecture   | Design the old-phone/tablet/TV relay path                      |
-| `Phase 12` | Home Device Relay Prototype      | Build the first home-device relay implementation               |
-| `Phase 13` | Alternate Wake Paths + Guides    | Smart plug, smart-home, NAS, router, and advanced setup guides |
-| `Phase 14` | Project Packaging + Release Prep | Repo structure, shared contracts, release packaging, checksums |
+| `Phase 11` | Android Release Signing Foundation | Formalize safe local Android release signing                   |
+| `Phase 12` | Home Device Relay Architecture   | Design the old-phone/tablet/TV relay path                      |
+| `Phase 13` | Home Device Relay Prototype      | Build the first home-device relay implementation               |
+| `Phase 14` | Alternate Wake Paths + Guides    | Smart plug, smart-home, NAS, router, and advanced setup guides |
+| `Phase 15` | Project Packaging + Release Prep | Repo structure, shared contracts, release packaging, checksums |
 
 ## Guardrails
 

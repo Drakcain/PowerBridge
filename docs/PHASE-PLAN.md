@@ -35,13 +35,22 @@ Not live yet:
 * `Phase 8B` - Windows Companion GUI and QR generation
 * `Phase 9` - AIO pairing polish
 * `Phase 10` - Setup and method UX cleanup
+* `Phase 10.5` - Public repo and release prep
+* `Phase 10.6` - Updater and release packaging
+* `Phase 11` - Android release signing foundation
 
 ## Next Phases
 
-* `Phase 11` - Home Device Relay architecture
-* `Phase 12` - Home Device Relay prototype
-* `Phase 13` - Alternate wake paths and guides
-* `Phase 14` - Packaging and release prep follow-through
+* `Phase 12` - Home Device Relay architecture
+* `Phase 13` - Home Device Relay prototype entry
+* `Phase 14` - Alternate wake paths and guides
+* `Phase 15` - Packaging and release prep follow-through
+
+Phase 12 is architecture-only.
+
+See:
+
+* [HOME-DEVICE-RELAY-ARCHITECTURE.md](HOME-DEVICE-RELAY-ARCHITECTURE.md)
 
 ## Rules
 
@@ -59,6 +68,8 @@ PowerBridge must not claim:
 * that Windows Companion wakes directly
 * that every PC can wake from every power state
 * that unimplemented methods are already live
+* that Fire TV, Android TV, or Google TV relay behavior is already proven reliable
+* that FCM, Firebase, or a cloud broker already exists in PowerBridge
 
 Detailed component phase notes remain in:
 
