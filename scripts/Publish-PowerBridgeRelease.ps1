@@ -2,7 +2,8 @@
 param(
     [ValidatePattern('^\d+\.\d+\.\d+([.-][A-Za-z0-9.-]+)?$')]
     [string]$Version,
-    [switch]$SkipBuild
+    [switch]$SkipBuild,
+    [switch]$AllowUnsignedAndroidArtifact
 )
 
 Set-StrictMode -Version Latest
@@ -18,7 +19,19 @@ if (-not $Version) {
 }
 
 if (-not $SkipBuild) {
-    & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $repoRoot 'scripts\Build-PowerBridgeReleaseAssets.ps1') -Version $Version
+    $buildArgs = @(
+        '-NoProfile',
+        '-ExecutionPolicy',
+        'Bypass',
+        '-File',
+        (Join-Path $repoRoot 'scripts\Build-PowerBridgeReleaseAssets.ps1'),
+        '-Version',
+        $Version,
+    )
+    if (-not $AllowUnsignedAndroidArtifact) {
+        $buildArgs += '-RequireSignedAndroidRelease'
+    }
+    & powershell.exe @buildArgs
     if ($LASTEXITCODE -ne 0) {
         throw 'Release asset build failed.'
     }
@@ -27,9 +40,20 @@ if (-not $SkipBuild) {
 $tagName = "v$Version"
 $apkPath = Join-Path $repoRoot "dist\PowerBridge-v$Version.apk"
 $installerPath = Join-Path $repoRoot "windows-companion\dist\PowerBridge-Companion-Setup-v$Version.exe"
+$androidMetadataPath = Join-Path $repoRoot "dist\PowerBridge-v$Version.android-build.json"
 foreach ($required in @($apkPath, $installerPath)) {
     if (-not (Test-Path -LiteralPath $required)) {
         throw "Release asset was not found: $required"
+    }
+}
+
+if (-not $AllowUnsignedAndroidArtifact) {
+    if (-not (Test-Path -LiteralPath $androidMetadataPath)) {
+        throw "Android build metadata was not found: $androidMetadataPath. Rebuild release assets locally before publishing."
+    }
+    $androidMetadata = Get-Content -LiteralPath $androidMetadataPath -Raw | ConvertFrom-Json
+    if ($androidMetadata.artifactKind -ne 'signed-release') {
+        throw "Android artifact is not a signed release build (found: $($androidMetadata.artifactKind)). Configure local signing and rebuild before publishing."
     }
 }
 

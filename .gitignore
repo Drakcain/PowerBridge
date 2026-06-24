@@ -53,3 +53,7 @@ windows-companion/output/*.svg
 *.mobileprovision
 *.env
 *.token
+android/signing.properties
+android/keystore.properties
+android/keystores/
+android/signing/

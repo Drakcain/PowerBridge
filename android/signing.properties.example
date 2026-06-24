@@ -1,0 +1,4 @@
+storeFile=C:/Path/Outside/Repo/powerbridge-release.jks
+storePassword=CHANGE_ME
+keyAlias=powerbridge
+keyPassword=CHANGE_ME

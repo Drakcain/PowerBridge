@@ -6,7 +6,7 @@
 #endif
 
 #define MyAppName "PowerBridge Windows Companion"
-#define MyAppPublisher "Drakcain"
+#define MyAppPublisher "PowerBridge Project"
 #define MyAppURL "https://github.com/Drakcain/PowerBridge"
 
 [Setup]

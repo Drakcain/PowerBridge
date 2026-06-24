@@ -108,6 +108,13 @@ Set-Location "<repo-root>\android"
 .\gradlew.bat assembleRelease --no-daemon
 ```
 
+Release-signing truth:
+
+* `assembleDebug` produces a development APK
+* `assembleRelease` may be unsigned in public CI when local signing properties are absent
+* official public Android release assets should come from a locally signed release build
+* GitHub Actions currently validates Android builds but does not hold private signing secrets in this phase
+
 Windows Companion:
 
 ```powershell
@@ -124,8 +131,8 @@ When public releases begin, the GitHub release page should expose the deliverabl
 
 Target release asset shape:
 
-* `PowerBridge-v0.6.1.apk`
-* `PowerBridge-Companion-Setup-v0.6.1.exe`
+* `PowerBridge-vX.Y.Z.apk`
+* `PowerBridge-Companion-Setup-vX.Y.Z.exe`
 
 Release rule:
 

@@ -6,6 +6,8 @@ Before a public push or release prep checkpoint:
 
 * build Android debug
 * build Android release
+* confirm whether the Android release build is signed or unsigned
+* if preparing a public Android asset, require a locally signed release build
 * run Windows Companion validation
 * run Windows Companion CLI smoke test
 
@@ -33,6 +35,7 @@ Before a public push or release prep checkpoint:
 
 * confirm `VERSION` matches the intended public version
 * confirm Android `versionName` matches the intended public version
+* confirm Android `versionCode` matches the intended public version
 * confirm release notes do not claim unimplemented features
 
 ## Release Hygiene
@@ -40,8 +43,11 @@ Before a public push or release prep checkpoint:
 * do not push until final review is complete
 * do not create a GitHub release until explicitly requested
 * do not tag until explicitly requested
-* generate checksums later when real release artifacts exist
+* verify Android signing before publishing a release APK
+* run `apksigner verify --verbose` on the local signed release APK
+* generate SHA-256 checksums when real release artifacts exist
+* confirm the release asset script did not fall back to a debug Android artifact
 * publish the Android APK and Windows Companion installer as separate top-level release assets
 * do not ship the release page as a nested folder/archive layout unless technically required
 * confirm planned release asset names are clear and user-readable
-* for PowerBridge Android, publish a locally signed or locally stable-installable APK from this workstation until a dedicated release-signing path exists
+* for PowerBridge Android, publish a locally signed APK from this workstation until a future secret-backed CI signing path is intentionally implemented

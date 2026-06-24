@@ -34,6 +34,35 @@ Notes:
 * `local.properties` is machine-local and must not be committed.
 * Release signing must use a private keystore outside the repository.
 * Debug builds are not production-signed.
+* `assembleRelease` can complete without local signing, which is acceptable for CI validation but not for an official signed public APK.
+* Local signing properties belong in `android/signing.properties` or `android/keystore.properties`, both ignored by Git.
+
+Optional local signing setup:
+
+```powershell
+Set-Location "<repo-root>\android"
+Copy-Item ".\signing.properties.example" ".\signing.properties"
+notepad ".\signing.properties"
+```
+
+Local signed release build:
+
+```powershell
+Set-Location "<repo-root>\android"
+.\gradlew.bat clean assembleRelease --no-daemon
+```
+
+Signed APK verification example:
+
+```powershell
+& "<android-sdk>\build-tools\34.0.0\apksigner.bat" verify --verbose ".\app\build\outputs\apk\release\app-release.apk"
+```
+
+SHA-256 example:
+
+```powershell
+Get-FileHash ".\app\build\outputs\apk\release\app-release.apk" -Algorithm SHA256
+```
 
 ## Windows Companion
 
@@ -74,8 +103,8 @@ The public release page should publish two flat assets:
 Recommended asset naming:
 
 ```text
-PowerBridge-v0.6.1.apk
-PowerBridge-Companion-Setup-v0.6.1.exe
+PowerBridge-vX.Y.Z.apk
+PowerBridge-Companion-Setup-vX.Y.Z.exe
 ```
 
 Recommended Windows installer behavior:
@@ -96,6 +125,13 @@ Local release asset build:
 Set-Location "<repo-root>"
 pwsh -NoProfile -ExecutionPolicy Bypass -File ".\scripts\Build-PowerBridgeReleaseAssets.ps1"
 ```
+
+Release script truth:
+
+* if local Android signing is configured, the release asset script prefers the signed release APK
+* if local Android signing is not configured, the release asset script can fall back to the debug APK for local validation and warns clearly
+* official GitHub release publication should use a locally signed Android release build
+* `scripts\Publish-PowerBridgeRelease.ps1` now blocks publishing unsigned/debug Android artifacts unless explicitly overridden
 
 Local GitHub release publish:
 

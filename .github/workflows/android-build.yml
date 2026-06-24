@@ -33,4 +33,5 @@ jobs:
         run: ./gradlew assembleDebug --no-daemon
 
       - name: Assemble release
+        # Public CI validates that release builds still compile without private signing material.
         run: ./gradlew assembleRelease --no-daemon

@@ -36,6 +36,10 @@ Keep these out of source control:
 * local screenshots
 * signing keys
 * keystores
+* `android/signing.properties`
+* `android/keystore.properties`
+* real signing passwords
+* private keystore paths
 * local properties
 
 ## Pre-Publish Sweep
@@ -47,3 +51,14 @@ rg -n --glob '!android/app/build/**' --glob '!android/build/**' --glob '!android
 ```
 
 Any hit in active source, UI strings, defaults, comments, docs, examples, screenshots, or release assets should be treated as a publish blocker until reviewed.
+
+Allowed placeholder-only example:
+
+* `android/signing.properties.example`
+
+That example file must never contain:
+
+* real passwords
+* real aliases tied to personal identity
+* real absolute personal paths
+* real keystore filenames from the operator environment

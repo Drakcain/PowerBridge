@@ -52,7 +52,14 @@ If you want to install the debug APK over USB from PowerShell:
 
 Release signing must use a private keystore that is not committed to the repository.
 
-Current public beta release flow on this workstation uses the locally built installable APK artifact and publishes it through the repo release page. Keep Android signing material or stable local signing state outside the repository.
+Current release-signing foundation:
+
+* debug APKs remain the easiest local install/test artifact
+* `assembleRelease` can run in CI or locally without signing properties
+* a locally signed release APK is only produced when ignored signing properties are configured
+* GitHub Actions validation builds are not the same thing as an official signed public Android release build
+
+Keep Android signing material and private keystore paths outside the repository.
 
 ## What Works Now
 

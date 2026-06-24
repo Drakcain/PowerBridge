@@ -7,6 +7,10 @@ local.properties
 release-keystore.jks
 *.jks
 *.keystore
+signing.properties
+keystore.properties
+keystores/
+signing/
 gradle-8.7/
 gradle-8.7-bin.zip
 *.apk
