@@ -1,0 +1,52 @@
+.idea/
+.vscode/
+.vs/
+Thumbs.db
+Desktop.ini
+*.log
+*.tmp
+*.bak
+*.zip
+
+# Android
+android/.gradle/
+android/.idea/
+android/app/build/
+android/build/
+android/captures/
+android/local.properties
+android/release-keystore.jks
+android/*.jks
+android/*.keystore
+android/*.apk
+android/*.aab
+android/*.ap_
+android/gradle-*/
+android/gradle-*-bin.zip
+
+# Windows Companion generated output
+windows-companion/output/*.json
+windows-companion/output/*.png
+windows-companion/output/*.qr.png
+windows-companion/output/*.svg
+!windows-companion/output/.gitkeep
+
+# Diagnostics and local artifacts
+**/powerbridge-diagnostics.zip
+**/PowerBridge-Diag-*.zip
+**/screenshots/
+**/scratch/
+**/temp/
+**/tmp/
+
+# Secrets and signing material
+*.keystore
+*.jks
+*.pfx
+*.pem
+*.key
+*.cer
+*.crt
+*.mobileprovision
+*.env
+*.token

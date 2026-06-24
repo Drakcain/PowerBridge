@@ -1,0 +1,23 @@
+PowerBridge Install Notice
+
+PowerBridge is public software for Wake-on-LAN setup and wake attempts.
+
+Important:
+
+- Android APK installation may require sideloading and user approval.
+- Debug APKs are for testing and are not production-signed.
+- Windows Companion may be distributed as an unsigned script or unsigned package during early public releases.
+- Windows SmartScreen or "unknown publisher" prompts may appear if a signed Windows package does not yet exist.
+- PowerBridge uses user-owned configuration. It does not ship with a shared relay service, shared token, or developer-managed infrastructure.
+- Wake-on-LAN reliability depends on the PC motherboard, NIC, BIOS/UEFI, drivers, Windows power settings, router behavior, and network topology.
+- Remote or cellular wake requires a valid user-owned home-side path.
+- No warranty is provided.
+
+Do not publish:
+
+- generated diagnostics ZIPs
+- generated QR screenshots with real local values
+- generated JSON payloads with real local values
+- signing keys
+- keystores
+- local properties files

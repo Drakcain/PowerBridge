@@ -1,0 +1,24 @@
+<resources>
+    <color name="cp_background">#070A0F</color>
+    <color name="cp_background_secondary">#0D111A</color>
+    <color name="cp_surface">#111827</color>
+    <color name="cp_surface_raised">#151B26</color>
+    <color name="cp_system_bar">#05070B</color>
+    <color name="cp_text_primary">#F8FAFC</color>
+    <color name="cp_text_secondary">#CBD5E1</color>
+    <color name="cp_text_muted">#94A3B8</color>
+    <color name="cp_yellow">#FCEE09</color>
+    <color name="cp_cyan">#00E5FF</color>
+    <color name="cp_magenta">#FF2A6D</color>
+    <color name="cp_purple">#7C3AED</color>
+    <color name="cp_action_wake_yellow">#FACC15</color>
+    <color name="cp_action_wake_yellow_pressed">#D4A514</color>
+    <color name="cp_action_boot_green">#166534</color>
+    <color name="cp_action_boot_green_pressed">#14532D</color>
+    <color name="cp_action_shutdown_red">#E11D48</color>
+    <color name="cp_action_shutdown_red_pressed">#BE123C</color>
+    <color name="cp_success">#00D26A</color>
+    <color name="cp_warning">#FCEE09</color>
+    <color name="cp_error">#FF1744</color>
+    <color name="cp_border">#263244</color>
+</resources>

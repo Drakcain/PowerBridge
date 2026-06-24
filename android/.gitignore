@@ -1,0 +1,17 @@
+.gradle/
+.idea/
+app/build/
+build/
+captures/
+local.properties
+release-keystore.jks
+*.jks
+*.keystore
+gradle-8.7/
+gradle-8.7-bin.zip
+*.apk
+*.aab
+*.ap_
+*.log
+Thumbs.db
+Desktop.ini

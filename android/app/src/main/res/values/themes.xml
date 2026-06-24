@@ -1,0 +1,15 @@
+<resources>
+    <style name="Theme.PowerBridge" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:statusBarColor">@color/cp_system_bar</item>
+        <item name="android:navigationBarColor">@color/cp_system_bar</item>
+        <item name="android:windowBackground">@drawable/bg_screen_gradient</item>
+        <item name="colorPrimary">@color/cp_yellow</item>
+        <item name="colorSecondary">@color/cp_cyan</item>
+        <item name="colorTertiary">@color/cp_magenta</item>
+        <item name="colorSurface">@color/cp_surface</item>
+        <item name="colorSurfaceVariant">@color/cp_surface_raised</item>
+        <item name="colorOnSurface">@color/cp_text_primary</item>
+        <item name="colorOutline">@color/cp_border</item>
+        <item name="android:textColor">@color/cp_text_primary</item>
+    </style>
+</resources>

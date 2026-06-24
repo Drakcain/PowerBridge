@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_screen_gradient"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingTop="26dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="22dp">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/cp_text_primary"
+            android:textSize="42sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="84dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/cp_cyan"
+            android:background="@android:color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@string/main_subtitle"
+            android:textColor="@color/cp_text_secondary"
+            android:textSize="15sp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/activeProfileCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            app:cardBackgroundColor="@color/cp_surface"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/cp_border"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_active_pc_label"
+                    android:textAllCaps="true"
+                    android:textColor="@color/cp_text_muted"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:hint="@string/main_active_pc_hint"
+                    app:boxBackgroundColor="@color/cp_surface_raised"
+                    app:boxStrokeColor="@color/cp_yellow"
+                    app:endIconMode="dropdown_menu"
+                    app:hintTextColor="@color/cp_text_muted">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/mainProfileInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:textColor="@color/cp_text_primary"
+                        android:textColorHint="@color/cp_text_muted" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/mainProfileSummaryText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/cp_text_secondary"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/manageProfilesButton"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/main_manage_profiles_button"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cp_yellow"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/wakeButton"
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:layout_marginTop="22dp"
+            android:backgroundTint="@color/cp_action_wake_yellow"
+            android:elevation="10dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/wake_button_label"
+            android:textAllCaps="false"
+            android:textColor="@color/cp_background"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:cornerRadius="22dp"
+            app:strokeColor="@color/cp_action_wake_yellow_pressed"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/remoteBootButton"
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:layout_marginTop="14dp"
+            android:backgroundTint="@color/cp_action_boot_green"
+            android:elevation="10dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/boot_button_label"
+            android:textAllCaps="false"
+            android:textColor="@color/cp_text_primary"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:cornerRadius="22dp"
+            app:strokeColor="@color/cp_action_boot_green_pressed"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/testRelayButton"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="16dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/test_relay_button_label"
+            android:textAllCaps="false"
+            android:textColor="@color/cp_cyan"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:cornerRadius="20dp"
+            app:strokeColor="@color/cp_cyan"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="@color/cp_surface"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/cp_border"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/status_section_label"
+                    android:textAllCaps="true"
+                    android:textColor="@color/cp_text_muted"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/statusText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/status_initial_title"
+                    android:textColor="@color/cp_cyan"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/statusDetailText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/status_initial_detail"
+                    android:textColor="@color/cp_text_secondary"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/routeStatusText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="monospace"
+                    android:text="Current Route"
+                    android:textColor="@color/cp_text_muted"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/diagnosticsButton"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@string/diagnostics_button_label"
+            android:textAllCaps="false"
+            android:textColor="@color/cp_magenta"
+            android:textSize="17sp"
+            app:strokeColor="@color/cp_magenta" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/settingsButton"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="28dp"
+            android:text="@string/settings_button_label"
+            android:textAllCaps="false"
+            android:textColor="@color/cp_yellow"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
