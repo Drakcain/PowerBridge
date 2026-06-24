@@ -187,6 +187,21 @@ Before implementation starts:
 * local-only first transport approach is approved
 * prototype diagnostics expectations are approved
 
+## Phase 14 Implementation Checklist
+
+Before the first runtime commit:
+
+* confirm `Phase 14` is the active next phase across README and docs
+* confirm the separate relay app/package direction is approved
+* confirm local-only first transport is approved
+* confirm one Android phone or tablet is selected as the first relay target
+* confirm one controller device is selected
+* confirm one target PC already wakes by `Local Wi-Fi Wake`
+* confirm placeholder-only test data is ready for pairing and wake-request validation
+* confirm no Firebase, FCM, broker, or cloud work is being introduced in the first prototype
+* confirm diagnostics fields required by the contract docs are visible in the first prototype scope
+* confirm public wording still does not imply the relay path is already production-ready
+
 ## Recommended Next Safe Step
 
 Before any code work:

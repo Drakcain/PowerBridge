@@ -38,10 +38,12 @@ PowerBridge does not currently support:
 
 Architecture status note:
 
-* `Home Device Relay` is currently a documented future architecture, not a live feature
+* `Home Device Relay` is not live yet
+* `Phase 14` is the next runtime relay phase
 * see [docs/HOME-DEVICE-RELAY-ARCHITECTURE.md](docs/HOME-DEVICE-RELAY-ARCHITECTURE.md)
 * see [docs/HOME-DEVICE-RELAY-CONTRACTS.md](docs/HOME-DEVICE-RELAY-CONTRACTS.md)
 * see [docs/HOME-DEVICE-RELAY-PROTOTYPE-PLAN.md](docs/HOME-DEVICE-RELAY-PROTOTYPE-PLAN.md)
+* see [docs/README.md](docs/README.md)
 
 ## Repository Layout
 
