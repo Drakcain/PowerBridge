@@ -8,6 +8,12 @@ This document defines the intended architecture for a future relay path that hel
 
 This is a design document only.
 
+Phase status:
+
+* `Phase 12` is complete as architecture
+* `Phase 13` should validate contracts and prototype planning
+* `Phase 14` should be the first runtime prototype phase
+
 Non-goals for this phase:
 
 * no runtime implementation
@@ -471,9 +477,9 @@ Future research area for voice ecosystem or smart-home platform integrations whe
 
 The methods must remain distinct in docs and UI.
 
-## Phase 13 Prototype Entry Criteria
+## Phase 14 Prototype Entry Criteria
 
-Before implementation starts:
+Before Phase 14 implementation starts:
 
 * this architecture is reviewed
 * relay app versus app-mode choice is explicitly approved

@@ -38,19 +38,26 @@ Not live yet:
 * `Phase 10.5` - Public repo and release prep
 * `Phase 10.6` - Updater and release packaging
 * `Phase 11` - Android release signing foundation
+* `Phase 12` - Home Device Relay architecture
 
 ## Next Phases
 
-* `Phase 12` - Home Device Relay architecture
-* `Phase 13` - Home Device Relay prototype entry
-* `Phase 14` - Alternate wake paths and guides
-* `Phase 15` - Packaging and release prep follow-through
+* `Phase 13` - Home Device Relay prototype planning and contract validation
+* `Phase 14` - Home Device Relay prototype implementation
+* `Phase 15` - Alternate wake paths and guides
+* `Phase 16` - Packaging and release prep follow-through
 
-Phase 12 is architecture-only.
+Phase status:
+
+* `Phase 12` is complete
+* `Phase 13` is the current contract/planning phase
+* `Phase 14` is the first relay runtime prototype phase
 
 See:
 
 * [HOME-DEVICE-RELAY-ARCHITECTURE.md](HOME-DEVICE-RELAY-ARCHITECTURE.md)
+* [HOME-DEVICE-RELAY-CONTRACTS.md](HOME-DEVICE-RELAY-CONTRACTS.md)
+* [HOME-DEVICE-RELAY-PROTOTYPE-PLAN.md](HOME-DEVICE-RELAY-PROTOTYPE-PLAN.md)
 
 ## Rules
 
