@@ -10,7 +10,7 @@ This repository packages the full public project:
 Current public version target:
 
 ```text
-v0.6
+v0.6.1
 ```
 
 ## What Works Now
@@ -124,14 +124,22 @@ When public releases begin, the GitHub release page should expose the deliverabl
 
 Target release asset shape:
 
-* `PowerBridge-v0.6.apk`
-* `PowerBridge-Companion-Setup-v0.6.exe`
+* `PowerBridge-v0.6.1.apk`
+* `PowerBridge-Companion-Setup-v0.6.1.exe`
 
 Release rule:
 
 * keep the Android APK and Windows Companion installer as separate assets
 * do not wrap them in an extra ZIP just to group them
 * let users download the Android app or the Windows installer independently from the same release page
+
+Current local release flow:
+
+```powershell
+Set-Location "<repo-root>"
+pwsh -NoProfile -ExecutionPolicy Bypass -File ".\scripts\Build-PowerBridgeReleaseAssets.ps1"
+pwsh -NoProfile -ExecutionPolicy Bypass -File ".\scripts\Publish-PowerBridgeRelease.ps1"
+```
 
 ## Important Notice
 

@@ -44,3 +44,4 @@ Before a public push or release prep checkpoint:
 * publish the Android APK and Windows Companion installer as separate top-level release assets
 * do not ship the release page as a nested folder/archive layout unless technically required
 * confirm planned release asset names are clear and user-readable
+* for PowerBridge Android, publish a locally signed or locally stable-installable APK from this workstation until a dedicated release-signing path exists

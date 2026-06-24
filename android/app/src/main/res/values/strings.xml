@@ -74,6 +74,9 @@
     <string name="settings_sleep_section">Wake PC</string>
     <string name="settings_boot_section">Boot PC</string>
     <string name="settings_help_section">Workflow Guide</string>
+    <string name="settings_updates_section">App Updates</string>
+    <string name="settings_updates_button">Check for Updates</string>
+    <string name="settings_updates_help">PowerBridge can download a newer APK from GitHub Releases and hand it to the Android installer. Android still requires your confirmation before replacing the app.</string>
     <string name="settings_route_mode_hint">Route Mode</string>
     <string name="settings_home_relay_hint">Home Wi-Fi Relay URL</string>
     <string name="settings_remote_relay_hint">Remote Public Relay URL</string>

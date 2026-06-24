@@ -272,6 +272,112 @@ function Get-DefaultOutputPath {
     return Join-Path $outputDir ("powerbridge-setup-{0}-{1}.json" -f (Get-Date -Format 'yyyyMMdd-HHmmssfff'), [guid]::NewGuid().ToString('N').Substring(0, 6))
 }
 
+function Get-PowerBridgeAppRoot {
+    $candidates = @(
+        (Split-Path -Parent $PSScriptRoot),
+        (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
+    )
+    foreach ($candidate in $candidates | Select-Object -Unique) {
+        if (Test-Path (Join-Path $candidate 'VERSION')) {
+            return $candidate
+        }
+    }
+    return (Split-Path -Parent $PSScriptRoot)
+}
+
+function Get-PowerBridgeInstalledVersion {
+    $versionPath = Join-Path (Get-PowerBridgeAppRoot) 'VERSION'
+    if (Test-Path -LiteralPath $versionPath) {
+        return (Get-Content -LiteralPath $versionPath -Raw).Trim()
+    }
+    return '0.0.0'
+}
+
+function Get-NormalizedSemanticVersion {
+    param([string]$Value)
+
+    try {
+        return [version]($Value.Trim().TrimStart('v'))
+    } catch {
+        return [version]'0.0.0'
+    }
+}
+
+function Get-LatestPowerBridgeRelease {
+    $headers = @{
+        Accept = 'application/vnd.github+json'
+        'User-Agent' = 'PowerBridge-Companion-Updater'
+    }
+    return Invoke-RestMethod -Uri 'https://api.github.com/repos/Drakcain/PowerBridge/releases/latest' -Headers $headers
+}
+
+function Open-PowerBridgeReleasesPage {
+    Start-Process -FilePath 'https://github.com/Drakcain/PowerBridge/releases'
+}
+
+function Invoke-PowerBridgeCompanionSelfUpdate {
+    Add-Type -AssemblyName PresentationFramework
+
+    $currentVersion = Get-PowerBridgeInstalledVersion
+    $release = Get-LatestPowerBridgeRelease
+    $latestTag = [string]$release.tag_name
+    $latestVersion = $latestTag.TrimStart('v')
+
+    if ((Get-NormalizedSemanticVersion $latestVersion) -le (Get-NormalizedSemanticVersion $currentVersion)) {
+        [System.Windows.MessageBox]::Show(
+            "PowerBridge Windows Companion is already up to date.`n`nCurrent version: v$currentVersion",
+            'PowerBridge Windows Companion',
+            'OK',
+            'Information'
+        ) | Out-Null
+        return
+    }
+
+    $installer = $release.assets |
+        Where-Object { $_.name -like 'PowerBridge-Companion-Setup-*.exe' } |
+        Select-Object -First 1
+    $checksum = $release.assets |
+        Where-Object { $_.name -like 'PowerBridge-Companion-Setup-*.exe.sha256' } |
+        Select-Object -First 1
+    if (-not $installer) {
+        throw 'Latest PowerBridge release does not include a Windows Companion installer asset.'
+    }
+
+    $prompt = [System.Windows.MessageBox]::Show(
+        "Installed: v$currentVersion`nLatest: $latestTag`n`nDownload and launch the new Windows Companion installer now?",
+        'PowerBridge update available',
+        'YesNo',
+        'Information'
+    )
+    if ($prompt -ne 'Yes') {
+        return
+    }
+
+    $tempDir = Join-Path $env:TEMP ("powerbridge-companion-update-{0}" -f [guid]::NewGuid().ToString('N'))
+    New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
+    $installerPath = Join-Path $tempDir $installer.name
+    Invoke-WebRequest -Uri $installer.browser_download_url -OutFile $installerPath -Headers @{ 'User-Agent' = 'PowerBridge-Companion-Updater' }
+
+    if ($checksum) {
+        $checksumPath = Join-Path $tempDir $checksum.name
+        Invoke-WebRequest -Uri $checksum.browser_download_url -OutFile $checksumPath -Headers @{ 'User-Agent' = 'PowerBridge-Companion-Updater' }
+        $checksumText = (Get-Content -LiteralPath $checksumPath -Raw).Trim()
+        $expectedHash = ($checksumText -split '\s+')[0].Trim().ToUpperInvariant()
+        $actualHash = (Get-FileHash -LiteralPath $installerPath -Algorithm SHA256).Hash.ToUpperInvariant()
+        if ($expectedHash -ne $actualHash) {
+            throw "Installer checksum mismatch. Expected $expectedHash, got $actualHash."
+        }
+    }
+
+    Start-Process -FilePath $installerPath -Verb RunAs
+    [System.Windows.MessageBox]::Show(
+        "Downloaded and launched PowerBridge Windows Companion $latestTag.`n`nFollow the installer prompts to finish the update.",
+        'PowerBridge Windows Companion',
+        'OK',
+        'Information'
+    ) | Out-Null
+}
+
 function Write-SetupJsonFile {
     param(
         [string]$Json,

@@ -3,4 +3,7 @@
     <cache-path
         name="diagnostics_cache"
         path="diagnostics/" />
+    <cache-path
+        name="updates_cache"
+        path="updates/" />
 </paths>

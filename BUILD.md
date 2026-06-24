@@ -74,8 +74,8 @@ The public release page should publish two flat assets:
 Recommended asset naming:
 
 ```text
-PowerBridge-v0.6.apk
-PowerBridge-Companion-Setup-v0.6.exe
+PowerBridge-v0.6.1.apk
+PowerBridge-Companion-Setup-v0.6.1.exe
 ```
 
 Recommended Windows installer behavior:
@@ -89,6 +89,20 @@ Release-page rule:
 
 * upload the APK and installer directly as separate release assets
 * do not place them inside an additional release folder/archive unless there is a real technical reason
+
+Local release asset build:
+
+```powershell
+Set-Location "<repo-root>"
+pwsh -NoProfile -ExecutionPolicy Bypass -File ".\scripts\Build-PowerBridgeReleaseAssets.ps1"
+```
+
+Local GitHub release publish:
+
+```powershell
+Set-Location "<repo-root>"
+pwsh -NoProfile -ExecutionPolicy Bypass -File ".\scripts\Publish-PowerBridgeRelease.ps1"
+```
 
 ## Repo Hygiene Checks
 

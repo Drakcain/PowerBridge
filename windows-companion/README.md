@@ -122,6 +122,12 @@ Open the GUI:
 pwsh -NoProfile -ExecutionPolicy Bypass -File ".\scripts\Start-PowerBridgeCompanionGui.ps1"
 ```
 
+Build the Windows Companion installer:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File ".\scripts\Build-PowerBridgeCompanionInstaller.ps1"
+```
+
 ## Output Hygiene
 
 Generated output may contain real local machine network values.
@@ -137,6 +143,8 @@ Recommended rules:
 * Use placeholders in public examples.
 
 GUI mode keeps the QR available for the current session. CLI mode may write JSON or PNG output for testing and troubleshooting.
+
+Installed releases add a Start Menu shortcut for `Check for PowerBridge Updates`, and the GUI also exposes `Check for Updates`.
 
 ## Public Release Notes
 

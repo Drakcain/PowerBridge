@@ -89,6 +89,8 @@ class SettingsActivity : AppCompatActivity() {
         val saveButton = findViewById<MaterialButton>(R.id.saveSettingsButton)
         val clearTokenButton = findViewById<MaterialButton>(R.id.clearTokenButton)
         val statusText = findViewById<TextView>(R.id.settingsStatusText)
+        val updateStatusText = findViewById<TextView>(R.id.updateStatusText)
+        val checkUpdatesButton = findViewById<MaterialButton>(R.id.checkUpdatesButton)
         settingsStatusText = statusText
 
         val methodLabels = WakeMethodId.entries.map { it.displayName }
@@ -342,6 +344,26 @@ class SettingsActivity : AppCompatActivity() {
             loadProfileIntoForm(clearedProfile)
             statusText.setTextColor(ContextCompat.getColor(this, R.color.cp_warning))
             statusText.text = getString(R.string.settings_token_cleared_profile_status, clearedProfile.name)
+        }
+
+        checkUpdatesButton.setOnClickListener {
+            AppUpdater.checkForUpdates(
+                activity = this,
+                currentVersion = AppUpdater.appVersion(this),
+                manual = true
+            ) { message, colorRes ->
+                updateStatusText.setTextColor(ContextCompat.getColor(this, colorRes))
+                updateStatusText.text = message
+            }
+        }
+
+        AppUpdater.checkForUpdates(
+            activity = this,
+            currentVersion = AppUpdater.appVersion(this),
+            manual = false
+        ) { message, colorRes ->
+            updateStatusText.setTextColor(ContextCompat.getColor(this, colorRes))
+            updateStatusText.text = message
         }
     }
 

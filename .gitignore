@@ -7,6 +7,7 @@ Desktop.ini
 *.tmp
 *.bak
 *.zip
+dist/
 
 # Android
 android/.gradle/
@@ -25,6 +26,8 @@ android/gradle-*/
 android/gradle-*-bin.zip
 
 # Windows Companion generated output
+windows-companion/build/
+windows-companion/dist/
 windows-companion/output/*.json
 windows-companion/output/*.png
 windows-companion/output/*.qr.png

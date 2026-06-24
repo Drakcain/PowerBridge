@@ -159,6 +159,7 @@ Add-Type -AssemblyName WindowsBase
                         <Button x:Name="DetectButton" Content="Detect This PC" Style="{StaticResource AccentButtonStyle}" MinWidth="170" />
                         <Button x:Name="RefreshButton" Content="Refresh Adapters" Style="{StaticResource SecondaryButtonStyle}" MinWidth="150" />
                         <Button x:Name="GenerateButton" Content="Generate QR Code" Style="{StaticResource SecondaryButtonStyle}" MinWidth="170" />
+                        <Button x:Name="UpdateButton" Content="Check for Updates" Style="{StaticResource SecondaryButtonStyle}" MinWidth="170" />
                     </WrapPanel>
 
                         <TextBlock Text="Selected Adapter" Style="{StaticResource FieldLabelStyle}" />
@@ -286,6 +287,7 @@ $controls = @{
     DetectButton       = $window.FindName('DetectButton')
     RefreshButton      = $window.FindName('RefreshButton')
     GenerateButton     = $window.FindName('GenerateButton')
+    UpdateButton       = $window.FindName('UpdateButton')
     AdapterComboBox    = $window.FindName('AdapterComboBox')
     PcNameTextBox      = $window.FindName('PcNameTextBox')
     AdapterTypeTextBox = $window.FindName('AdapterTypeTextBox')
@@ -483,6 +485,16 @@ $controls.RefreshButton.Add_Click({
 $controls.GenerateButton.Add_Click({
     try {
         Generate-SetupArtifactsFromSelection
+    } catch {
+        Set-Warnings -Lines @($_.Exception.Message)
+        Set-Status -Message $_.Exception.Message -Color '#FF1744'
+    }
+})
+
+$controls.UpdateButton.Add_Click({
+    try {
+        Invoke-PowerBridgeCompanionSelfUpdate
+        Set-Status -Message 'Finished checking for companion updates.' -Color '#00E5FF'
     } catch {
         Set-Warnings -Lines @($_.Exception.Message)
         Set-Status -Message $_.Exception.Message -Color '#FF1744'
