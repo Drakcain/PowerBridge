@@ -75,6 +75,26 @@ Not implemented in Phase 14C:
 * cloud broker
 * TV-specific runtime work
 
+## Phase 14C.1 Status
+
+Phase 14C.1 was a focused polish pass after the guided setup wiring work.
+
+Completed in Phase 14C.1:
+
+* verified the final guided setup confirm path stays intact
+* added `Share Report` to `Home Relay Mode`
+* reduced noisy CI runs with Android/Windows workflow path filters
+* aligned development versioning to the phase-level 0.7.x rule
+
+Not implemented in Phase 14C.1:
+
+* old phone or tablet relay runtime
+* Firebase / FCM
+* cloud broker
+* smart plug runtime
+* smart speaker runtime
+* TV runtime
+
 ## Phase 14D Prototype Goal
 
 Phase 14 should deliver the first narrow `Home Device Relay` prototype without trying to solve the full remote-wake product in one pass.
@@ -267,7 +287,7 @@ Before the first runtime commit:
 
 ## Recommended Next Safe Step
 
-For the next runtime step after Phase 14C:
+For the next runtime step after Phase 14C.1:
 
 1. implement a local-only controller-to-relay prototype flow
 2. keep the first relay target to a standard Android phone or tablet

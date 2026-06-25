@@ -1,5 +1,6 @@
 package com.powerbridge.app
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -47,13 +48,25 @@ class HomeRelayActivity : AppCompatActivity() {
         findViewById<MaterialButton>(R.id.copyDiagnosticsButton).setOnClickListener {
             ensureReport()
             HomeRelayDiagnosticsStore.copyDiagnostics(this)
-            updateStatus("Diagnostics copied.", "Home Relay diagnostics copied to the clipboard.", success = true)
+            updateStatus(getString(R.string.home_relay_report_copied_title), getString(R.string.home_relay_report_copied_detail), success = true)
+            renderState()
+        }
+
+        findViewById<MaterialButton>(R.id.shareReportButton).setOnClickListener {
+            ensureReport()
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_SUBJECT, getString(R.string.home_relay_share_subject))
+                putExtra(Intent.EXTRA_TEXT, HomeRelayDiagnosticsStore.getLog(this@HomeRelayActivity))
+            }
+            startActivity(Intent.createChooser(intent, getString(R.string.home_relay_share_chooser)))
+            updateStatus(getString(R.string.home_relay_report_shared_title), getString(R.string.home_relay_report_shared_detail), success = true)
             renderState()
         }
 
         findViewById<MaterialButton>(R.id.clearLogButton).setOnClickListener {
             HomeRelayDiagnosticsStore.clear(this)
-            updateStatus("Log cleared.", "Home Relay prototype diagnostics log cleared.", success = true)
+            updateStatus(getString(R.string.home_relay_report_cleared_title), getString(R.string.home_relay_report_cleared_detail), success = true)
             renderState()
         }
 

@@ -5,7 +5,15 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'android/**'
+      - '.github/workflows/android-build.yml'
+      - 'VERSION'
   pull_request:
+    paths:
+      - 'android/**'
+      - '.github/workflows/android-build.yml'
+      - 'VERSION'
 
 jobs:
   build:

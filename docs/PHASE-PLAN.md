@@ -44,6 +44,7 @@ Not live yet:
 * `Phase 14A` - Home Device Relay AIO correction + skeleton integration
 * `Phase 14B` - Guided wake setup + method selection framework
 * `Phase 14C` - Wake-path readiness + honest method wiring
+* `Phase 14C.1` - Guided setup polish + Home Relay sharing + CI/version hygiene
 
 ## Next Phases
 
@@ -59,6 +60,7 @@ Phase status:
 * `Phase 14A` is complete as the AIO relay-mode correction inside the main Android app
 * `Phase 14B` is complete as guided wake setup and plain-language method selection
 * `Phase 14C` is complete as honest wake-path readiness wiring for `Home Wi-Fi only`, `Away from home`, and `Not sure`
+* `Phase 14C.1` is complete as guided setup final-confirm verification, Home Relay text sharing, CI path filters, and phase-level version alignment
 * `Phase 14D` is the next relay pairing/runtime prototype phase
 
 Phase 14A scope completed:
@@ -97,6 +99,13 @@ Phase 14C scope completed:
 * `Not sure` now gives a plain-language recommendation instead of a technical list
 * final setup status now shows `Ready now`, `Needs setup`, `Prototype`, `Coming later`, or `Advanced`
 * only live paths can look ready in guided setup
+
+Phase 14C.1 scope completed:
+
+* guided setup final confirmation path verified and kept intact
+* `Home Relay Mode` now supports `Share Report` with the Android share sheet
+* GitHub Actions now use path filters so Android and Windows checks only run when their side changes
+* development versioning now follows the phase-level 0.7.x progression
 
 See:
 

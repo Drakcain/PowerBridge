@@ -5,9 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.net.ConnectivityManager
 import android.os.BatteryManager
-import java.net.Inet4Address
 
 object HomeRelayDiagnosticsStore {
     private const val KEY_LOG = "homeRelayPrototypeLog"
@@ -30,15 +28,30 @@ object HomeRelayDiagnosticsStore {
             }
         } ?: "Unknown"
         val status = transport.currentStatus()
+        val versionName = runCatching {
+            context.packageManager.getPackageInfo(context.packageName, 0).versionName
+        }.getOrNull().orEmpty().ifBlank { "Unknown" }
+        val setupStatus = when {
+            status.pairingLabel.equals("Not configured", ignoreCase = true) -> "Needs setup"
+            status.transportLabel.contains("placeholder", ignoreCase = true) -> "Prototype"
+            else -> "Ready now"
+        }
+        val linkedPcStatus = when {
+            status.linkedProfileLabel.equals("None", ignoreCase = true) -> "No linked PC yet"
+            else -> "Linked to ${status.linkedProfileLabel}"
+        }
         val report = buildString {
             appendLine("PowerBridge Home Relay Diagnostics")
             appendLine("Reason: $reason")
             appendLine("Timestamp: ${DiagnosticsStore.timestampNow()}")
             appendLine()
             appendLine("App: PowerBridge")
+            appendLine("App version: $versionName")
             appendLine("Mode: ${status.modeLabel}")
+            appendLine("Setup status: $setupStatus")
             appendLine("Transport: ${status.transportLabel}")
             appendLine("Pairing status: ${status.pairingLabel}")
+            appendLine("Linked PC status: $linkedPcStatus")
             appendLine("Linked profile: ${status.linkedProfileLabel}")
             appendLine("Last wake request: ${status.lastWakeRequestLabel}")
             appendLine()
@@ -52,9 +65,11 @@ object HomeRelayDiagnosticsStore {
             appendLine("Battery percent: $batteryPercent")
             appendLine()
             appendLine("Warnings:")
-            appendLine("- no production relay transport yet")
-            appendLine("- no cloud or FCM transport yet")
-            appendLine("- no paired controller yet")
+            appendLine("- remote relay runtime not active yet")
+            if (status.linkedProfileLabel.equals("None", ignoreCase = true)) {
+                appendLine("- no linked PC yet")
+            }
+            appendLine("- no cloud or FCM yet")
             appendLine("- no wake request execution yet")
             appendLine()
             appendLine("Transport note:")

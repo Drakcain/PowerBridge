@@ -18,7 +18,7 @@ v0.6.1
 Current development version:
 
 ```text
-0.7.0
+0.7.4
 ```
 
 ## What Works Now
@@ -51,6 +51,7 @@ Architecture status note:
 * `Home Relay Mode` exists only as a local prototype inside the main Android app
 * `Phase 14B` added guided wake setup and plain-language method selection
 * `Phase 14C` completed the honest wake-path readiness wiring for `Home Wi-Fi only`, `Away from home`, and `Not sure`
+* `Phase 14C.1` polished guided setup completion, Home Relay report sharing, CI path filters, and phase-aligned versioning
 * `Phase 14D` is the next local-only relay pairing/runtime phase
 * see [docs/HOME-DEVICE-RELAY-ARCHITECTURE.md](docs/HOME-DEVICE-RELAY-ARCHITECTURE.md)
 * see [docs/HOME-DEVICE-RELAY-CONTRACTS.md](docs/HOME-DEVICE-RELAY-CONTRACTS.md)

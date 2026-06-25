@@ -196,6 +196,18 @@
                     app:strokeColor="@color/cp_cyan" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/shareReportButton"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/home_relay_share_button"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cp_cyan"
+                    app:cornerRadius="18dp"
+                    app:strokeColor="@color/cp_cyan" />
+
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/clearLogButton"
                     style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="match_parent"

@@ -5,7 +5,15 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'windows-companion/**'
+      - '.github/workflows/windows-companion-check.yml'
+      - 'VERSION'
   pull_request:
+    paths:
+      - 'windows-companion/**'
+      - '.github/workflows/windows-companion-check.yml'
+      - 'VERSION'
 
 jobs:
   validate:

@@ -11,7 +11,7 @@ v0.6.1
 Current development version truth:
 
 ```text
-0.7.0
+0.7.4
 ```
 
 Current phase truth:
@@ -22,6 +22,7 @@ Current phase truth:
 * `Phase 14A` is complete as the AIO relay-mode correction pass
 * `Phase 14B` is complete as guided wake setup and method selection
 * `Phase 14C` is complete as wake-path readiness wiring and honest setup-state labeling
+* `Phase 14C.1` is complete as guided setup polish, Home Relay report sharing, CI filter cleanup, and version alignment
 * `Phase 14D` is the next local-only relay pairing/runtime phase
 
 PowerBridge v1 is intentionally focused on wake and boot. Shutdown, restart, hibernate, remote desktop control, and target-side command execution are out of scope because they require a separate backend, always-on agent, operating-system access, or device-specific integration.
