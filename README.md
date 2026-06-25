@@ -18,7 +18,7 @@ v0.6.1
 Current development version:
 
 ```text
-0.7.6
+0.7.7
 ```
 
 ## What Works Now
@@ -53,7 +53,7 @@ Architecture status note:
 * `Phase 14C` completed the honest wake-path readiness wiring for `Home Wi-Fi only`, `Away from home`, and `Not sure`
 * `Phase 14C.1` polished guided setup completion, Home Relay report sharing, CI path filters, and phase-aligned versioning
 * `Phase 14D` completed the main-APK method guide and readiness realignment
-* `Phase 14E` is the next method-specific runtime prototype phase
+* `Phase 14E` stripped unreliable method families and reset the remote model to three approved paths
 * see [docs/HOME-DEVICE-RELAY-ARCHITECTURE.md](docs/HOME-DEVICE-RELAY-ARCHITECTURE.md)
 * see [docs/HOME-DEVICE-RELAY-CONTRACTS.md](docs/HOME-DEVICE-RELAY-CONTRACTS.md)
 * see [docs/HOME-DEVICE-RELAY-PROTOTYPE-PLAN.md](docs/HOME-DEVICE-RELAY-PROTOTYPE-PLAN.md)
@@ -126,18 +126,15 @@ Live now:
 Prototype or partial:
 
 * `Home Relay Mode`
-* `Old Phone / Tablet Relay`
+* `Old Android Device`
 
 Coming later or not live:
 
-* `Fire TV / Smart TV Relay`
-* `Smart Speaker Wake`
-* `Smart Plug Power-On`
+* `Alexa / Google Voice Devices`
 * Firebase / FCM
 * cloud broker
 * smart-home runtime
-* TV runtime
-* old phone / tablet relay runtime
+* old Android relay runtime
 
 ## Honest Technical Limits
 

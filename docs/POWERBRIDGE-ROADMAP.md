@@ -13,7 +13,7 @@ The Windows Companion remains in scope as the PC detection and QR setup helper.
 ## Current Version Truth
 
 * Latest public release: `v0.6.1`
-* Current development version: `0.7.6`
+* Current development version: `0.7.7`
 * Final public target: `v1.0.0`
 
 ## Current Runtime Truth
@@ -26,18 +26,15 @@ Live now:
 Prototype or partial:
 
 * `Home Relay Mode`
-* `Old Phone / Tablet Relay`
+* `Old Android Device`
 
 Coming later or not live:
 
-* `Fire TV / Smart TV Relay`
-* `Smart Speaker Wake`
-* `Smart Plug Power-On`
+* `Alexa / Google Voice Devices`
 * Firebase / FCM
 * cloud broker
 * smart-home runtime
-* TV runtime
-* old phone / tablet relay runtime
+* old Android relay runtime
 
 ## Consumer Setup Flow
 
@@ -56,7 +53,7 @@ Coming later or not live:
 * `Phase 14C` - Honest wake-method readiness wiring
 * `Phase 14C.1` - Final confirm, Home Relay Share Report, GitHub Actions cleanup, version alignment
 * `Phase 14D` - Main APK method guides and readiness follow-through
-* `Phase 14E` - Method-specific runtime prototype selection and implementation
+* `Phase 14E` - Three-method scope reduction and old-Android runtime preparation
 * `Phase 15` - Alternate wake paths and deeper runtime work where chosen
 * `Phase 16` - Packaging, signing, release hardening, and public release preparation
 
@@ -64,13 +61,11 @@ Coming later or not live:
 
 Deferred for later phases:
 
-* old phone / tablet relay runtime
+* old Android relay runtime
 * Firebase / FCM
 * cloud broker
-* Fire TV runtime
-* smart plug vendor API integrations
-* smart speaker vendor integrations
-* second Android APK unless the old-phone relay needs a separate agent app
+* Alexa / Google voice integration runtime
+* second Android APK unless the old-Android relay needs a separate agent app
 
 ## Versioning Rule
 

@@ -11,7 +11,7 @@ v0.6.1
 Current development version truth:
 
 ```text
-0.7.6
+0.7.7
 ```
 
 Current phase truth:
@@ -24,7 +24,7 @@ Current phase truth:
 * `Phase 14C` is complete as wake-path readiness wiring and honest setup-state labeling
 * `Phase 14C.1` is complete as guided setup polish, Home Relay report sharing, CI filter cleanup, and version alignment
 * `Phase 14D` is complete as main-APK method guide and readiness realignment
-* `Phase 14E` is next for one selected method-specific runtime prototype
+* `Phase 14E` is complete as the three-method scope reduction and old-Android preparation pass
 
 PowerBridge v1 is intentionally focused on wake and boot. Shutdown, restart, hibernate, remote desktop control, and target-side command execution are out of scope because they require a separate backend, always-on agent, operating-system access, or device-specific integration.
 
@@ -100,23 +100,25 @@ These methods are planned or under research. They are not live wake engines yet.
 
 | Method                   | Intended shape                                                                                                      | Current status |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------- | -------------- |
-| `Old Phone / Tablet Relay` | Use a spare Android phone or tablet left plugged in at home as the future local wake anchor                       | Prototype      |
-| `Fire TV / Smart TV Relay` | Use a TV-class Android device left powered at home as the future wake helper                                      | Coming later   |
-| `Smart Plug Power-On`      | Power-cycle a smart plug and rely on BIOS or UEFI restore-after-power-loss behavior to boot the PC                | Coming later   |
-| `Smart Speaker Wake`       | Integrate with smart-home ecosystems such as Alexa, Google Home, or Home Assistant where platform support allows it | Research     |
-| `Advanced Network Setup`   | Provide router, VPN, NAS, server, and custom-network guidance                                                     | Guides later   |
+| `Old Android Device`          | Use a spare Android phone or tablet left plugged in at home as the future local wake anchor | Prototype |
+| `Alexa / Google Voice Devices` | Integrate with Alexa or Google voice ecosystems where a safe wake path is possible          | Research  |
+| `My Own Server`               | Use a user-owned always-on NAS, Raspberry Pi, router, Docker host, server, or PC           | Live for advanced users |
 
 ## Phase 14E Direction
 
-Phase 14D completed the method-clarity and readiness pass. Phase 14E should choose one method-specific runtime prototype instead of trying to implement every ecosystem at once:
+Phase 14E stripped the remote model to three approved method families:
 
-* old phone or tablet relay runtime
-* Fire TV / Smart TV relay runtime
-* smart plug integration prototype
-* smart speaker integration research spike
-* persistent server setup helper
+* `Old Android Device`
+* `Alexa / Google Voice Devices`
+* `My Own Server`
 
-Phase 14E should not start all of these at once. Pick one path, wire it honestly, test it, then move to the next.
+Removed from active scope:
+
+* unsupported media-device relay experiments
+* hardware power-cycle workaround experiments
+* router/VPN as a separate product method
+
+Next runtime work should start with `Old Android Device`, because it is the most user-friendly remote-wake path if it can be made reliable.
 
 See [../docs/WAKE-METHODS.md](../docs/WAKE-METHODS.md) for the current method truth.
 
@@ -128,7 +130,6 @@ See [../docs/WAKE-METHODS.md](../docs/WAKE-METHODS.md) for the current method tr
 | User wants fast setup for the current Windows PC                   | PowerBridge Windows Companion QR import |
 | User already has a home server, NAS, Raspberry Pi, or router relay | `Home Relay Server`                     |
 | User wants remote wake over cellular without a server              | Future `Home Relay Mode` path after prototype work |
-| PC does not wake reliably through normal Wake-on-LAN               | Future `Smart Plug Boot Assist`         |
 
 ## Honest Technical Limits
 
@@ -188,11 +189,9 @@ It does not:
    * `Home Wi-Fi only`
    * `Away from home`
    * `Not sure`
-7. If the user chooses `Away from home`, PowerBridge shows these five remote families:
-   * `Old Phone / Tablet Relay`
-   * `Fire TV / Smart TV Relay`
-   * `Smart Speaker Wake`
-   * `Smart Plug Power-On`
+7. If the user chooses `Away from home`, PowerBridge shows these three remote families:
+   * `Old Android Device`
+   * `Alexa / Google Voice Devices`
    * `My Own Server`
 8. PowerBridge shows an honest readiness state:
    * `Ready now`
@@ -317,32 +316,20 @@ Rules:
 * public bug reports should be redacted before posting
 * generated diagnostics ZIPs must not be committed to source control
 
-## Deployment Categories for Later Phases
-
-These categories guide future development. They are not all implemented today.
-
-| Category            | Examples                                                          | Intended role                                     |
-| ------------------- | ----------------------------------------------------------------- | ------------------------------------------------- |
-| `Legacy Mobile`     | Old Android phones, Pixel devices, Galaxy devices, Fire tablets   | Always-on home relay device                       |
-| `Media Client`      | Fire TV, Chromecast with Google TV, Android TV, Google TV         | Always-on or semi-awake home network anchor       |
-| `Voice Ecosystem`   | Alexa, Google Home, Home Assistant                                | Platform-dependent smart-home wake integration    |
-| `Hardware Bypass`   | Smart plugs, PC power switch hardware                             | Boot assist for systems that do not wake normally |
-| `Persistent Server` | Raspberry Pi, Synology NAS, TrueNAS, Unraid, Docker, Linux server | Advanced user-owned relay path                    |
-
 ## Condensed Roadmap
 
 | Phase      | Name                             | Purpose                                                        |
 | ---------- | -------------------------------- | -------------------------------------------------------------- |
 | `Phase 10` | Setup + Method UX Cleanup        | Clean method names, setup wording, warnings, and public docs   |
 | `Phase 11` | Android Release Signing Foundation | Formalize safe local Android release signing                   |
-| `Phase 12` | Home Device Relay Architecture   | Design the old-phone/tablet/TV relay path                      |
+| `Phase 12` | Home Device Relay Architecture   | Design the old Android relay path                              |
 | `Phase 13` | Prototype Planning + Contract Validation | Define relay contracts and the controlled prototype plan       |
 | `Phase 13.5` | Pre-Prototype Cleanup + Readiness Audit | Tighten docs, examples, and repo hygiene before runtime work |
 | `Phase 14A` | Home Relay Mode AIO Correction  | Move relay prototype direction into the main Android app      |
 | `Phase 14B` | Guided Wake Setup Framework     | Add plain-language wake setup and method selection guidance   |
 | `Phase 14C` | Wake Path Readiness + Honest Wiring | Make guided setup honest about what is ready now, what needs setup, and what is still planned |
 | `Phase 14D` | Main APK Method Guides + Readiness Follow-Through | Improve user-facing method guidance and readiness clarity before deeper relay runtime |
-| `Phase 15` | Alternate Wake Paths + Guides    | Smart plug, smart-home, NAS, router, and advanced setup guides |
+| `Phase 15` | Alternate Wake Paths + Guides    | Deepen approved old Android, voice-device, and server paths    |
 | `Phase 16` | Project Packaging + Release Prep | Repo structure, shared contracts, release packaging, checksums |
 
 ## Guardrails

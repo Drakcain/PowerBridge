@@ -260,24 +260,6 @@
                         android:textSize="13sp" />
 
                     <RadioButton
-                        android:id="@+id/mediaClientOption"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/guided_setup_choice_media_client_title"
-                        android:textColor="@color/cp_text_primary"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="@string/guided_setup_choice_media_client_detail"
-                        android:textColor="@color/cp_text_secondary"
-                        android:textSize="13sp" />
-
-                    <RadioButton
                         android:id="@+id/voiceOption"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -292,24 +274,6 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="10dp"
                         android:text="@string/guided_setup_choice_voice_detail"
-                        android:textColor="@color/cp_text_secondary"
-                        android:textSize="13sp" />
-
-                    <RadioButton
-                        android:id="@+id/hardwareOption"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/guided_setup_choice_hardware_title"
-                        android:textColor="@color/cp_text_primary"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="@string/guided_setup_choice_hardware_detail"
                         android:textColor="@color/cp_text_secondary"
                         android:textSize="13sp" />
 

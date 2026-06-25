@@ -91,9 +91,7 @@ class GuidedSetupActivity : AppCompatActivity() {
 
         methodOptionsGroup.setOnCheckedChangeListener { _, checkedId ->
             val choice = when (checkedId) {
-                R.id.mediaClientOption -> RemoteMethodChoice.MEDIA_CLIENT
                 R.id.voiceOption -> RemoteMethodChoice.VOICE_ECOSYSTEM
-                R.id.hardwareOption -> RemoteMethodChoice.HARDWARE_BYPASS
                 R.id.serverOption -> RemoteMethodChoice.PERSISTENT_SERVER
                 else -> RemoteMethodChoice.LEGACY_MOBILE
             }
@@ -274,29 +272,11 @@ class GuidedSetupActivity : AppCompatActivity() {
                 )
             }
 
-            RemoteMethodChoice.MEDIA_CLIENT -> {
-                showFinalStatus(
-                    title = getString(R.string.guided_setup_choice_media_client_title),
-                    state = getString(R.string.guided_setup_label_coming_later),
-                    nextStep = getString(R.string.guided_setup_media_client_final_next_step),
-                    success = false
-                )
-            }
-
             RemoteMethodChoice.VOICE_ECOSYSTEM -> {
                 showFinalStatus(
                     title = getString(R.string.guided_setup_choice_voice_title),
                     state = getString(R.string.guided_setup_label_coming_later),
                     nextStep = getString(R.string.guided_setup_voice_final_next_step),
-                    success = false
-                )
-            }
-
-            RemoteMethodChoice.HARDWARE_BYPASS -> {
-                showFinalStatus(
-                    title = getString(R.string.guided_setup_choice_hardware_title),
-                    state = getString(R.string.guided_setup_label_coming_later),
-                    nextStep = getString(R.string.guided_setup_hardware_final_next_step),
                     success = false
                 )
             }
@@ -442,9 +422,6 @@ class GuidedSetupActivity : AppCompatActivity() {
             WakeMethodId.LOCAL_WIFI -> getString(R.string.guided_setup_location_home_title)
             WakeMethodId.HOME_RELAY -> getString(R.string.guided_setup_choice_server_title)
             WakeMethodId.SPARE_ANDROID -> getString(R.string.guided_setup_choice_legacy_mobile_title)
-            WakeMethodId.MEDIA_CLIENT -> getString(R.string.guided_setup_choice_media_client_title)
-            WakeMethodId.SMART_PLUG -> getString(R.string.guided_setup_choice_hardware_title)
-            WakeMethodId.ADVANCED_ROUTER_VPN -> getString(R.string.guided_setup_other_router_vpn)
             WakeMethodId.SMART_HOME -> getString(R.string.guided_setup_choice_voice_title)
         }
     }
@@ -467,22 +444,10 @@ class GuidedSetupActivity : AppCompatActivity() {
             R.string.guided_setup_legacy_mobile_result_status,
             false
         ),
-        MEDIA_CLIENT(
-            R.string.guided_setup_media_client_result_title,
-            R.string.guided_setup_media_client_result_detail,
-            R.string.guided_setup_media_client_result_status,
-            false
-        ),
         VOICE_ECOSYSTEM(
             R.string.guided_setup_voice_result_title,
             R.string.guided_setup_voice_result_detail,
             R.string.guided_setup_voice_result_status,
-            false
-        ),
-        HARDWARE_BYPASS(
-            R.string.guided_setup_hardware_result_title,
-            R.string.guided_setup_hardware_result_detail,
-            R.string.guided_setup_hardware_result_status,
             false
         ),
         PERSISTENT_SERVER(

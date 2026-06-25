@@ -66,7 +66,7 @@ enum class WakeMethodId(
     ),
     SPARE_ANDROID(
         storageValue = "spare_android",
-        displayName = "Old Phone / Tablet Relay",
+        displayName = "Old Android Device",
         description = "Planned for a spare Android phone or tablet left plugged in at home. The relay device would receive a secure request and send the local Wake-on-LAN packet.",
         statusLabel = "Prototype",
         supportsCellular = true,
@@ -75,43 +75,10 @@ enum class WakeMethodId(
         testButtonLabel = "Method Not Available",
         implemented = false
     ),
-    MEDIA_CLIENT(
-        storageValue = "media_client",
-        displayName = "Fire TV / Smart TV Relay",
-        description = "Planned for a Fire TV, Chromecast with Google TV, Android TV, or Google TV device left powered at home to act as the wake helper.",
-        statusLabel = "Coming later",
-        supportsCellular = true,
-        requiresAlwaysOnBridge = true,
-        difficulty = WakeDifficulty.FUTURE,
-        testButtonLabel = "Method Not Available",
-        implemented = false
-    ),
-    SMART_PLUG(
-        storageValue = "smart_plug",
-        displayName = "Smart Plug Boot Assist",
-        description = "Planned hardware workaround that power-cycles a smart plug to force boot when the motherboard is set to Restore on AC Power Loss. This is not standard Wake-on-LAN.",
-        statusLabel = "Coming later",
-        supportsCellular = true,
-        requiresAlwaysOnBridge = false,
-        difficulty = WakeDifficulty.FUTURE,
-        testButtonLabel = "Method Not Available",
-        implemented = false
-    ),
-    ADVANCED_ROUTER_VPN(
-        storageValue = "advanced_router_vpn",
-        displayName = "Advanced Network Setup",
-        description = "Planned guides for users who already run router Wake-on-LAN, VPN access, or other custom network paths. This is not a live guided setup in the app today.",
-        statusLabel = "Guides later",
-        supportsCellular = true,
-        requiresAlwaysOnBridge = false,
-        difficulty = WakeDifficulty.ADVANCED,
-        testButtonLabel = "Method Not Available",
-        implemented = false
-    ),
     SMART_HOME(
         storageValue = "smart_home",
-        displayName = "Smart Home Wake",
-        description = "Research track for Alexa, Google Home, Home Assistant, and similar smart-home integrations where the platform supports wake flows.",
+        displayName = "Alexa / Google Voice Devices",
+        description = "Research track for Alexa, Google Home, and similar voice ecosystems where the platform supports a safe wake flow.",
         statusLabel = "Research",
         supportsCellular = true,
         requiresAlwaysOnBridge = false,
@@ -156,18 +123,6 @@ object WakeMethodRegistry {
         WakeMethodId.HOME_RELAY to HomeRelayWakeMethod(),
         WakeMethodId.SPARE_ANDROID to ComingSoonWakeMethod(
             WakeMethodId.SPARE_ANDROID,
-            listOf(WakeConfigField.TARGET_MAC)
-        ),
-        WakeMethodId.MEDIA_CLIENT to ComingSoonWakeMethod(
-            WakeMethodId.MEDIA_CLIENT,
-            listOf(WakeConfigField.TARGET_MAC)
-        ),
-        WakeMethodId.SMART_PLUG to ComingSoonWakeMethod(
-            WakeMethodId.SMART_PLUG,
-            emptyList()
-        ),
-        WakeMethodId.ADVANCED_ROUTER_VPN to ComingSoonWakeMethod(
-            WakeMethodId.ADVANCED_ROUTER_VPN,
             listOf(WakeConfigField.TARGET_MAC)
         ),
         WakeMethodId.SMART_HOME to ComingSoonWakeMethod(

@@ -15,11 +15,8 @@ Live now:
 
 Not live yet:
 
-* `Old Phone / Tablet Relay`
-* `Fire TV / Smart TV Relay`
-* `Smart Plug Power-On`
-* `Smart Speaker Wake`
-* `Advanced Network Setup` guides
+* `Old Android Device`
+* `Alexa / Google Voice Devices`
 * Shutdown/restart/hibernate
 * Target-side remote control
 
@@ -47,10 +44,11 @@ Not live yet:
 * `Phase 14C` - Wake-path readiness + honest method wiring
 * `Phase 14C.1` - Guided setup polish + Home Relay sharing + CI/version hygiene
 * `Phase 14D` - Main APK method guides and readiness follow-through
+* `Phase 14E` - Three-method scope reduction and old-Android preparation
 
 ## Next Phases
 
-* `Phase 14E` - Method-specific runtime prototype selection and implementation
+* `Phase 14F` - Old Android relay runtime prototype
 * `Phase 15` - Alternate wake paths and guides
 * `Phase 16` - Packaging and release prep follow-through
 
@@ -64,7 +62,7 @@ Phase status:
 * `Phase 14C` is complete as honest wake-path readiness wiring for `Home Wi-Fi only`, `Away from home`, and `Not sure`
 * `Phase 14C.1` is complete as guided setup final-confirm verification, Home Relay text sharing, CI path filters, and phase-level version alignment
 * `Phase 14D` is complete as main-APK method guide and readiness realignment
-* `Phase 14E` is next for one selected method-specific runtime prototype
+* `Phase 14E` is complete as the three-method scope reduction and old-Android preparation pass
 
 Phase 14A scope completed:
 
@@ -91,7 +89,7 @@ Phase 14B scope completed:
 
 * main Android app now has a clear `Setup Help` entry point
 * users can choose where wake should work without networking jargon
-* app recommends `Home Wi-Fi`, `Old Phone / Tablet Relay`, or `My Own Server`
+* app recommends `Home Wi-Fi`, `Old Android Device`, or `My Own Server`
 * live methods can be selected from guided setup without risky broad auto-save
 * `Home Relay Mode` remains clearly marked as not fully active yet
 
@@ -110,22 +108,25 @@ Phase 14C.1 scope completed:
 * GitHub Actions now use path filters so Android and Windows checks only run when their side changes
 * development versioning now follows the phase-level 0.7.x progression
 
-Phase 14D scope completed:
+Phase 14D scope superseded by Phase 14E:
 
 * `My Own Server` advanced-path clarity and readiness guidance
-* `Smart Plug Power-On` checklist-first guidance
-* `Smart Speaker Wake` guide/research placeholder
-* `Fire TV / Smart TV Relay` guide/experimental explanation
+* broader method guidance reviewed and reduced
 
-Phase 14E should choose one runtime path first. Do not start all of these at once:
+Phase 14E scope completed:
 
-* old phone or tablet relay runtime
+* removed unsupported media-device relay experiments from active product scope
+* removed hardware power-cycle workaround experiments from active product scope
+* removed router/VPN as a separate product method
+* retained only `Old Android Device`, `Alexa / Google Voice Devices`, and `My Own Server` as remote method families
+
+Phase 14F should focus on:
+
+* old Android relay runtime
 * Firebase / FCM
 * cloud broker
-* smart plug vendor APIs
-* smart speaker vendor APIs
-* TV runtime
-* a second Android APK
+* QR pairing for relay setup
+* diagnostics on both controller and relay sides
 
 See:
 
@@ -150,7 +151,6 @@ PowerBridge must not claim:
 * that Windows Companion wakes directly
 * that every PC can wake from every power state
 * that unimplemented methods are already live
-* that Fire TV, Android TV, or Google TV relay behavior is already proven reliable
 * that FCM, Firebase, or a cloud broker already exists in PowerBridge
 
 Detailed component phase notes remain in:

@@ -399,9 +399,6 @@ class SettingsActivity : AppCompatActivity() {
             WakeMethodId.HOME_RELAY -> getString(R.string.settings_help_home_relay)
             WakeMethodId.LOCAL_WIFI -> getString(R.string.settings_help_local_wifi)
             WakeMethodId.SPARE_ANDROID -> getString(R.string.settings_help_home_device_relay)
-            WakeMethodId.MEDIA_CLIENT -> getString(R.string.settings_help_media_client)
-            WakeMethodId.SMART_PLUG -> getString(R.string.settings_help_smart_plug)
-            WakeMethodId.ADVANCED_ROUTER_VPN -> getString(R.string.settings_help_advanced_network)
             WakeMethodId.SMART_HOME -> getString(R.string.settings_help_smart_home)
         }
     }
