@@ -1,5 +1,7 @@
 # PowerBridge
 
+![PowerBridge Brand Banner](assets/branding/powerbridge-brand-banner.png)
+
 PowerBridge is a public Android Wake-on-LAN client with saved PC profiles, QR-assisted setup, diagnostics export, and an optional advanced path for user-owned relay infrastructure.
 
 This repository packages the full public project:
