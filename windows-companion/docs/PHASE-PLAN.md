@@ -220,10 +220,20 @@ Public examples should use placeholders only.
 | Phase      | Name                             | Purpose                                                        |
 | ---------- | -------------------------------- | -------------------------------------------------------------- |
 | `Phase 10` | Setup + Method UX Cleanup        | Clean method names, setup wording, warnings, and public docs   |
-| `Phase 11` | Home Device Relay Architecture   | Design the old-phone/tablet/TV relay path                      |
-| `Phase 12` | Home Device Relay Prototype      | Build the first home-device relay implementation               |
-| `Phase 13` | Alternate Wake Paths + Guides    | Smart plug, smart-home, NAS, router, and advanced setup guides |
-| `Phase 14` | Project Packaging + Release Prep | Repo structure, shared contracts, release packaging, checksums |
+| `Phase 11` | Android Release Signing Foundation | Formalize safe local Android release signing                 |
+| `Phase 12` | Home Device Relay Architecture   | Design the old-phone/tablet/TV relay path                      |
+| `Phase 13` | Prototype Planning + Contract Validation | Define relay contracts and the controlled prototype plan |
+| `Phase 13.5` | Pre-Prototype Cleanup + Readiness Audit | Tighten docs, examples, and repo hygiene before runtime work |
+| `Phase 14` | Home Device Relay Prototype      | Build the first home-device relay implementation               |
+| `Phase 15` | Alternate Wake Paths + Guides    | Smart plug, smart-home, NAS, router, and advanced setup guides |
+| `Phase 16` | Project Packaging + Release Prep | Repo structure, shared contracts, release packaging, checksums |
+
+Current roadmap truth:
+
+* `Phase 12` is complete as architecture
+* `Phase 13` is complete as contract/planning work
+* `Phase 13.5` is complete as cleanup/readiness work
+* `Phase 14` is the next relay runtime prototype phase
 
 ## Future Relationship to Home Device Relay
 

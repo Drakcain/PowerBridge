@@ -2,6 +2,19 @@
 
 PowerBridge is a public Android wake client for saved PC profiles. It helps users wake or boot a PC using Wake-on-LAN when the phone and PC are on the same local network, or through an advanced user-owned relay path.
 
+Current public version truth:
+
+```text
+v0.6.1
+```
+
+Current phase truth:
+
+* `Phase 12` is complete as architecture
+* `Phase 13` is complete as contract/planning work
+* `Phase 13.5` is complete as cleanup/readiness work
+* `Phase 14` is the next runtime relay prototype phase
+
 PowerBridge v1 is intentionally focused on wake and boot. Shutdown, restart, hibernate, remote desktop control, and target-side command execution are out of scope because they require a separate backend, always-on agent, operating-system access, or device-specific integration.
 
 ## What PowerBridge Does

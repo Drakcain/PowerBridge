@@ -142,6 +142,98 @@ Phase 10 keeps only the implemented methods live:
 
 All future methods remain clearly marked as coming later, guides later, or research.
 
+### Phase 11 — Android Release Signing Foundation
+
+Formalized safe local Android release-signing preparation without committing private signing material.
+
+Completed focus:
+
+* keep debug APKs easy to build and install locally
+* allow release builds to validate without private signing properties
+* preserve the boundary between CI validation builds and locally signed public releases
+* keep private keystore paths and signing files outside the repository
+
+### Phase 12 — Home Device Relay Architecture
+
+Designed the secure always-on home-anchor model.
+
+Completed focus:
+
+* old Android phone relay direction
+* Android tablet relay direction
+* Fire TV / Android TV / Google TV feasibility framing
+* secure pairing model boundaries
+* cloud-event boundary rules
+* local WOL sender behavior expectations
+* diagnostics and trust-model requirements
+
+### Phase 13 — Prototype Planning + Contract Validation
+
+Defined the relay contracts and the controlled prototype plan.
+
+Completed focus:
+
+* contract schemas for pairing, registration, wake requests, wake results, diagnostics, and capabilities
+* separate relay app/package recommendation
+* local-only first transport recommendation
+* target-device test order
+* explicit prototype success criteria
+
+### Phase 13.5 — Pre-Prototype Cleanup + Readiness Audit
+
+Completed repo-truth and public-safety cleanup before runtime relay work.
+
+Completed focus:
+
+* docs map and roadmap alignment in root project docs
+* placeholder-only examples in relay docs/contracts
+* release truth preserved at `v0.6.1`
+* public/private boundary validation
+* Phase 14 entry checklist added and confirmed in the prototype-plan docs
+
+### Phase 14 — Home Device Relay Prototype
+
+This is the next runtime phase.
+
+Planned focus:
+
+* separate relay package/app skeleton
+* local-only transport first
+* Android old phone or tablet target first
+* one relay
+* one linked PC profile
+* one wake request
+* relay diagnostics from the first implementation
+
+### Phase 15 — Alternate Wake Paths + Guides
+
+Document and research secondary wake paths.
+
+Planned focus:
+
+* smart plug boot assist
+* BIOS/UEFI restore-after-power-loss guidance
+* router/VPN/NAS/server guides
+* smart-home ecosystem feasibility
+* hardware bypass warnings
+* platform limitations
+
+### Phase 16 — Project Packaging + Release Prep
+
+Prepare the project for broader release follow-through.
+
+Planned focus:
+
+* public repo hygiene follow-through
+* release packaging
+* Android APK packaging
+* Windows Companion packaging
+* shared contract docs
+* checksums
+* versioning discipline
+* final privacy and private-value sweeps
+* public documentation cleanup
+
 ## Current Supported Flow
 
 ### Local Wi-Fi Wake Setup
@@ -170,66 +262,6 @@ The user must provide and secure their own:
 * Network/routing setup
 
 PowerBridge should never instruct users to expose raw Wake-on-LAN UDP ports directly to the public internet.
-
-## Condensed Roadmap
-
-### Phase 11 — Home Device Relay Architecture
-
-Design the secure always-on home-anchor model.
-
-Planned focus:
-
-* Old Android phone relay
-* Android tablet relay
-* Fire TV / Android TV / Google TV feasibility
-* Secure pairing model
-* Cloud-event boundary
-* Local WOL sender behavior
-* Diagnostics and trust model
-
-No implementation should begin until the architecture is clear.
-
-### Phase 12 — Home Device Relay Prototype
-
-Build the first working home-device relay prototype.
-
-Planned focus:
-
-* Relay device app/mode
-* Secure registration/pairing
-* Receiving wake requests
-* Sending local WOL from inside the home network
-* Diagnostics for relay online/offline state
-* Battery and background behavior guidance
-
-### Phase 13 — Alternate Wake Paths + Guides
-
-Document and research secondary wake paths.
-
-Planned focus:
-
-* Smart plug boot assist
-* BIOS/UEFI restore-after-power-loss guidance
-* Router/VPN/NAS/server guides
-* Smart-home ecosystem feasibility
-* Hardware bypass warnings
-* Platform limitations
-
-### Phase 14 — Project Packaging + Release Prep
-
-Prepare the project for public release.
-
-Planned focus:
-
-* Public repo hygiene
-* Release packaging
-* Android APK packaging
-* Windows Companion packaging
-* Shared contract docs
-* Checksums
-* Versioning
-* Final privacy and private-value sweeps
-* Public documentation cleanup
 
 ## Rules for Future Phases
 
