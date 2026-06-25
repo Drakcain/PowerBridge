@@ -1,9 +1,17 @@
+# Gradle / Android Studio
+
 .gradle/
 .idea/
-app/build/
 build/
+app/build/
 captures/
+
+# Machine-local Android configuration
+
 local.properties
+
+# Signing / keystores / release credentials
+
 release-keystore.jks
 *.jks
 *.keystore
@@ -11,11 +19,29 @@ signing.properties
 keystore.properties
 keystores/
 signing/
-gradle-8.7/
-gradle-8.7-bin.zip
+
+# Android generated artifacts
+
 *.apk
 *.aab
 *.ap_
+*.aar
+*.dex
+*.class
+
+# Local Gradle distributions
+
+gradle-*/
+gradle-*-bin.zip
+
+# Logs / local temp files
+
 *.log
+*.tmp
+*.temp
+*.bak
+
+# OS metadata
+
 Thumbs.db
 Desktop.ini

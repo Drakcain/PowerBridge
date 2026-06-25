@@ -1,25 +1,79 @@
+# Normalize text files by default
+
 * text=auto
+
+# Documentation / repo metadata
 
 *.md text eol=lf
 *.txt text eol=lf
+*.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# YAML / config
+
 *.yml text eol=lf
 *.yaml text eol=lf
+*.json text eol=lf
+*.properties text eol=lf
+*.toml text eol=lf
+*.ini text eol=lf
+
+# Android / Kotlin / Gradle
+
+*.kt text eol=lf
+*.kts text eol=lf
+*.java text eol=lf
+*.xml text eol=lf
+*.gradle text eol=lf
+
+# PowerShell / Windows scripts
+
 *.ps1 text eol=crlf
 *.psm1 text eol=crlf
 *.psd1 text eol=crlf
 *.bat text eol=crlf
 *.cmd text eol=crlf
-*.kts text eol=lf
-*.kt text eol=lf
-*.xml text eol=lf
-*.properties text eol=lf
-*.gitignore text eol=lf
+
+# Images / icons
 
 *.png binary
 *.jpg binary
 *.jpeg binary
+*.webp binary
 *.ico binary
+*.bmp binary
+
+# Archives / packages / generated release artifacts
+
+*.zip binary
+*.7z binary
+*.rar binary
+*.tar binary
+*.gz binary
+*.apk binary
+*.aab binary
+*.exe binary
+*.msi binary
+
+# Java / Android binaries
+
 *.jar binary
+*.aar binary
+*.dex binary
+*.class binary
+
+# Windows / library binaries
+
 *.dll binary
+*.pdb binary
+
+# Signing / certificates / keys
+
 *.jks binary
 *.keystore binary
+*.pfx binary
+*.p12 binary
+*.pem binary
+*.key binary
+*.cer binary
+*.crt binary

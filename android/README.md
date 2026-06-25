@@ -1,56 +1,91 @@
-# PowerBridge
+# PowerBridge Android
 
-PowerBridge is a public Android wake client for saved PC profiles. It helps users wake or boot a PC using Wake-on-LAN when the phone and PC are on the same local network, or through an advanced user-owned relay path.
+PowerBridge Android is the main Android client for PowerBridge.
 
-Current public version truth:
+It helps users save PC profiles and send Wake-on-LAN wake/boot attempts when the phone and PC are on the same local network, or when the user has configured an approved user-owned relay path.
+
+Current public version:
 
 ```text
 v0.6.1
 ```
 
-Current development version truth:
+Current development version:
 
 ```text
 0.7.7
 ```
 
-Current phase truth:
+## Current Product Truth
 
-* `Phase 12` is complete as architecture
-* `Phase 13` is complete as contract/planning work
-* `Phase 13.5` is complete as cleanup/readiness work
-* `Phase 14A` is complete as the AIO relay-mode correction pass
-* `Phase 14B` is complete as guided wake setup and method selection
-* `Phase 14C` is complete as wake-path readiness wiring and honest setup-state labeling
-* `Phase 14C.1` is complete as guided setup polish, Home Relay report sharing, CI filter cleanup, and version alignment
-* `Phase 14D` is complete as main-APK method guide and readiness realignment
-* `Phase 14E` is complete as the three-method scope reduction and old-Android preparation pass
+PowerBridge v1 is focused on wake and boot attempts.
 
-PowerBridge v1 is intentionally focused on wake and boot. Shutdown, restart, hibernate, remote desktop control, and target-side command execution are out of scope because they require a separate backend, always-on agent, operating-system access, or device-specific integration.
+PowerBridge does not support:
+
+* shutdown
+* restart
+* hibernate
+* remote desktop control
+* target-side command execution
+* Windows credential storage
+* automatic firewall changes
+* automatic router configuration
+* raw secret import/export
+* auto-uploaded diagnostics
+* analytics by default
+
+These features are out of scope because they require a separate backend, always-on target-side agent, operating-system access, device-specific integration, or a different security model.
+
+## Current Phase Truth
+
+Completed:
+
+* `Phase 12` — architecture
+* `Phase 13` — contract and prototype planning
+* `Phase 13.5` — cleanup and readiness work
+* `Phase 14A` — AIO relay-mode correction pass
+* `Phase 14B` — guided wake setup and method selection
+* `Phase 14C` — wake-path readiness wiring and honest setup-state labeling
+* `Phase 14C.1` — guided setup polish, Home Relay report sharing, CI filter cleanup, and version alignment
+* `Phase 14D` — main-APK method guide and readiness realignment
+* `Phase 14E` — three-method scope reduction and Old Android preparation pass
+
+Next runtime direction:
+
+* `Phase 14F` — Old Android relay runtime foundation
 
 ## What PowerBridge Does
 
-PowerBridge is designed around saved PC profiles. Each profile can store the setup needed to wake a specific PC.
+PowerBridge is designed around saved PC profiles. Each profile stores the setup needed to wake a specific PC.
 
 Current core features:
 
-* Save multiple PC profiles
-* Wake a PC from sleep using Wake-on-LAN
-* Attempt boot from shutdown when hardware supports it
-* Import setup data from PowerBridge Windows Companion by QR code
-* Check local setup readiness
-* Export diagnostics as a ZIP report
-* Support local Wake-on-LAN and advanced user-owned relay setups
-* Expose an AIO `Home Relay Mode` prototype inside the same Android app
-* Guide users through plain-language wake method selection from the main app
+* save multiple PC profiles
+* wake a PC from sleep using Wake-on-LAN
+* attempt boot from shutdown when hardware supports it
+* import setup data from PowerBridge Windows Companion by QR code
+* check local setup readiness
+* export diagnostics as a ZIP report when the user chooses
+* support local Wake-on-LAN
+* support advanced user-owned relay setups through `Home Relay Server`
+* guide users through plain-language wake method selection
 
 ## Privacy and Public-Safety Boundary
 
 PowerBridge is public, generic, and user-configured.
 
-PowerBridge must not ship with developer-specific infrastructure, private relay assumptions, private domains, private IP addresses, private MAC addresses, private tokens, or personal setup values.
+PowerBridge must not ship with:
 
-`Home Relay Server` always means a relay owned and controlled by the user, such as a Raspberry Pi, NAS, server, router, Docker host, or personal domain relay.
+* developer-specific infrastructure
+* private relay assumptions
+* private domains
+* private IP addresses
+* private MAC addresses
+* private tokens
+* personal setup values
+* shared public relay credentials
+
+`Home Relay Server` always means a relay owned and controlled by the user, such as a Raspberry Pi, NAS, server, Docker host, always-on PC, or similar home-side system.
 
 PowerBridge does not upload diagnostics automatically. Diagnostic reports are generated locally and shared only when the user chooses to share them.
 
@@ -60,8 +95,8 @@ Build from the Android project root:
 
 ```powershell
 Set-Location "<repo-root>\android"
-.\gradlew.bat assembleDebug --no-daemon
-.\gradlew.bat assembleRelease --no-daemon
+.\gradlew.bat :app:assembleDebug --no-daemon
+.\gradlew.bat :app:assembleRelease --no-daemon
 ```
 
 Debug APK output:
@@ -70,82 +105,82 @@ Debug APK output:
 android\app\build\outputs\apk\debug\app-debug.apk
 ```
 
-If you want to install the debug APK over USB from PowerShell:
+Install the debug APK over USB from PowerShell:
 
 ```powershell
+Set-Location "<repo-root>\android"
 & "<android-sdk>\platform-tools\adb.exe" install -r ".\app\build\outputs\apk\debug\app-debug.apk"
 ```
 
-Release signing must use a private keystore that is not committed to the repository.
+## Release Signing Truth
+
+Android release signing must use a private keystore that is not committed to the repository.
 
 Current release-signing foundation:
 
 * debug APKs remain the easiest local install/test artifact
 * `assembleRelease` can run in CI or locally without signing properties
-* a locally signed release APK is only produced when ignored signing properties are configured
-* GitHub Actions validation builds are not the same thing as an official signed public Android release build
+* a locally signed release APK is produced only when ignored signing properties are configured
+* GitHub Actions validation builds are not official signed public Android release builds
+* official public Android release APK assets should come from a locally signed release build
 
-Keep Android signing material and private keystore paths outside the repository.
+Keep Android signing material, signing properties, passwords, and private keystore paths outside the repository.
 
 ## What Works Now
 
-| Method              | What it does                                                                            | Best for                                              | Hardware needed                                                  | Cellular support                    | Status |
-| ------------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------- | ---------------------------------------------------------------- | ----------------------------------- | ------ |
-| `Local Wi-Fi Wake`  | Sends Wake-on-LAN Magic Packets directly from the Android phone over the local network  | Most users at home on the same Wi-Fi or LAN as the PC | Android phone, PC Wake-on-LAN support, same network              | No                                  | Live   |
-| `Home Relay Server` | Sends a secure request to a user-owned relay that performs the local Wake-on-LAN action | Advanced self-hosted users                            | Raspberry Pi, NAS, server, router, Docker host, or similar relay | Yes, with user-owned infrastructure | Live   |
+| Method                                | What it does                                                                            | Best for                                              | Hardware needed                                                        | Cellular support                    | Status          |
+| ------------------------------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------- | --------------- |
+| `Local Wi-Fi Wake`                    | Sends Wake-on-LAN Magic Packets directly from the Android phone over the local network  | Most users at home on the same Wi-Fi or LAN as the PC | Android phone, PC Wake-on-LAN support, same network                    | No                                  | Live            |
+| `Home Relay Server` / `My Own Server` | Sends a secure request to a user-owned relay that performs the local Wake-on-LAN action | Advanced self-hosted users                            | Raspberry Pi, NAS, server, Docker host, always-on PC, or similar relay | Yes, with user-owned infrastructure | Live / advanced |
 
-## Planned Methods
+## Approved Remote Model
 
-These methods are planned or under research. They are not live wake engines yet.
+PowerBridge’s approved remote wake model is limited to:
 
-| Method                   | Intended shape                                                                                                      | Current status |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------- | -------------- |
-| `Old Android Device`          | Use a spare Android phone or tablet left plugged in at home as the future local wake anchor | Prototype |
-| `Alexa / Google Voice Devices` | Integrate with Alexa or Google voice ecosystems where a safe wake path is possible          | Research  |
-| `My Own Server`               | Use a user-owned always-on NAS, Raspberry Pi, router, Docker host, server, or PC           | Live for advanced users |
-
-## Phase 14E Direction
-
-Phase 14E stripped the remote model to three approved method families:
-
-* `Old Android Device`
-* `Alexa / Google Voice Devices`
-* `My Own Server`
+| Method                                | Intended shape                                                                              | Current status          |
+| ------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------- |
+| `Old Android Device`                  | Use a spare Android phone or tablet left plugged in at home as the future local wake anchor | Next runtime prototype  |
+| `My Own Server` / `Home Relay Server` | Use a user-owned always-on NAS, Raspberry Pi, Docker host, server, or PC                    | Live for advanced users |
+| `Alexa / Google Voice Devices`        | Integrate with supported voice ecosystems where a safe wake path is possible                | Research / later        |
 
 Removed from active scope:
 
-* unsupported media-device relay experiments
-* hardware power-cycle workaround experiments
-* router/VPN as a separate product method
+* TV / streaming relay
+* Fire TV / Android TV relay
+* Roku relay
+* smart plug / hardware power-cycle boot
+* router / VPN as a standalone method
+* shutdown / restart workflows
 
 Next runtime work should start with `Old Android Device`, because it is the most user-friendly remote-wake path if it can be made reliable.
 
-See [../docs/WAKE-METHODS.md](../docs/WAKE-METHODS.md) for the current method truth.
+See [../docs/WAKE-METHODS.md](../docs/WAKE-METHODS.md) for current method truth.
 
 ## Recommended Setup Paths
 
-| Situation                                                          | Recommended path                        |
-| ------------------------------------------------------------------ | --------------------------------------- |
-| Phone and PC are on the same Wi-Fi or LAN                          | `Local Wi-Fi Wake`                      |
-| User wants fast setup for the current Windows PC                   | PowerBridge Windows Companion QR import |
-| User already has a home server, NAS, Raspberry Pi, or router relay | `Home Relay Server`                     |
-| User wants remote wake over cellular without a server              | Future `Home Relay Mode` path after prototype work |
+| Situation                                                                       | Recommended path                        |
+| ------------------------------------------------------------------------------- | --------------------------------------- |
+| Phone and PC are on the same Wi-Fi or LAN                                       | `Local Wi-Fi Wake`                      |
+| User wants fast setup for the current Windows PC                                | PowerBridge Windows Companion QR import |
+| User already has a home server, NAS, Raspberry Pi, Docker host, or always-on PC | `Home Relay Server` / `My Own Server`   |
+| User wants remote wake over cellular without a server                           | Future `Old Android Device` relay path  |
 
 ## Honest Technical Limits
 
 Wake-on-LAN has real network boundaries.
 
-A public cloud server cannot directly send a Wake-on-LAN UDP Magic Packet into a private home LAN unless something inside that network can receive a request and send the local packet. That local path may be a user-owned relay, an always-on home device, a VPN/router setup, or a supported smart-home/hardware path.
+A public cloud service cannot directly send a Wake-on-LAN UDP Magic Packet into a private home LAN unless something inside that network can receive a request and send the final local packet. That local path may be a user-owned relay, an always-on home device, or a supported smart-home path.
 
 A sleeping or powered-off PC also cannot wake itself through a normal operating-system agent because the OS and normal network stack are offline.
 
-Other important limits:
+Important limits:
 
-* `Windows Companion` is a setup helper. It does not wake the PC directly.
+* Windows Companion is a setup helper. It does not wake the PC directly.
 * Ethernet is recommended for the most reliable Wake-on-LAN behavior.
 * Wi-Fi wake may work on some laptops and devices, but it depends on hardware, firmware, drivers, power state, and operating-system behavior.
-* Boot from full shutdown is often less reliable than wake from sleep because BIOS/UEFI, NIC firmware, motherboard support, and Windows Fast Startup settings can affect the result.
-* Remote wake over cellular requires a valid home-side path. PowerBridge does not bypass NAT or firewall limitations by itself.
+* Boot from full shutdown is often less reliable than wake from sleep because BIOS/UEFI, NIC firmware, motherboard support, Windows Fast Startup, and standby power behavior can affect the result.
+* Remote wake over cellular requires a valid home-side path.
+* PowerBridge does not bypass NAT, firewalls, OS permissions, hardware limits, paid services, or vendor restrictions.
 
 ## Windows Companion
 
@@ -154,27 +189,27 @@ PowerBridge Windows Companion is a Windows-side setup helper. It detects local P
 It detects:
 
 * PC name
-* Adapter type
+* adapter type
 * MAC address
 * IPv4 address
-* Gateway
-* Subnet prefix
-* Broadcast IP
+* gateway
+* subnet prefix
+* broadcast IP
 
 It generates:
 
 * `powerbridge.local_setup.v1` setup payload
-* Scan-safe black-on-white QR code
-* Local setup data for a `Local Wi-Fi Wake` profile
+* scan-safe black-on-white QR code
+* local setup data for a `Local Wi-Fi Wake` profile
 
 It does not:
 
-* Wake the PC directly
-* Run in the background
-* Install a Windows service
-* Change firewall, power, BIOS, or NIC settings
-* Collect passwords, credentials, relay tokens, or secrets
-* Solve remote cellular wake by itself
+* wake the PC directly
+* run in the background
+* install a Windows service
+* change firewall, power, BIOS, UEFI, NIC, or router settings
+* collect passwords, credentials, relay tokens, API keys, or secrets
+* solve remote cellular wake by itself
 
 ## Current User Flow
 
@@ -186,14 +221,17 @@ It does not:
 4. Review the detected PC and keep or rename the profile.
 5. Confirm the PC.
 6. Choose where wake should work:
+
    * `Home Wi-Fi only`
    * `Away from home`
    * `Not sure`
-7. If the user chooses `Away from home`, PowerBridge shows these three remote families:
+7. If the user chooses `Away from home`, PowerBridge shows the approved remote families:
+
    * `Old Android Device`
-   * `Alexa / Google Voice Devices`
    * `My Own Server`
+   * `Alexa / Google Voice Devices`
 8. PowerBridge shows an honest readiness state:
+
    * `Ready now`
    * `Needs setup`
    * `Prototype`
@@ -228,22 +266,22 @@ PowerBridge supports multiple saved PC profiles.
 
 Profiles can store separate wake settings for different PCs, including:
 
-* Profile name
-* Wake method
-* Target MAC address
-* Target IP address
-* Broadcast IP
-* Gateway/subnet details
-* Relay settings when using `Home Relay Server`
+* profile name
+* wake method
+* target MAC address
+* target IP address
+* broadcast IP
+* gateway/subnet details
+* relay settings when using `Home Relay Server`
 
 Supported profile actions:
 
-* Add profile
-* Rename profile
-* Switch active profile
-* Delete profile
-* Import setup by QR
-* Update an existing profile from QR
+* add profile
+* rename profile
+* switch active profile
+* delete profile
+* import setup by QR
+* update an existing profile from QR
 
 PowerBridge keeps at least one profile available and blocks deleting the final profile.
 
@@ -262,7 +300,7 @@ Recommended steps:
 5. Prefer Ethernet on the PC for best reliability.
 6. Enable Wake-on-LAN support in BIOS/UEFI and Windows/NIC settings where required.
 
-### Home Relay Server
+### Home Relay Server / My Own Server
 
 Use this only if you already have, or are comfortable running, a user-owned relay.
 
@@ -272,15 +310,32 @@ Examples:
 * NAS
 * Linux server
 * Docker host
-* Router-based relay
-* Personal domain relay
+* always-on PC
+* personal home relay server
 
 Security guidance:
 
-* Keep relay tokens private.
-* Use HTTPS where possible.
-* Do not expose raw Wake-on-LAN UDP ports directly to the public internet.
-* Do not publish private relay URLs, tokens, MAC addresses, or IP addresses.
+* keep relay tokens private
+* use HTTPS where possible
+* do not expose raw Wake-on-LAN UDP ports directly to the public internet
+* do not publish private relay URLs, tokens, MAC addresses, or IP addresses
+* do not use shared public relay credentials
+
+### Old Android Device
+
+This is the next planned runtime direction.
+
+Intended shape:
+
+* old Android phone or tablet stays at home
+* device remains plugged in and connected to home Wi-Fi
+* device acts as the local home-side wake sender
+* main phone eventually triggers the relay through a safe user-owned request path
+
+Current status:
+
+* not live as a full remote wake engine yet
+* next runtime prototype target
 
 ## Import Contract
 
@@ -298,12 +353,12 @@ Settings -> PC Profiles -> Scan Setup QR
 
 Import behavior:
 
-* Import is previewed before saving.
-* User chooses `Create New Profile` or `Update Current Profile`.
-* Imported Windows Companion profiles use `Local Wi-Fi Wake`.
-* Import never accepts relay tokens, credentials, passwords, API keys, or secrets.
-* Imported MAC addresses are masked in diagnostics.
-* Diagnostics ZIP sharing remains user-controlled.
+* import is previewed before saving
+* user chooses `Create New Profile` or `Update Current Profile`
+* imported Windows Companion profiles use `Local Wi-Fi Wake`
+* import never accepts relay tokens, credentials, passwords, API keys, or secrets
+* imported MAC addresses are masked in diagnostics
+* diagnostics ZIP sharing remains user-controlled
 
 ## Diagnostics
 
@@ -315,51 +370,60 @@ Rules:
 * diagnostics may contain local environment details
 * public bug reports should be redacted before posting
 * generated diagnostics ZIPs must not be committed to source control
+* screenshots showing real setup values should not be posted publicly without redaction
 
-## Condensed Roadmap
+## Current Condensed Roadmap
 
-| Phase      | Name                             | Purpose                                                        |
-| ---------- | -------------------------------- | -------------------------------------------------------------- |
-| `Phase 10` | Setup + Method UX Cleanup        | Clean method names, setup wording, warnings, and public docs   |
-| `Phase 11` | Android Release Signing Foundation | Formalize safe local Android release signing                   |
-| `Phase 12` | Home Device Relay Architecture   | Design the old Android relay path                              |
-| `Phase 13` | Prototype Planning + Contract Validation | Define relay contracts and the controlled prototype plan       |
-| `Phase 13.5` | Pre-Prototype Cleanup + Readiness Audit | Tighten docs, examples, and repo hygiene before runtime work |
-| `Phase 14A` | Home Relay Mode AIO Correction  | Move relay prototype direction into the main Android app      |
-| `Phase 14B` | Guided Wake Setup Framework     | Add plain-language wake setup and method selection guidance   |
-| `Phase 14C` | Wake Path Readiness + Honest Wiring | Make guided setup honest about what is ready now, what needs setup, and what is still planned |
-| `Phase 14D` | Main APK Method Guides + Readiness Follow-Through | Improve user-facing method guidance and readiness clarity before deeper relay runtime |
-| `Phase 15` | Alternate Wake Paths + Guides    | Deepen approved old Android, voice-device, and server paths    |
-| `Phase 16` | Project Packaging + Release Prep | Repo structure, shared contracts, release packaging, checksums |
+| Phase         | Name                                 | Purpose                                                                     |
+| ------------- | ------------------------------------ | --------------------------------------------------------------------------- |
+| `Phase 14B`   | Guided Setup Foundation              | Guided wake setup and plain-language method selection                       |
+| `Phase 14C`   | Honest Wake-Path Readiness           | Readiness wiring for `Home Wi-Fi only`, `Away from home`, and `Not sure`    |
+| `Phase 14C.1` | Guided Setup Polish                  | Completion flow, Home Relay report sharing, CI filters, version alignment   |
+| `Phase 14D`   | Main APK Method Realignment          | Method guide and readiness cleanup                                          |
+| `Phase 14E`   | Approved Remote Model Reset          | Strip unreliable method families and lock approved remote paths             |
+| `Phase 14F`   | Old Android Relay Runtime Foundation | Begin Old Android Device relay runtime foundation                           |
+| `Phase 15`    | Alternate Wake Paths and Guides      | Deeper runtime work and selected future method guidance                     |
+| `Phase 16`    | Packaging and Release Prep           | Signing, packaging, release assets, checksums, and public release readiness |
+
+Current roadmap truth:
+
+* `Phase 14E` is complete.
+* `Phase 14F` is the next runtime foundation phase.
+* The next runtime target is `Old Android Device`.
+* `v1.0.0` should not ship until all selected final methods are working, tested, documented, packaged, and consumer-ready.
 
 ## Guardrails
 
-PowerBridge v1 will not include:
-
-* Shutdown
-* Restart
-* Hibernate
-* Remote desktop control
-* Target-side command execution
-* Windows credential storage
-* Automatic firewall changes
-* Automatic router configuration
-* Raw secret import/export
-* Auto-uploaded diagnostics
-* Analytics by default
-
 PowerBridge should remain:
 
-* Generic
-* Configurable
-* Public-safe
-* Diagnostics-heavy
-* Simple-user friendly
-* Honest about network limitations
+* generic
+* configurable
+* public-safe
+* diagnostics-heavy
+* simple-user friendly
+* honest about network limitations
+
+PowerBridge Android must not silently add:
+
+* shutdown
+* restart
+* hibernate
+* remote desktop control
+* target-side command execution
+* Windows credential storage
+* automatic firewall changes
+* automatic router configuration
+* raw secret import/export
+* auto-uploaded diagnostics
+* analytics by default
+* hidden developer relay defaults
+* shared public relay credentials
 
 ## Related Docs
 
 * [../README.md](../README.md)
 * [../BUILD.md](../BUILD.md)
+* [../INSTALL-NOTICE.txt](../INSTALL-NOTICE.txt)
 * [../docs/PRIVACY.md](../docs/PRIVACY.md)
+* [../docs/WAKE-METHODS.md](../docs/WAKE-METHODS.md)
 * [docs/PHASE-PLAN.md](docs/PHASE-PLAN.md)

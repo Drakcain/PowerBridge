@@ -1,23 +1,89 @@
-PowerBridge Install Notice
+# PowerBridge Install Notice
 
-PowerBridge is public software for Wake-on-LAN setup and wake attempts.
+PowerBridge is public software for Wake-on-LAN setup and wake/boot attempts. It helps users configure their own PC wake setup using user-owned devices, user-owned network paths, and local configuration.
 
-Important:
+PowerBridge does **not** provide a shared public relay service, shared token, developer-managed wake server, or preconfigured private infrastructure.
 
-- Android APK installation may require sideloading and user approval.
-- Debug APKs are for testing and are not production-signed.
-- Windows Companion may be distributed as an unsigned script or unsigned package during early public releases.
-- Windows SmartScreen or "unknown publisher" prompts may appear if a signed Windows package does not yet exist.
-- PowerBridge uses user-owned configuration. It does not ship with a shared relay service, shared token, or developer-managed infrastructure.
-- Wake-on-LAN reliability depends on the PC motherboard, NIC, BIOS/UEFI, drivers, Windows power settings, router behavior, and network topology.
-- Remote or cellular wake requires a valid user-owned home-side path.
-- No warranty is provided.
+## Install Notes
 
-Do not publish:
+* Android APK installation may require sideloading and user approval.
+* Debug APKs are for testing only and are not production-signed.
+* Official public Android releases should use a signed release APK.
+* The Windows Companion is a setup helper. It helps detect this PC and generate setup data for the Android app.
+* The Windows Companion does **not** wake the PC directly.
+* During early public releases, the Windows Companion may be distributed as an unsigned script, unsigned installer, or unsigned package.
+* Windows SmartScreen or “unknown publisher” prompts may appear if a signed Windows package is not available yet.
 
-- generated diagnostics ZIPs
-- generated QR screenshots with real local values
-- generated JSON payloads with real local values
-- signing keys
-- keystores
-- local properties files
+## Wake Reliability
+
+Wake-on-LAN and wake/boot behavior depends on the user’s hardware, firmware, operating system, and network environment.
+
+Common factors include:
+
+* motherboard Wake-on-LAN support
+* network adapter / NIC support
+* BIOS or UEFI wake settings
+* Windows power settings
+* network driver behavior
+* Ethernet vs Wi-Fi behavior
+* router and switch behavior
+* whether the PC receives standby network power while asleep or shut down
+* whether the PC supports wake from sleep, shutdown, or both
+
+PowerBridge can send wake attempts, but it cannot guarantee that every PC, router, network adapter, or power state will respond.
+
+## Remote Wake Requirements
+
+Remote or cellular wake requires a valid user-owned home-side path. PowerBridge does not include a shared hosted relay.
+
+Supported or planned user-owned paths are:
+
+* **Old Android Device** — an old Android phone or tablet left at home as a relay device
+* **My Own Server / Home Relay Server** — a user-owned always-on PC, server, NAS, Raspberry Pi, or similar home device
+* **Alexa / Google Voice Devices** — a future smart-home integration path
+
+The following methods are not part of the active PowerBridge method flow:
+
+* TV / streaming device relay
+* Fire TV / Android TV relay
+* Roku relay
+* smart plug / hardware power-cycle boot
+* router / VPN as a standalone method
+* remote shutdown or restart
+
+## User-Owned Configuration
+
+PowerBridge uses configuration created by the user. Setup data may include local network information such as PC profile names, MAC addresses, local IP addresses, broadcast addresses, and wake ports.
+
+Users should treat generated setup files, QR codes, logs, screenshots, and diagnostics as potentially sensitive if they contain real local values.
+
+## Do Not Publish
+
+Do not publish, upload, or commit:
+
+* generated diagnostics ZIPs
+* generated QR screenshots with real local values
+* generated setup JSON payloads with real local values
+* logs containing local network details
+* screenshots showing real IP addresses, MAC addresses, tokens, or endpoints
+* signing keys
+* keystores
+* signing properties
+* `local.properties`
+* generated APKs, AABs, EXEs, or ZIPs unless they are intentional release assets
+
+## Release Safety
+
+Before publishing a public release:
+
+* use a signed Android release APK when possible
+* clearly label debug APKs as testing-only
+* clearly warn users if the Windows Companion package is unsigned
+* verify release asset names and checksums
+* confirm no generated diagnostics, QR payloads, logs, or private local values are included
+* run a public-value sweep before publishing
+* confirm GitHub Actions are green
+
+## No Warranty
+
+PowerBridge is provided without warranty. Wake behavior is hardware, firmware, operating-system, driver, power-state, and network dependent.

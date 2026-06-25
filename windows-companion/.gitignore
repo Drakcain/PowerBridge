@@ -1,5 +1,4 @@
-output/*.json
-output/*.png
-output/*.qr.png
-output/*.svg
+# Generated setup output
+
+output/*
 !output/.gitkeep

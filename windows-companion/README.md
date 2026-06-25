@@ -1,42 +1,49 @@
 # PowerBridge Windows Companion
 
-PowerBridge Windows Companion is a Windows-side setup helper for the PowerBridge Android app. It detects local PC network details, builds a `powerbridge.local_setup.v1` setup payload, and displays a scan-safe QR code that Android can import.
+PowerBridge Windows Companion is a Windows-side setup helper for the PowerBridge Android app.
 
-Windows Companion is not a wake method by itself. It prepares setup data for `Local Wi-Fi Wake`.
+It detects local PC network details, builds a `powerbridge.local_setup.v1` setup payload, and displays a scan-safe QR code that Android can import.
+
+Windows Companion is **not** a wake method by itself. It prepares setup data for PowerBridge wake profiles.
 
 ## What It Does
 
-Windows Companion helps Android create or update a local wake profile by detecting the selected Windows adapter.
+Windows Companion helps Android create or update a local PC wake profile by detecting values from the selected Windows network adapter.
 
 It detects:
 
 * PC name
-* Adapter type
+* adapter type
 * MAC address
 * IPv4 address
-* Gateway
-* Subnet prefix
-* Broadcast IP
+* gateway
+* subnet prefix
+* broadcast IP
 
 It generates:
 
 * `powerbridge.local_setup.v1` JSON
-* A scan-safe black-on-white QR code
-* Setup data for a `Local Wi-Fi Wake` profile on Android
+* scan-safe black-on-white QR code
+* setup data for a `Local Wi-Fi Wake` profile on Android
+
+The generated setup profile may also support future relay setup flows where another user-owned home device needs the same PC wake information.
 
 ## What It Does Not Do
 
 Windows Companion does not:
 
-* Wake the PC directly
-* Run in the background
-* Install a Windows service
-* Require administrator rights
-* Change firewall settings
-* Change router settings
-* Change BIOS, UEFI, NIC, or Windows power settings
-* Solve remote wake over cellular by itself
-* Collect credentials, passwords, relay tokens, or secrets
+* wake the PC directly
+* run as a wake relay
+* run in the background
+* install a Windows service
+* require administrator rights
+* change firewall settings
+* change router settings
+* change BIOS, UEFI, NIC, or Windows power settings
+* solve remote wake over cellular by itself
+* collect credentials, passwords, relay tokens, API keys, or secrets
+* provide shared relay infrastructure
+* provide developer-managed infrastructure
 
 ## GUI Setup Flow
 
@@ -53,34 +60,47 @@ Windows Companion does not:
 
 ## Android Result
 
-After scanning the QR, PowerBridge Android should show a reviewed import preview before saving.
+After scanning the QR, PowerBridge Android should show an import preview before saving.
 
 The preview should include:
 
-* Source
-* Created time
+* source
+* created time
 * PC name
-* Adapter type
-* Masked MAC address
+* adapter type
+* masked MAC address
 * IPv4 address
-* Gateway
-* Broadcast IP
+* gateway
+* broadcast IP
 
-The Android app never accepts relay tokens, passwords, credentials, API keys, or secrets through the local setup QR contract.
+The Android app should not accept relay tokens, passwords, credentials, API keys, or secrets through the local setup QR contract.
 
 ## Technical Boundary
 
 Windows Companion prepares setup data only.
 
-It does not bypass the Wake-on-LAN network boundary. Off-site or cellular wake still requires a valid home-side path, such as:
+It does not bypass the Wake-on-LAN network boundary. Off-site or cellular wake still requires a valid user-owned home-side path that can perform the final local wake packet send inside the home network.
 
-* A user-owned relay
-* An always-on home device
-* A router or VPN path
-* A smart plug or hardware bypass
-* A supported smart-home integration
+Approved PowerBridge remote paths are:
+
+* **Old Android Device** — an old Android phone or tablet left at home as a relay device
+* **My Own Server / Home Relay Server** — a user-owned always-on PC, server, NAS, Raspberry Pi, Docker host, or similar home-side device
+* **Alexa / Google Voice Devices** — a future smart-home integration path
 
 A public cloud service cannot directly inject a Wake-on-LAN Magic Packet into a private home LAN unless a local home-side anchor or relay performs the final local packet send.
+
+## Removed From Active Scope
+
+Windows Companion should not describe the following as active PowerBridge wake methods:
+
+* TV / streaming relay
+* Fire TV / Android TV relay
+* Roku relay
+* smart plug / hardware power-cycle boot
+* router / VPN as a standalone PowerBridge method
+* shutdown / restart workflows
+
+PowerBridge may document advanced networking concepts separately, but Windows Companion should remain a setup helper, not a broad network-management tool.
 
 ## Ethernet and Wi-Fi Notes
 
@@ -88,7 +108,7 @@ Ethernet is recommended for the most reliable Wake-on-LAN behavior.
 
 Wi-Fi wake may work on some laptops and devices, but it depends on hardware, firmware, driver support, power state, and operating-system behavior.
 
-Boot from full shutdown is often less reliable than wake from sleep because BIOS/UEFI, NIC firmware, motherboard support, and Windows Fast Startup settings can affect the result.
+Boot from full shutdown is often less reliable than wake from sleep because BIOS/UEFI, NIC firmware, motherboard support, Windows Fast Startup, and power delivery to the network adapter can affect the result.
 
 ## Commands
 
@@ -132,19 +152,28 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File ".\scripts\Build-PowerBridgeCompan
 
 Generated output may contain real local machine network values.
 
-Treat generated JSON and QR files as machine-local setup data. Do not publish them in screenshots, issue reports, release packages, or public repositories.
+Treat generated JSON and QR files as machine-local setup data. Do not publish them in screenshots, issue reports, release packages, documentation examples, or public repositories.
 
 Recommended rules:
 
-* Keep generated output ignored by source control.
-* Do not commit generated JSON payloads.
-* Do not commit generated QR images.
-* Do not publish real MAC addresses, local IP addresses, gateways, or broadcast addresses.
-* Use placeholders in public examples.
+* keep generated output ignored by source control
+* do not commit generated JSON payloads
+* do not commit generated QR images
+* do not publish real MAC addresses, local IP addresses, gateways, or broadcast addresses
+* do not publish screenshots showing real setup values
+* use placeholders in public examples
 
 GUI mode keeps the QR available for the current session. CLI mode may write JSON or PNG output for testing and troubleshooting.
 
-Installed releases add a Start Menu shortcut for `Check for PowerBridge Updates`, and the GUI also exposes `Check for Updates`.
+Generated output belongs in `windows-companion/output/`, which should stay ignored except for `.gitkeep`.
+
+## Installed Release Behavior
+
+Installed releases may add a Start Menu shortcut for `Check for PowerBridge Updates`.
+
+The GUI may also expose `Check for Updates`.
+
+Update checks must not collect secrets, local network values, generated setup payloads, diagnostics ZIPs, or QR images.
 
 ## Public Release Notes
 
@@ -157,45 +186,69 @@ Public repo rules:
 * do not publish real JSON payloads with live values
 * do not claim the companion wakes the PC directly
 * do not claim remote or cellular wake works without a home-side path
+* do not claim unsigned Windows packages are fully trusted or production-signed
+* clearly warn users if Windows SmartScreen or “unknown publisher” prompts may appear
 
 ## Relationship to PowerBridge Methods
 
 Windows Companion is a setup helper for `Local Wi-Fi Wake`.
 
-It is not:
+The same detected PC values may also be useful for future user-owned relay setup, such as the `Old Android Device` path or `My Own Server / Home Relay Server` path.
 
+Windows Companion is not:
+
+* `Old Android Device`
 * `Home Relay Server`
-* `Home Device Relay`
-* `Smart Plug Boot Assist`
 * `Smart Home Wake`
-* `Advanced Network Setup`
+* a remote wake broker
+* a cloud service
+* a Windows service
+* a wake engine
+* a shutdown/restart tool
+* a router/VPN configuration tool
 
-It does not implement a wake engine. The Android app imports the generated setup and performs the wake action using the selected PowerBridge method.
+The Android app imports the generated setup and performs wake actions using the selected PowerBridge method.
 
 ## Public-Safety Rules
 
 Windows Companion must remain:
 
-* Generic
-* Local-first
-* Secret-free
-* Public-safe
-* Setup-only
+* generic
+* local-first
+* secret-free
+* public-safe
+* setup-only
 
 It must not ship with:
 
-* Personal machine values
-* Private relay assumptions
-* Private domains
-* Private IP addresses
-* Private MAC addresses
-* Tokens or token-like strings
-* User-specific absolute paths in public docs
-* Generated local output in source control
+* personal machine values
+* private relay assumptions
+* private domains
+* private IP addresses
+* private MAC addresses
+* tokens or token-like strings
+* user-specific absolute paths in public docs
+* generated local output in source control
+
+## Added Recommendations
+
+Before publishing a Windows Companion release:
+
+* run `scripts\Test-PowerBridgeCompanion.ps1`
+* test adapter selection on at least one Ethernet and one Wi-Fi adapter if available
+* verify QR generation still uses scan-safe black-on-white output
+* verify generated JSON and QR files stay ignored
+* verify the GUI does not persist QR output longer than intended
+* verify no real local values appear in screenshots or docs
+* verify installer output is not committed unless intentionally published as a release asset
+* clearly label unsigned early packages if code signing is not available
+* keep Windows Companion described as setup-only across README, install notice, release notes, and docs
 
 ## Related Docs
 
 * [../README.md](../README.md)
 * [../BUILD.md](../BUILD.md)
+* [../INSTALL-NOTICE.txt](../INSTALL-NOTICE.txt)
 * [../docs/QR-CONTRACT.md](../docs/QR-CONTRACT.md)
+* [../docs/WAKE-METHODS.md](../docs/WAKE-METHODS.md)
 * [docs/PHASE-PLAN.md](docs/PHASE-PLAN.md)

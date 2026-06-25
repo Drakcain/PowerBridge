@@ -1,48 +1,122 @@
+# IDE / OS / local editor state
+
 .idea/
 .vscode/
 .vs/
 Thumbs.db
 Desktop.ini
+
+# Generic local files
+
 *.log
 *.tmp
+*.temp
 *.bak
-*.zip
-dist/
+*.old
+*.orig
+*.swp
+*.swo
 
-# Android
+# Archives / generated bundles
+
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+
+# Root generated output
+
+dist/
+build/
+out/
+tmp/
+temp/
+scratch/
+screenshots/
+
+# Android / Gradle
+
 android/.gradle/
 android/.idea/
-android/app/build/
 android/build/
+android/app/build/
 android/captures/
 android/local.properties
-android/release-keystore.jks
-android/*.jks
-android/*.keystore
-android/*.apk
-android/*.aab
-android/*.ap_
+
+# Android generated artifacts
+
+android/**/*.apk
+android/**/*.aab
+android/**/*.ap_
+android/**/*.dex
+android/**/*.class
+android/**/*.aar
 android/gradle-*/
 android/gradle-*-bin.zip
 
+# Android signing / local release material
+
+android/release-keystore.jks
+android/*.jks
+android/*.keystore
+android/signing.properties
+android/keystore.properties
+android/keystores/
+android/signing/
+
+# Future Android relay-agent module output
+
+android/relay-agent/build/
+android/relay-agent/local.properties
+android/relay-agent/*.jks
+android/relay-agent/*.keystore
+android/relay-agent/signing.properties
+android/relay-agent/keystore.properties
+
 # Windows Companion generated output
+
 windows-companion/build/
 windows-companion/dist/
-windows-companion/output/*.json
-windows-companion/output/*.png
-windows-companion/output/*.qr.png
-windows-companion/output/*.svg
+windows-companion/output/*
 !windows-companion/output/.gitkeep
 
-# Diagnostics and local artifacts
+# Windows Companion generated payload/release artifacts
+
+windows-companion/**/*.exe
+windows-companion/**/*.msi
+windows-companion/**/*.zip
+windows-companion/**/*.sha256
+windows-companion/**/*.log
+
+# PowerBridge release/build generated artifacts
+
+PowerBridge-v*.apk
+PowerBridge-Companion-Setup-v*.exe
+PowerBridge-*.zip
+PowerBridge-*.sha256
+*.sha256
+
+# Diagnostics and local PowerBridge artifacts
+
 **/powerbridge-diagnostics.zip
 **/PowerBridge-Diag-*.zip
-**/screenshots/
-**/scratch/
-**/temp/
-**/tmp/
+**/*diagnostics*.zip
+**/*diagnostic*.zip
+**/diagnostics/
+**/reports/
+**/logs/
 
-# Secrets and signing material
+# Generated QR/setup payloads with local values
+
+**/powerbridge-setup-*.json
+**/powerbridge-setup-*.png
+**/powerbridge-setup-*.svg
+**/*setup*.qr.png
+**/*setup*.json
+
+# Secrets / signing material / credentials
+
 *.keystore
 *.jks
 *.pfx
@@ -52,8 +126,23 @@ windows-companion/output/*.svg
 *.crt
 *.mobileprovision
 *.env
+*.env.*
 *.token
-android/signing.properties
-android/keystore.properties
-android/keystores/
-android/signing/
+*.secret
+*.secrets
+*.credentials
+*.credentials.json
+
+# Local signing/property files
+
+signing.properties
+keystore.properties
+local.properties
+
+# Do not ignore safe examples/templates
+
+!*.example
+!*.sample
+!android/signing.properties.example
+!android/keystore.properties.example
+!.gitkeep

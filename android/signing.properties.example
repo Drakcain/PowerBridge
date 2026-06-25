@@ -1,3 +1,27 @@
+# PowerBridge Android release signing template
+
+#
+
+# Copy this file to one of the ignored local files:
+
+#
+
+# android/signing.properties
+
+# android/keystore.properties
+
+#
+
+# Then replace the placeholder values with your private local signing values.
+
+#
+
+# Do not commit the copied real file.
+
+# Do not commit the real keystore.
+
+# Do not use real passwords in this example file.
+
 storeFile=C:/Path/Outside/Repo/powerbridge-release.jks
 storePassword=CHANGE_ME
 keyAlias=powerbridge
