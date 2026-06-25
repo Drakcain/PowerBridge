@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "PowerBridge"
 include(":app")
+include(":relay-app")

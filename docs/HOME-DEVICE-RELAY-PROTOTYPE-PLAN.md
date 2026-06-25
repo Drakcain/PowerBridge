@@ -6,6 +6,28 @@ Phase 13 is planning and contract validation only.
 
 No relay runtime implementation is added in this phase.
 
+## Phase 14A Status
+
+Phase 14A is the skeleton-only runtime foundation.
+
+Completed in Phase 14A:
+
+* separate Android relay app/package skeleton
+* minimal launchable relay UI
+* local-only transport placeholder
+* first-pass relay diagnostics view/logging
+* contract model placeholders in code
+
+Not implemented in Phase 14A:
+
+* real pairing
+* real controller-to-relay transport
+* Firebase / FCM
+* cloud broker
+* production auth
+* TV-specific runtime work
+* actual relay-triggered Wake-on-LAN execution
+
 ## Phase 14 Prototype Goal
 
 Phase 14 should deliver the first narrow `Home Device Relay` prototype without trying to solve the full remote-wake product in one pass.
@@ -204,9 +226,9 @@ Before the first runtime commit:
 
 ## Recommended Next Safe Step
 
-Before any code work:
+For the next runtime step after Phase 14A:
 
-1. approve the contract schemas
-2. approve the separate relay app/package direction
-3. approve the Phase 14 target-device order
-4. approve local-only first transport for the prototype
+1. implement a local-only controller-to-relay prototype flow
+2. keep the first relay target to a standard Android phone or tablet
+3. keep transport local-only before any cloud or FCM work
+4. add first real request/response handling without production auth or public transport

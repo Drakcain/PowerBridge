@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">PowerBridge Relay</string>
+    <string name="relay_subtitle">Home Device Relay Prototype</string>
+    <string name="relay_status_card_title">Relay Status</string>
+    <string name="relay_status_mode_label">Relay mode</string>
+    <string name="relay_status_transport_label">Transport</string>
+    <string name="relay_status_pairing_label">Pairing</string>
+    <string name="relay_status_profile_label">Linked profile</string>
+    <string name="relay_status_last_wake_label">Last wake request</string>
+    <string name="relay_status_initial_title">Prototype only</string>
+    <string name="relay_status_initial_detail">This module is the safe relay skeleton only. No pairing, cloud transport, FCM, or wake execution is live yet.</string>
+    <string name="relay_check_button">Check Relay Readiness</string>
+    <string name="relay_copy_button">Copy Diagnostics</string>
+    <string name="relay_clear_button">Clear Log</string>
+    <string name="relay_log_title">Local Diagnostics Log</string>
+    <string name="relay_log_empty">No relay diagnostics recorded yet.</string>
+    <string name="relay_last_updated_template">Last updated: %1$s</string>
+</resources>

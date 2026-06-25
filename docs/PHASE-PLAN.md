@@ -44,7 +44,8 @@ Not live yet:
 
 ## Next Phases
 
-* `Phase 14` - Home Device Relay prototype implementation
+* `Phase 14A` - Home Device Relay prototype skeleton
+* `Phase 14B` - Home Device Relay local-only prototype flow
 * `Phase 15` - Alternate wake paths and guides
 * `Phase 16` - Packaging and release prep follow-through
 
@@ -53,7 +54,28 @@ Phase status:
 * `Phase 12` is complete
 * `Phase 13` is complete as contract/planning work
 * `Phase 13.5` is complete as cleanup/readiness work
-* `Phase 14` is the next relay runtime prototype phase
+* `Phase 14A` is complete as the separate relay app/package skeleton
+* `Phase 14B` is the next relay runtime prototype phase
+
+Phase 14A scope completed:
+
+* separate Android relay module/app skeleton
+* launchable relay prototype UI
+* local-only transport placeholders
+* first-pass local diagnostics/logging
+* contract-model placeholders
+
+Phase 14A intentionally does not include:
+
+* Firebase
+* FCM
+* cloud broker
+* production auth
+* real pairing
+* real controller-to-relay transport
+* TV runtime target
+* smart plug or smart-home paths
+* shutdown/restart/remote control
 
 See:
 

@@ -1,0 +1,14 @@
+<resources>
+    <color name="pb_bg_black">#020713</color>
+    <color name="pb_bg_navy">#061426</color>
+    <color name="pb_surface_raised">#0B1B31</color>
+    <color name="pb_blue">#008CFF</color>
+    <color name="pb_cyan">#00D8FF</color>
+    <color name="pb_aqua">#00F0E6</color>
+    <color name="pb_green">#7FEA42</color>
+    <color name="pb_text_white">#F4F7FA</color>
+    <color name="pb_text_secondary">#D6E0EA</color>
+    <color name="pb_text_muted">#B8C4D2</color>
+    <color name="pb_border">#184364</color>
+    <color name="pb_system_bar">#020713</color>
+</resources>

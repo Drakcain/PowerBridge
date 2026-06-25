@@ -23,10 +23,11 @@ Current completed relay prep phases:
 * `Phase 12` - Home Device Relay architecture
 * `Phase 13` - Home Device Relay prototype planning and contract validation
 * `Phase 13.5` - Pre-prototype cleanup and Phase 14 readiness audit
+* `Phase 14A` - Home Device Relay prototype skeleton
 
 Next runtime phase:
 
-* `Phase 14` - Home Device Relay prototype implementation
+* `Phase 14B` - Home Device Relay local-only prototype flow
 
 ## Archive Hygiene
 
