@@ -37,15 +37,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun updateActiveProfileWakeMethod(wakeMethod: WakeMethodId): PowerBridgeProfile {
-        val currentProfile = requireActiveProfile()
-        val sanitizedMethod = if (wakeMethod.implemented) wakeMethod else WakeMethodId.LOCAL_WIFI
-        val updatedProfile = ProfileStore.upsertProfile(
-            prefs = prefs,
-            profile = currentProfile.copy(
-                config = currentProfile.config.copy(selectedWakeMethod = sanitizedMethod)
-            ),
-            setActive = true
-        )
+        val updatedProfile = ProfileStore.setActiveProfileWakeMethod(prefs, wakeMethod)
         activeProfile = updatedProfile
         activeMethod = updatedProfile.config.selectedWakeMethod
         return updatedProfile

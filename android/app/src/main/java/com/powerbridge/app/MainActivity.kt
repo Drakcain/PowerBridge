@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var remoteBootButton: MaterialButton
     private lateinit var testRelayButton: MaterialButton
     private lateinit var diagnosticsButton: MaterialButton
+    private lateinit var guidedSetupButton: MaterialButton
     private lateinit var settingsButton: MaterialButton
     private lateinit var manageProfilesButton: MaterialButton
     private var profiles: List<PowerBridgeProfile> = emptyList()
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         remoteBootButton = findViewById(R.id.remoteBootButton)
         testRelayButton = findViewById(R.id.testRelayButton)
         diagnosticsButton = findViewById(R.id.diagnosticsButton)
+        guidedSetupButton = findViewById(R.id.guidedSetupButton)
         settingsButton = findViewById(R.id.settingsButton)
         manageProfilesButton = findViewById(R.id.manageProfilesButton)
         val homeRelayModeButton = findViewById<MaterialButton>(R.id.homeRelayModeButton)
@@ -80,6 +82,10 @@ class MainActivity : AppCompatActivity() {
 
         diagnosticsButton.setOnClickListener {
             startActivity(Intent(this, DiagnosticsActivity::class.java))
+        }
+
+        guidedSetupButton.setOnClickListener {
+            startActivity(Intent(this, GuidedSetupActivity::class.java))
         }
 
         homeRelayModeButton.setOnClickListener {
@@ -157,12 +163,12 @@ class MainActivity : AppCompatActivity() {
         val status = when {
             !config.selectedWakeMethod.implemented -> Pair(
                 config.selectedWakeMethod.statusLabel,
-                "${config.selectedWakeMethod.displayName} is not active in this build for profile ${profile.name}. Use Local Wi-Fi Wake now, or Home Relay Server if you already run your own self-hosted relay."
+                "${config.selectedWakeMethod.displayName} is not active for profile ${profile.name} yet. Open Setup Help to choose the simplest live path."
             )
             config.selectedWakeMethod == WakeMethodId.LOCAL_WIFI && AppConfigStore.isSetupNeeded(config) ->
-                Pair("Local Wi-Fi Wake selected", "Profile ${profile.name}: open Settings, tap Auto-detect local network, then enter your PC MAC.")
+                Pair("Home Wi-Fi selected", "Profile ${profile.name}: import your PC from Windows Companion or open Settings, tap Auto-detect local network, then enter your PC MAC.")
             config.selectedWakeMethod == WakeMethodId.HOME_RELAY && AppConfigStore.isSetupNeeded(config) ->
-                Pair("Setup needed", "Profile ${profile.name}: replace the sample relay URL with your own relay, or choose Local Wi-Fi Wake.")
+                Pair("Setup needed", "Profile ${profile.name}: add your own relay details in Settings, or open Setup Help and switch to Home Wi-Fi.")
             else -> Pair(getString(R.string.status_initial_title), getString(R.string.status_initial_detail))
         }
         updateStatus(status.first, status.second)
@@ -185,7 +191,7 @@ class MainActivity : AppCompatActivity() {
         }
         profileSummaryText.text = getString(
             R.string.main_profile_summary_template,
-            config.selectedWakeMethod.displayName,
+            friendlyMethodName(config.selectedWakeMethod),
             readinessLabel,
             fieldStatuses.count { it.present },
             fieldStatuses.size
@@ -199,7 +205,19 @@ class MainActivity : AppCompatActivity() {
         remoteBootButton.isEnabled = !isBusy
         testRelayButton.isEnabled = !isBusy
         diagnosticsButton.isEnabled = !isBusy
+        guidedSetupButton.isEnabled = !isBusy
         settingsButton.isEnabled = !isBusy
+    }
+
+    private fun friendlyMethodName(methodId: WakeMethodId): String {
+        return when (methodId) {
+            WakeMethodId.LOCAL_WIFI -> getString(R.string.guided_setup_choice_home_wifi_title)
+            WakeMethodId.HOME_RELAY -> getString(R.string.guided_setup_choice_server_title)
+            WakeMethodId.SPARE_ANDROID -> getString(R.string.guided_setup_choice_old_phone_title)
+            WakeMethodId.SMART_PLUG -> getString(R.string.guided_setup_other_smart_plug)
+            WakeMethodId.ADVANCED_ROUTER_VPN -> getString(R.string.guided_setup_other_router_vpn)
+            WakeMethodId.SMART_HOME -> getString(R.string.guided_setup_other_smart_home)
+        }
     }
 
     private fun updateStatus(message: String, detail: String) {

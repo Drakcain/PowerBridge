@@ -41,11 +41,12 @@ Not live yet:
 * `Phase 12` - Home Device Relay architecture
 * `Phase 13` - Home Device Relay prototype planning and contract validation
 * `Phase 13.5` - Pre-prototype cleanup and Phase 14 readiness audit
+* `Phase 14A` - Home Device Relay AIO correction + skeleton integration
+* `Phase 14B` - Guided wake setup + method selection framework
 
 ## Next Phases
 
-* `Phase 14A` - Home Device Relay AIO correction + skeleton integration
-* `Phase 14B` - Home Device Relay local-only prototype flow
+* `Phase 14C` - Home Device Relay local-only prototype flow
 * `Phase 15` - Alternate wake paths and guides
 * `Phase 16` - Packaging and release prep follow-through
 
@@ -55,7 +56,8 @@ Phase status:
 * `Phase 13` is complete as contract/planning work
 * `Phase 13.5` is complete as cleanup/readiness work
 * `Phase 14A` is complete as the AIO relay-mode correction inside the main Android app
-* `Phase 14B` is the next relay runtime prototype phase
+* `Phase 14B` is complete as guided wake setup and plain-language method selection
+* `Phase 14C` is the next relay pairing/runtime prototype phase
 
 Phase 14A scope completed:
 
@@ -77,6 +79,14 @@ Phase 14A intentionally does not include:
 * TV runtime target
 * smart plug or smart-home paths
 * shutdown/restart/remote control
+
+Phase 14B scope completed:
+
+* main Android app now has a clear `Setup Help` entry point
+* users can choose where wake should work without networking jargon
+* app recommends `Home Wi-Fi`, `Old Phone / Tablet Relay`, or `My Own Server`
+* live methods can be selected from guided setup without risky broad auto-save
+* `Home Relay Mode` remains clearly marked as not fully active yet
 
 See:
 

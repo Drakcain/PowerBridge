@@ -525,6 +525,18 @@ object ProfileStore {
         return sanitized
     }
 
+    fun setActiveProfileWakeMethod(prefs: SharedPreferences, wakeMethod: WakeMethodId): PowerBridgeProfile {
+        val current = loadActiveProfile(prefs)
+        val sanitizedMethod = AppConfigStore.sanitizeWakeMethod(wakeMethod)
+        return upsertProfile(
+            prefs = prefs,
+            profile = current.copy(
+                config = current.config.copy(selectedWakeMethod = sanitizedMethod)
+            ),
+            setActive = true
+        )
+    }
+
     private fun readProfiles(prefs: SharedPreferences): List<PowerBridgeProfile> {
         val raw = prefs.getString(KEY_PROFILES_JSON, null).orEmpty()
         val parsed = if (raw.isBlank()) emptyList() else runCatching {

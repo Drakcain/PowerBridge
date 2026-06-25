@@ -9,10 +9,16 @@ This repository packages the full public project:
 * `android/` - the Android app
 * `windows-companion/` - the Windows setup helper that generates scan-safe QR setup payloads
 
-Current public version target:
+Latest public release:
 
 ```text
 v0.6.1
+```
+
+Current development version:
+
+```text
+0.7.0
 ```
 
 ## What Works Now
@@ -23,6 +29,7 @@ PowerBridge currently supports:
 * `Local Wi-Fi Wake`
 * `Home Relay Server` for advanced user-owned relay setups
 * AIO Android `Home Relay Mode` prototype inside the main PowerBridge app
+* Guided wake setup and plain-language method selection
 * Windows Companion QR setup import
 * Local setup checks
 * Diagnostics generation and user-initiated ZIP sharing
@@ -42,7 +49,8 @@ PowerBridge does not currently support:
 Architecture status note:
 
 * `Home Relay Mode` exists only as a local prototype inside the main Android app
-* `Phase 14B` is the next runtime relay phase
+* `Phase 14B` added guided wake setup and plain-language method selection
+* `Phase 14C` is the next local-only relay pairing/runtime phase
 * see [docs/HOME-DEVICE-RELAY-ARCHITECTURE.md](docs/HOME-DEVICE-RELAY-ARCHITECTURE.md)
 * see [docs/HOME-DEVICE-RELAY-CONTRACTS.md](docs/HOME-DEVICE-RELAY-CONTRACTS.md)
 * see [docs/HOME-DEVICE-RELAY-PROTOTYPE-PLAN.md](docs/HOME-DEVICE-RELAY-PROTOTYPE-PLAN.md)

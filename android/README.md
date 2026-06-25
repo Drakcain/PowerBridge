@@ -8,13 +8,20 @@ Current public version truth:
 v0.6.1
 ```
 
+Current development version truth:
+
+```text
+0.7.0
+```
+
 Current phase truth:
 
 * `Phase 12` is complete as architecture
 * `Phase 13` is complete as contract/planning work
 * `Phase 13.5` is complete as cleanup/readiness work
 * `Phase 14A` is complete as the AIO relay-mode correction pass
-* `Phase 14B` is the next runtime relay prototype phase
+* `Phase 14B` is complete as guided wake setup and method selection
+* `Phase 14C` is the next local-only relay pairing/runtime phase
 
 PowerBridge v1 is intentionally focused on wake and boot. Shutdown, restart, hibernate, remote desktop control, and target-side command execution are out of scope because they require a separate backend, always-on agent, operating-system access, or device-specific integration.
 
@@ -32,6 +39,7 @@ Current core features:
 * Export diagnostics as a ZIP report
 * Support local Wake-on-LAN and advanced user-owned relay setups
 * Expose an AIO `Home Relay Mode` prototype inside the same Android app
+* Guide users through plain-language wake method selection from the main app
 
 ## Privacy and Public-Safety Boundary
 
@@ -288,7 +296,8 @@ These categories guide future development. They are not all implemented today.
 | `Phase 13` | Prototype Planning + Contract Validation | Define relay contracts and the controlled prototype plan       |
 | `Phase 13.5` | Pre-Prototype Cleanup + Readiness Audit | Tighten docs, examples, and repo hygiene before runtime work |
 | `Phase 14A` | Home Relay Mode AIO Correction  | Move relay prototype direction into the main Android app      |
-| `Phase 14B` | Home Device Relay Prototype     | Build the first local-only home-device relay implementation   |
+| `Phase 14B` | Guided Wake Setup Framework     | Add plain-language wake setup and method selection guidance   |
+| `Phase 14C` | Home Device Relay Prototype     | Build the first local-only home-device relay implementation   |
 | `Phase 15` | Alternate Wake Paths + Guides    | Smart plug, smart-home, NAS, router, and advanced setup guides |
 | `Phase 16` | Project Packaging + Release Prep | Repo structure, shared contracts, release packaging, checksums |
 

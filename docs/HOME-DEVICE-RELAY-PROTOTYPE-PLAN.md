@@ -34,6 +34,26 @@ Product-direction truth after Phase 14A:
 * Windows Companion remains the separate Windows app
 * spare Android phones/tablets should use the same PowerBridge APK in `Home Relay Mode`
 
+## Phase 14B Status
+
+Phase 14B added the guided consumer setup layer before deeper relay runtime work.
+
+Completed in Phase 14B:
+
+* main Android app now has a plain-language `Setup Help` path
+* users can choose where wake should work without seeing low-level network terms first
+* app now recommends `Home Wi-Fi`, `Old Phone / Tablet Relay`, or `My Own Server`
+* `Home Relay Mode` remains honest about prototype status
+
+Not implemented in Phase 14B:
+
+* real pairing
+* real controller-to-relay transport
+* real relay-triggered WOL execution
+* Firebase / FCM
+* cloud broker
+* TV-specific runtime work
+
 ## Phase 14 Prototype Goal
 
 Phase 14 should deliver the first narrow `Home Device Relay` prototype without trying to solve the full remote-wake product in one pass.
@@ -213,7 +233,7 @@ Before implementation starts:
 
 Before the first runtime commit:
 
-* confirm `Phase 14B` is the active next phase across README and docs
+* confirm `Phase 14C` is the active next runtime phase across README and docs
 * confirm the AIO app direction is preserved
 * confirm local-only first transport is approved
 * confirm one Android phone or tablet is selected as the first relay target
@@ -226,7 +246,7 @@ Before the first runtime commit:
 
 ## Recommended Next Safe Step
 
-For the next runtime step after Phase 14A:
+For the next runtime step after Phase 14B:
 
 1. implement a local-only controller-to-relay prototype flow
 2. keep the first relay target to a standard Android phone or tablet

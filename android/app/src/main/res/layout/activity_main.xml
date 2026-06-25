@@ -228,6 +228,18 @@
             app:strokeColor="@color/cp_magenta" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/guidedSetupButton"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/guided_setup_button_label"
+            android:textAllCaps="false"
+            android:textColor="@color/cp_yellow"
+            android:textSize="17sp"
+            app:strokeColor="@color/cp_yellow" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/homeRelayModeButton"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
