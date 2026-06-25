@@ -18,7 +18,7 @@ v0.6.1
 Current development version:
 
 ```text
-0.7.4
+0.7.5
 ```
 
 ## What Works Now
@@ -52,11 +52,26 @@ Architecture status note:
 * `Phase 14B` added guided wake setup and plain-language method selection
 * `Phase 14C` completed the honest wake-path readiness wiring for `Home Wi-Fi only`, `Away from home`, and `Not sure`
 * `Phase 14C.1` polished guided setup completion, Home Relay report sharing, CI path filters, and phase-aligned versioning
-* `Phase 14D` is the next local-only relay pairing/runtime phase
+* `Phase 14D` is the current roadmap phase for main-APK method guides and readiness follow-through
 * see [docs/HOME-DEVICE-RELAY-ARCHITECTURE.md](docs/HOME-DEVICE-RELAY-ARCHITECTURE.md)
 * see [docs/HOME-DEVICE-RELAY-CONTRACTS.md](docs/HOME-DEVICE-RELAY-CONTRACTS.md)
 * see [docs/HOME-DEVICE-RELAY-PROTOTYPE-PLAN.md](docs/HOME-DEVICE-RELAY-PROTOTYPE-PLAN.md)
+* see [docs/POWERBRIDGE-ROADMAP.md](docs/POWERBRIDGE-ROADMAP.md)
 * see [docs/README.md](docs/README.md)
+
+## Consumer Setup Flow
+
+PowerBridge should continue to feel like a simple consumer setup product:
+
+1. Install PowerBridge.
+2. Run PowerBridge Windows Companion.
+3. Scan the setup QR on Android.
+4. Confirm the detected PC.
+5. Choose where wake should work.
+6. See what is ready now versus what still needs setup.
+7. Use Wake or Boot from the main screen.
+
+The app should not require normal users to understand low-level networking terms during initial setup.
 
 ## Repository Layout
 
@@ -98,6 +113,29 @@ The Windows Companion is a setup helper only. It detects local network values fo
 It does not wake the PC directly, install a service, modify BIOS or router settings, or collect secrets.
 
 See [windows-companion/README.md](windows-companion/README.md).
+
+## Runtime Truth
+
+Live now:
+
+* `Home Wi-Fi only` -> `Local Wi-Fi Wake`
+* `My Own Server` -> `Home Relay Server` for advanced self-hosted users
+
+Prototype or partial:
+
+* `Home Relay Mode`
+* `Old Phone / Tablet Relay` concept
+
+Coming later or not live:
+
+* `Fire TV / Smart TV Relay`
+* `Smart Speaker Wake`
+* `Smart Plug Power-On`
+* Firebase / FCM
+* cloud broker
+* smart-home runtime
+* TV runtime
+* old phone / tablet relay runtime
 
 ## Honest Technical Limits
 

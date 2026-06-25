@@ -5,6 +5,7 @@ This folder contains the public-facing project docs for the PowerBridge monorepo
 ## Core Project Docs
 
 * [PHASE-PLAN.md](PHASE-PLAN.md) - public roadmap and current phase truth
+* [POWERBRIDGE-ROADMAP.md](POWERBRIDGE-ROADMAP.md) - concise roadmap reset and current product model
 * [PRIVACY.md](PRIVACY.md) - privacy stance and user-controlled data handling
 * [PUBLIC-SANITIZATION.md](PUBLIC-SANITIZATION.md) - public safety and publish hygiene rules
 * [RELEASE-CHECKLIST.md](RELEASE-CHECKLIST.md) - release prep and publish validation checklist
@@ -18,16 +19,27 @@ This folder contains the public-facing project docs for the PowerBridge monorepo
 
 ## Current Roadmap Truth
 
-Current completed relay prep phases:
+Current completed relay prep and setup-flow phases:
 
 * `Phase 12` - Home Device Relay architecture
 * `Phase 13` - Home Device Relay prototype planning and contract validation
 * `Phase 13.5` - Pre-prototype cleanup and Phase 14 readiness audit
-* `Phase 14A` - Home Device Relay prototype skeleton
+* `Phase 14A` - Android AIO relay-mode correction and skeleton integration
+* `Phase 14B` - Guided setup and welcome flow
+* `Phase 14C` - Honest wake-method readiness wiring
+* `Phase 14C.1` - Final confirm, Home Relay Share Report, GitHub Actions cleanup, and version alignment
 
-Next runtime phase:
+Current roadmap phase:
 
-* `Phase 14B` - Home Device Relay local-only prototype flow
+* `Phase 14D` - Main APK method guides and readiness follow-through
+
+PowerBridge should be understood as:
+
+* one Android AIO app
+* one Windows Companion setup helper
+* live local/home Wi-Fi wake now
+* advanced self-hosted `My Own Server` path now
+* several future remote paths still clearly staged as prototype or planned
 
 ## Archive Hygiene
 

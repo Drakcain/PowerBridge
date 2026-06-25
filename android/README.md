@@ -11,7 +11,7 @@ v0.6.1
 Current development version truth:
 
 ```text
-0.7.4
+0.7.5
 ```
 
 Current phase truth:
@@ -23,7 +23,7 @@ Current phase truth:
 * `Phase 14B` is complete as guided wake setup and method selection
 * `Phase 14C` is complete as wake-path readiness wiring and honest setup-state labeling
 * `Phase 14C.1` is complete as guided setup polish, Home Relay report sharing, CI filter cleanup, and version alignment
-* `Phase 14D` is the next local-only relay pairing/runtime phase
+* `Phase 14D` is the current roadmap phase for main-APK method guides and readiness follow-through
 
 PowerBridge v1 is intentionally focused on wake and boot. Shutdown, restart, hibernate, remote desktop control, and target-side command execution are out of scope because they require a separate backend, always-on agent, operating-system access, or device-specific integration.
 
@@ -103,6 +103,25 @@ These methods are planned or under research. They are not live wake engines yet.
 | `Smart Plug Boot Assist` | Power-cycle a smart plug and rely on BIOS or UEFI restore-after-power-loss behavior to boot the PC                  | Coming later   |
 | `Smart Home Wake`        | Integrate with smart-home ecosystems such as Alexa, Google Home, or Home Assistant where platform support allows it | Research       |
 | `Advanced Network Setup` | Provide router, VPN, NAS, server, and custom-network guidance                                                       | Guides later   |
+
+## Phase 14D Direction
+
+Phase 14D should focus on the live app experience around method clarity and readiness follow-through:
+
+* `My Own Server` guidance and advanced-path clarity
+* `Smart Plug Power-On` checklist-first guidance
+* `Smart Speaker Wake` guide/research placeholder
+* `Fire TV / Smart TV Relay` guide/experimental explanation
+
+Phase 14D should not start:
+
+* old phone or tablet relay runtime
+* Firebase / FCM
+* cloud broker
+* TV runtime
+* smart plug vendor APIs
+* smart speaker vendor APIs
+* a second Android APK
 
 ## Recommended Setup Paths
 
@@ -325,7 +344,7 @@ These categories guide future development. They are not all implemented today.
 | `Phase 14A` | Home Relay Mode AIO Correction  | Move relay prototype direction into the main Android app      |
 | `Phase 14B` | Guided Wake Setup Framework     | Add plain-language wake setup and method selection guidance   |
 | `Phase 14C` | Wake Path Readiness + Honest Wiring | Make guided setup honest about what is ready now, what needs setup, and what is still planned |
-| `Phase 14D` | Home Device Relay Prototype     | Build the first local-only home-device relay implementation   |
+| `Phase 14D` | Main APK Method Guides + Readiness Follow-Through | Improve user-facing method guidance and readiness clarity before deeper relay runtime |
 | `Phase 15` | Alternate Wake Paths + Guides    | Smart plug, smart-home, NAS, router, and advanced setup guides |
 | `Phase 16` | Project Packaging + Release Prep | Repo structure, shared contracts, release packaging, checksums |
 

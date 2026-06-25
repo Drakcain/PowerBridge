@@ -48,7 +48,7 @@ Not live yet:
 
 ## Next Phases
 
-* `Phase 14D` - Home Device Relay local-only prototype flow
+* `Phase 14D` - Main APK method guides and readiness follow-through
 * `Phase 15` - Alternate wake paths and guides
 * `Phase 16` - Packaging and release prep follow-through
 
@@ -61,7 +61,7 @@ Phase status:
 * `Phase 14B` is complete as guided wake setup and plain-language method selection
 * `Phase 14C` is complete as honest wake-path readiness wiring for `Home Wi-Fi only`, `Away from home`, and `Not sure`
 * `Phase 14C.1` is complete as guided setup final-confirm verification, Home Relay text sharing, CI path filters, and phase-level version alignment
-* `Phase 14D` is the next relay pairing/runtime prototype phase
+* `Phase 14D` is the current roadmap phase focused on main-APK method guides and readiness follow-through
 
 Phase 14A scope completed:
 
@@ -106,6 +106,23 @@ Phase 14C.1 scope completed:
 * `Home Relay Mode` now supports `Share Report` with the Android share sheet
 * GitHub Actions now use path filters so Android and Windows checks only run when their side changes
 * development versioning now follows the phase-level 0.7.x progression
+
+Phase 14D scope should focus on:
+
+* `My Own Server` advanced-path clarity and readiness guidance
+* `Smart Plug Power-On` checklist-first guidance
+* `Smart Speaker Wake` guide/research placeholder
+* `Fire TV / Smart TV Relay` guide/experimental explanation
+
+Phase 14D intentionally does not start:
+
+* old phone or tablet relay runtime
+* Firebase / FCM
+* cloud broker
+* smart plug vendor APIs
+* smart speaker vendor APIs
+* TV runtime
+* a second Android APK
 
 See:
 

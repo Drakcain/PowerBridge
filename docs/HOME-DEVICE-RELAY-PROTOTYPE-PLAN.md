@@ -95,21 +95,21 @@ Not implemented in Phase 14C.1:
 * smart speaker runtime
 * TV runtime
 
-## Phase 14D Prototype Goal
+## Phase 14D Goal
 
-Phase 14 should deliver the first narrow `Home Device Relay` prototype without trying to solve the full remote-wake product in one pass.
+Phase 14D is a roadmap and product-follow-through phase centered on the main Android APK experience before deeper relay runtime work resumes.
 
-The prototype goal is:
+The Phase 14D goal is:
 
-* prove one relay device can be paired in a controlled test flow
-* prove one controller can create a valid wake request
-* prove one relay can validate that request
-* prove one relay can send a local WOL packet for one linked PC profile
-* prove diagnostics are clear enough to explain success and failure
+* make the current method families easier for normal users to understand
+* tighten readiness guidance around what is live now versus what is still planned
+* improve the `My Own Server` path clarity for advanced users
+* add guide-first direction for `Smart Plug Power-On`, `Smart Speaker Wake`, and `Fire TV / Smart TV Relay`
+* keep old-phone relay runtime paused until the product shape is clearer
 
-## Recommended Target Device Order
+## Deferred Runtime Order
 
-Prototype order:
+When deeper relay runtime resumes later:
 
 1. standard Android phone or tablet first
 2. Fire tablet second
@@ -121,25 +121,24 @@ Reason:
 * Fire tablets are useful but may add sideloading and platform-policy complexity
 * TV-class devices should come after the basic relay contract and flow are proven
 
-## Minimum Viable Prototype Flow
+## Phase 14D Method-Guidance Focus
 
-Recommended first prototype flow:
+Recommended Phase 14D order:
 
-1. Install a relay prototype on a spare Android phone or tablet that stays on the same LAN as the target PC.
-2. Pair the relay with the controller using a local-only QR/code flow or manually loaded placeholder pairing data.
-3. Controller creates a local test wake request for a linked profile.
-4. Relay validates the request and confirms profile authorization.
-5. Relay sends the local Wake-on-LAN packet sequence.
-6. Relay records diagnostics and a wake result.
-7. Controller or tester reviews the result and failure reason if any.
+1. `My Own Server`
+2. `Smart Plug Power-On`
+3. `Smart Speaker Wake`
+4. `Fire TV / Smart TV Relay`
+5. keep `Old Phone / Tablet Relay` paused
 
-Important prototype boundary:
+Important boundary:
 
-* prefer local-only prototype transport first if that avoids cloud, push, or broker complexity
+* keep this phase in the main APK guidance/readiness layer
+* do not jump into relay runtime, cloud, or TV implementation during this pass
 
-## Test Device Requirements
+## Deferred Runtime Requirements
 
-Recommended minimum test environment:
+When runtime relay implementation resumes later, the minimum test environment should still be:
 
 * one spare Android phone or tablet used as the relay
 * one controller phone running the main PowerBridge app
@@ -155,7 +154,7 @@ Useful secondary targets later:
 
 ## Architecture Choice Recommendation
 
-Recommended Phase 14D direction:
+Recommended continuing direction:
 
 * keep the PowerBridge Android app as the single user-facing Android app
 * keep relay behavior inside the same app under a clearly marked `Home Relay Mode`
@@ -169,14 +168,14 @@ Why:
 
 ## Package / App Strategy
 
-Recommended package strategy:
+Recommended continuing package strategy:
 
 * controller and relay prototype both live in the existing PowerBridge Android app
 * contracts remain documented first, then can become shared Kotlin models inside the app as runtime work grows
 
 ## Feature Flags / Staged UI Guidance
 
-Phase 14 should keep UI scope narrow.
+Phase 14D should keep UI scope narrow.
 
 Recommended guidance:
 
@@ -186,7 +185,7 @@ Recommended guidance:
 
 ## Diagnostics Requirements
 
-Prototype diagnostics should answer:
+For later runtime work, diagnostics should eventually answer:
 
 * did the controller create a request
 * did the relay receive it
@@ -196,7 +195,7 @@ Prototype diagnostics should answer:
 * what broadcast IP and UDP port were used
 * what device/network limitation likely blocked success
 
-At minimum, prototype diagnostics should record:
+At minimum, later runtime diagnostics should record:
 
 * request id
 * relay device id
@@ -209,7 +208,7 @@ At minimum, prototype diagnostics should record:
 
 ## Security Requirements
 
-Phase 14 prototype must still respect the design boundaries:
+Phase 14D and later work must still respect the design boundaries:
 
 * no raw unauthenticated public wake endpoint
 * no PC passwords
@@ -222,7 +221,7 @@ Prototype shortcuts are acceptable only if they stay local-only, explicit, and n
 
 ## Platform Risks
 
-Key Phase 14 risks:
+Key deferred runtime risks:
 
 * Doze and battery optimization may suppress background behavior
 * OEM background policies may differ significantly
@@ -233,7 +232,7 @@ Key Phase 14 risks:
 
 ## What Is Explicitly Not Built Yet
 
-Phase 14 should not include:
+Phase 14D should not include:
 
 * production cloud broker
 * FCM production setup
@@ -249,47 +248,45 @@ Phase 14 should not include:
 * silent update
 * analytics
 
-## Success Criteria For Prototype Implementation
+## Success Criteria For Phase 14D
 
-Phase 14 prototype should be considered successful only if it proves:
+Phase 14D should be considered successful only if it delivers:
 
-* one relay device can be identified and paired safely
-* one linked PC profile can be authorized for wake
-* one local test transport can deliver a valid request
-* one relay can send WOL to one validated target profile
-* result and diagnostics are understandable enough to troubleshoot failures
+* clearer consumer-facing method guidance in the main APK
+* better readiness truth for live versus planned paths
+* stronger advanced-path guidance for `My Own Server`
+* practical guide-first framing for smart plug, smart speaker, and TV-class paths
+* no false claim that remote relay runtime is already complete
 
 ## Phase 14D Entry Criteria
 
-Before implementation starts:
+Before Phase 14D implementation starts:
 
 * [HOME-DEVICE-RELAY-ARCHITECTURE.md](HOME-DEVICE-RELAY-ARCHITECTURE.md) is accepted
 * [HOME-DEVICE-RELAY-CONTRACTS.md](HOME-DEVICE-RELAY-CONTRACTS.md) is accepted
 * controller vs relay app/package strategy is approved
-* target device order is approved
-* local-only first transport approach is approved
-* prototype diagnostics expectations are approved
+* method-guidance-first direction is approved
+* deferred runtime order is accepted
+* consumer setup workflow remains the top priority
 
-## Phase 14 Implementation Checklist
+## Phase 14D Implementation Checklist
 
-Before the first runtime commit:
+Before the first Phase 14D commit:
 
 * confirm `Phase 14D` is the active next runtime phase across README and docs
 * confirm the AIO app direction is preserved
 * confirm local-only first transport is approved
-* confirm one Android phone or tablet is selected as the first relay target
-* confirm one controller device is selected
-* confirm one target PC already wakes by `Local Wi-Fi Wake`
-* confirm placeholder-only test data is ready for pairing and wake-request validation
-* confirm no Firebase, FCM, broker, or cloud work is being introduced in the first prototype
-* confirm diagnostics fields required by the contract docs are visible in the first prototype scope
+* confirm `My Own Server` remains the only advanced live remote direction
+* confirm smart plug / smart speaker / TV guidance stays non-runtime and non-live
+* confirm old phone / tablet relay remains paused
+* confirm no Firebase, FCM, broker, or cloud work is introduced
 * confirm public wording still does not imply the relay path is already production-ready
 
 ## Recommended Next Safe Step
 
-For the next runtime step after Phase 14C.1:
+For the next implementation step after this roadmap realignment:
 
-1. implement a local-only controller-to-relay prototype flow
-2. keep the first relay target to a standard Android phone or tablet
-3. keep transport local-only before any cloud or FCM work
-4. add first real request/response handling without production auth or public transport
+1. improve `My Own Server` method guidance and readiness explanation inside the main APK
+2. add checklist-first guidance for `Smart Plug Power-On`
+3. add guide/research placeholders for `Smart Speaker Wake`
+4. add guide/experimental explanation for `Fire TV / Smart TV Relay`
