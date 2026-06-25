@@ -1,14 +1,14 @@
-package com.powerbridge.relay
+package com.powerbridge.app
 
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import com.google.android.material.button.MaterialButton
 
-class MainActivity : AppCompatActivity() {
-    private val relayTransport: RelayTransport = LocalPrototypeRelayTransport()
+class HomeRelayActivity : AppCompatActivity() {
+    private val relayTransport: HomeRelayTransport = LocalPrototypeHomeRelayTransport()
 
     private lateinit var relayModeText: TextView
     private lateinit var transportText: TextView
@@ -21,9 +21,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var logText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        AppConfigStore.forceDarkMode()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home_relay)
 
         relayModeText = findViewById(R.id.relayModeText)
         transportText = findViewById(R.id.transportText)
@@ -35,23 +35,25 @@ class MainActivity : AppCompatActivity() {
         updatedText = findViewById(R.id.updatedText)
         logText = findViewById(R.id.logText)
 
+        configureSystemBars()
+
         findViewById<MaterialButton>(R.id.checkRelayReadinessButton).setOnClickListener {
             val result = relayTransport.checkReadiness(this)
-            RelayDiagnosticsStore.refreshPrototypeReport(this, relayTransport, "Check Relay Readiness")
+            HomeRelayDiagnosticsStore.refreshPrototypeReport(this, relayTransport, "Check Relay Readiness")
             updateStatus(result.status, result.detail, success = true)
             renderState()
         }
 
         findViewById<MaterialButton>(R.id.copyDiagnosticsButton).setOnClickListener {
             ensureReport()
-            RelayDiagnosticsStore.copyDiagnostics(this)
-            updateStatus("Diagnostics copied.", "Relay diagnostics copied to the clipboard.", success = true)
+            HomeRelayDiagnosticsStore.copyDiagnostics(this)
+            updateStatus("Diagnostics copied.", "Home Relay diagnostics copied to the clipboard.", success = true)
             renderState()
         }
 
         findViewById<MaterialButton>(R.id.clearLogButton).setOnClickListener {
-            RelayDiagnosticsStore.clear(this)
-            updateStatus("Log cleared.", "Prototype diagnostics log cleared.", success = true)
+            HomeRelayDiagnosticsStore.clear(this)
+            updateStatus("Log cleared.", "Home Relay prototype diagnostics log cleared.", success = true)
             renderState()
         }
 
@@ -59,9 +61,17 @@ class MainActivity : AppCompatActivity() {
         renderState()
     }
 
+    private fun configureSystemBars() {
+        window.statusBarColor = ContextCompat.getColor(this, R.color.cp_system_bar)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.cp_system_bar)
+        val controller = WindowCompat.getInsetsController(window, window.decorView)
+        controller.isAppearanceLightStatusBars = false
+        controller.isAppearanceLightNavigationBars = false
+    }
+
     private fun ensureReport() {
-        if (RelayDiagnosticsStore.getLog(this).isBlank()) {
-            RelayDiagnosticsStore.refreshPrototypeReport(this, relayTransport, "App Launch")
+        if (HomeRelayDiagnosticsStore.getLog(this).isBlank()) {
+            HomeRelayDiagnosticsStore.refreshPrototypeReport(this, relayTransport, "App Launch")
         }
     }
 
@@ -72,8 +82,15 @@ class MainActivity : AppCompatActivity() {
         pairingText.text = currentStatus.pairingLabel
         linkedProfileText.text = currentStatus.linkedProfileLabel
         lastWakeRequestText.text = currentStatus.lastWakeRequestLabel
-        updatedText.text = getString(R.string.relay_last_updated_template, RelayDiagnosticsStore.getLastUpdatedLabel(this))
-        logText.text = RelayDiagnosticsStore.getLog(this).ifBlank { getString(R.string.relay_log_empty) }
+        updatedText.text = getString(R.string.home_relay_last_updated_template, HomeRelayDiagnosticsStore.getLastUpdatedLabel(this))
+        logText.text = HomeRelayDiagnosticsStore.getLog(this).ifBlank { getString(R.string.home_relay_log_empty) }
+        if (statusText.text.isNullOrBlank()) {
+            updateStatus(
+                getString(R.string.home_relay_status_initial_title),
+                getString(R.string.home_relay_status_initial_detail),
+                success = true
+            )
+        }
     }
 
     private fun updateStatus(status: String, detail: String, success: Boolean) {
@@ -82,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         statusText.setTextColor(
             ContextCompat.getColor(
                 this,
-                if (success) R.color.pb_green else R.color.pb_blue
+                if (success) R.color.cp_success else R.color.cp_warning
             )
         )
     }

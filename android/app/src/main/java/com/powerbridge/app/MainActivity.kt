@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         diagnosticsButton = findViewById(R.id.diagnosticsButton)
         settingsButton = findViewById(R.id.settingsButton)
         manageProfilesButton = findViewById(R.id.manageProfilesButton)
+        val homeRelayModeButton = findViewById<MaterialButton>(R.id.homeRelayModeButton)
 
         configureSystemBars()
         syncUiFromConfig()
@@ -79,6 +80,10 @@ class MainActivity : AppCompatActivity() {
 
         diagnosticsButton.setOnClickListener {
             startActivity(Intent(this, DiagnosticsActivity::class.java))
+        }
+
+        homeRelayModeButton.setOnClickListener {
+            startActivity(Intent(this, HomeRelayActivity::class.java))
         }
 
         testRelayButton.setOnClickListener {

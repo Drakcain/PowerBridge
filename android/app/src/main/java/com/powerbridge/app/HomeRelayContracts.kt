@@ -1,6 +1,6 @@
-package com.powerbridge.relay
+package com.powerbridge.app
 
-data class RelayPairingPlaceholder(
+data class HomeRelayPairingPlaceholder(
     val schema: String = "powerbridge.relay_pairing.v1",
     val pairingRequestId: String = "",
     val controllerDeviceId: String = "",
@@ -8,7 +8,7 @@ data class RelayPairingPlaceholder(
     val profileLinkMode: String = "manual_after_pairing"
 )
 
-data class RelayRegistrationPlaceholder(
+data class HomeRelayRegistrationPlaceholder(
     val schema: String = "powerbridge.relay_registration.v1",
     val relayDeviceId: String = "",
     val relayDisplayName: String = "",
@@ -16,7 +16,7 @@ data class RelayRegistrationPlaceholder(
     val linkedProfileIds: List<String> = emptyList()
 )
 
-data class RelayWakeRequestPlaceholder(
+data class HomeRelayWakeRequestPlaceholder(
     val schema: String = "powerbridge.relay_wake_request.v1",
     val requestId: String = "",
     val relayDeviceId: String = "",
@@ -25,7 +25,7 @@ data class RelayWakeRequestPlaceholder(
     val targetMac: String = ""
 )
 
-data class RelayWakeResultPlaceholder(
+data class HomeRelayWakeResultPlaceholder(
     val schema: String = "powerbridge.relay_wake_result.v1",
     val requestId: String = "",
     val relayDeviceId: String = "",
@@ -35,7 +35,7 @@ data class RelayWakeResultPlaceholder(
     val resultCode: String = "not_implemented"
 )
 
-data class RelayDiagnosticsPlaceholder(
+data class HomeRelayDiagnosticsPlaceholder(
     val schema: String = "powerbridge.relay_diagnostics.v1",
     val relayDeviceId: String = "",
     val relayDisplayName: String = "",
@@ -43,7 +43,7 @@ data class RelayDiagnosticsPlaceholder(
     val lastWakeResult: String = "none"
 )
 
-data class RelayCapabilitiesPlaceholder(
+data class HomeRelayCapabilitiesPlaceholder(
     val schema: String = "powerbridge.relay_capabilities.v1",
     val relayDeviceId: String = "",
     val canReceivePush: Boolean = false,

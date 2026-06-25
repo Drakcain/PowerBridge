@@ -13,7 +13,8 @@ Current phase truth:
 * `Phase 12` is complete as architecture
 * `Phase 13` is complete as contract/planning work
 * `Phase 13.5` is complete as cleanup/readiness work
-* `Phase 14` is the next runtime relay prototype phase
+* `Phase 14A` is complete as the AIO relay-mode correction pass
+* `Phase 14B` is the next runtime relay prototype phase
 
 PowerBridge v1 is intentionally focused on wake and boot. Shutdown, restart, hibernate, remote desktop control, and target-side command execution are out of scope because they require a separate backend, always-on agent, operating-system access, or device-specific integration.
 
@@ -30,6 +31,7 @@ Current core features:
 * Check local setup readiness
 * Export diagnostics as a ZIP report
 * Support local Wake-on-LAN and advanced user-owned relay setups
+* Expose an AIO `Home Relay Mode` prototype inside the same Android app
 
 ## Privacy and Public-Safety Boundary
 
@@ -87,7 +89,7 @@ These methods are planned or under research. They are not live wake engines yet.
 
 | Method                   | Intended shape                                                                                                      | Current status |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------- | -------------- |
-| `Home Device Relay`      | Use an old phone, tablet, Fire TV, Android TV, or Google TV device left plugged in at home as a local wake anchor   | Runtime prototype next |
+| `Home Device Relay`      | Use the same PowerBridge Android app on an old phone or tablet in `Home Relay Mode` as the future local wake anchor | Runtime prototype next |
 | `Smart Plug Boot Assist` | Power-cycle a smart plug and rely on BIOS or UEFI restore-after-power-loss behavior to boot the PC                  | Coming later   |
 | `Smart Home Wake`        | Integrate with smart-home ecosystems such as Alexa, Google Home, or Home Assistant where platform support allows it | Research       |
 | `Advanced Network Setup` | Provide router, VPN, NAS, server, and custom-network guidance                                                       | Guides later   |
@@ -99,7 +101,7 @@ These methods are planned or under research. They are not live wake engines yet.
 | Phone and PC are on the same Wi-Fi or LAN                          | `Local Wi-Fi Wake`                      |
 | User wants fast setup for the current Windows PC                   | PowerBridge Windows Companion QR import |
 | User already has a home server, NAS, Raspberry Pi, or router relay | `Home Relay Server`                     |
-| User wants remote wake over cellular without a server              | Future `Home Device Relay` path after prototype work |
+| User wants remote wake over cellular without a server              | Future `Home Relay Mode` path after prototype work |
 | PC does not wake reliably through normal Wake-on-LAN               | Future `Smart Plug Boot Assist`         |
 
 ## Honest Technical Limits
@@ -285,7 +287,8 @@ These categories guide future development. They are not all implemented today.
 | `Phase 12` | Home Device Relay Architecture   | Design the old-phone/tablet/TV relay path                      |
 | `Phase 13` | Prototype Planning + Contract Validation | Define relay contracts and the controlled prototype plan       |
 | `Phase 13.5` | Pre-Prototype Cleanup + Readiness Audit | Tighten docs, examples, and repo hygiene before runtime work |
-| `Phase 14` | Home Device Relay Prototype      | Build the first home-device relay implementation               |
+| `Phase 14A` | Home Relay Mode AIO Correction  | Move relay prototype direction into the main Android app      |
+| `Phase 14B` | Home Device Relay Prototype     | Build the first local-only home-device relay implementation   |
 | `Phase 15` | Alternate Wake Paths + Guides    | Smart plug, smart-home, NAS, router, and advanced setup guides |
 | `Phase 16` | Project Packaging + Release Prep | Repo structure, shared contracts, release packaging, checksums |
 

@@ -2,7 +2,7 @@
 
 ![PowerBridge Brand Banner](assets/branding/powerbridge-brand-banner.png)
 
-PowerBridge is a public Android Wake-on-LAN client with saved PC profiles, QR-assisted setup, diagnostics export, and an optional advanced path for user-owned relay infrastructure.
+PowerBridge is a public Android Wake-on-LAN client with saved PC profiles, QR-assisted setup, diagnostics export, an AIO Android `Home Relay Mode` prototype, and an optional advanced path for user-owned relay infrastructure.
 
 This repository packages the full public project:
 
@@ -22,6 +22,7 @@ PowerBridge currently supports:
 * Saved PC profiles
 * `Local Wi-Fi Wake`
 * `Home Relay Server` for advanced user-owned relay setups
+* AIO Android `Home Relay Mode` prototype inside the main PowerBridge app
 * Windows Companion QR setup import
 * Local setup checks
 * Diagnostics generation and user-initiated ZIP sharing
@@ -40,8 +41,8 @@ PowerBridge does not currently support:
 
 Architecture status note:
 
-* `Home Device Relay` is not live yet
-* `Phase 14` is the next runtime relay phase
+* `Home Relay Mode` exists only as a local prototype inside the main Android app
+* `Phase 14B` is the next runtime relay phase
 * see [docs/HOME-DEVICE-RELAY-ARCHITECTURE.md](docs/HOME-DEVICE-RELAY-ARCHITECTURE.md)
 * see [docs/HOME-DEVICE-RELAY-CONTRACTS.md](docs/HOME-DEVICE-RELAY-CONTRACTS.md)
 * see [docs/HOME-DEVICE-RELAY-PROTOTYPE-PLAN.md](docs/HOME-DEVICE-RELAY-PROTOTYPE-PLAN.md)
@@ -76,7 +77,7 @@ PowerBridge is generic public software. It does not ship with developer-specific
 
 ### Android App
 
-The Android app is the wake client. It stores PC profiles, sends local Wake-on-LAN packets, imports setup data from QR, and generates diagnostics when the user requests them.
+The Android app is the AIO user-facing Android app. It stores PC profiles, sends local Wake-on-LAN packets, imports setup data from QR, generates diagnostics when the user requests them, and includes the prototype `Home Relay Mode` entry point for spare Android phone/tablet use.
 
 See [android/README.md](android/README.md).
 

@@ -8,12 +8,12 @@ No relay runtime implementation is added in this phase.
 
 ## Phase 14A Status
 
-Phase 14A is the skeleton-only runtime foundation.
+Phase 14A is the AIO correction plus skeleton-only runtime foundation.
 
 Completed in Phase 14A:
 
-* separate Android relay app/package skeleton
-* minimal launchable relay UI
+* moved the relay prototype direction into the main Android app
+* minimal launchable `Home Relay Mode` UI
 * local-only transport placeholder
 * first-pass relay diagnostics view/logging
 * contract model placeholders in code
@@ -27,6 +27,12 @@ Not implemented in Phase 14A:
 * production auth
 * TV-specific runtime work
 * actual relay-triggered Wake-on-LAN execution
+
+Product-direction truth after Phase 14A:
+
+* PowerBridge should be one Android AIO app
+* Windows Companion remains the separate Windows app
+* spare Android phones/tablets should use the same PowerBridge APK in `Home Relay Mode`
 
 ## Phase 14 Prototype Goal
 
@@ -90,28 +96,22 @@ Useful secondary targets later:
 
 Recommended Phase 14 direction:
 
-* build the prototype as a separate Android relay app/package or clearly isolated relay module
-* keep the current PowerBridge controller app focused on controller responsibilities
-* do not merge always-on relay behavior into the normal user app until the prototype proves it is viable
+* keep the PowerBridge Android app as the single user-facing Android app
+* keep relay behavior inside the same app under a clearly marked `Home Relay Mode`
+* keep the Windows Companion separate
 
 Why:
 
-* cleaner trust and permission boundaries
-* cleaner background-behavior testing
-* easier to isolate relay diagnostics
-* lower risk of bloating the existing controller app too early
+* preserves the intended one-APK Android product shape
+* still keeps runtime scope narrow
+* keeps relay diagnostics and placeholder transport visible without creating a second end-user app
 
 ## Package / App Strategy
 
 Recommended package strategy:
 
-* controller app remains the existing PowerBridge app
-* relay prototype should live as a separate Android app/package
-* contracts remain documented first, then can become shared Kotlin models later
-
-Deferred decision:
-
-* whether production PowerBridge eventually ships both a controller app and relay app, or later gains an optional relay mode
+* controller and relay prototype both live in the existing PowerBridge Android app
+* contracts remain documented first, then can become shared Kotlin models inside the app as runtime work grows
 
 ## Feature Flags / Staged UI Guidance
 
@@ -213,8 +213,8 @@ Before implementation starts:
 
 Before the first runtime commit:
 
-* confirm `Phase 14` is the active next phase across README and docs
-* confirm the separate relay app/package direction is approved
+* confirm `Phase 14B` is the active next phase across README and docs
+* confirm the AIO app direction is preserved
 * confirm local-only first transport is approved
 * confirm one Android phone or tablet is selected as the first relay target
 * confirm one controller device is selected

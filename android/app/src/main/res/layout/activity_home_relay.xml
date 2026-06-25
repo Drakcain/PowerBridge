@@ -18,27 +18,27 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textColor="@color/pb_text_white"
+            android:text="@string/home_relay_title"
+            android:textColor="@color/cp_text_primary"
             android:textSize="34sp"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/relay_subtitle"
-            android:textColor="@color/pb_text_muted"
+            android:text="@string/home_relay_subtitle"
+            android:textColor="@color/cp_text_secondary"
             android:textSize="15sp" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            app:cardBackgroundColor="@color/pb_bg_navy"
+            app:cardBackgroundColor="@color/cp_surface"
             app:cardCornerRadius="24dp"
             app:cardElevation="0dp"
-            app:strokeColor="@color/pb_border"
+            app:strokeColor="@color/cp_border"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -50,8 +50,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/relay_status_card_title"
-                    android:textColor="@color/pb_blue"
+                    android:text="@string/home_relay_status_card_title"
+                    android:textColor="@color/cp_yellow"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -59,8 +59,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="@string/relay_status_mode_label"
-                    android:textColor="@color/pb_text_muted"
+                    android:text="@string/home_relay_mode_label"
+                    android:textColor="@color/cp_text_muted"
                     android:textStyle="bold" />
 
                 <TextView
@@ -68,15 +68,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/pb_text_white"
+                    android:textColor="@color/cp_text_primary"
                     android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="@string/relay_status_transport_label"
-                    android:textColor="@color/pb_text_muted"
+                    android:text="@string/home_relay_transport_label"
+                    android:textColor="@color/cp_text_muted"
                     android:textStyle="bold" />
 
                 <TextView
@@ -84,15 +84,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/pb_text_white"
+                    android:textColor="@color/cp_text_primary"
                     android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="@string/relay_status_pairing_label"
-                    android:textColor="@color/pb_text_muted"
+                    android:text="@string/home_relay_pairing_label"
+                    android:textColor="@color/cp_text_muted"
                     android:textStyle="bold" />
 
                 <TextView
@@ -100,15 +100,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/pb_text_white"
+                    android:textColor="@color/cp_text_primary"
                     android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="@string/relay_status_profile_label"
-                    android:textColor="@color/pb_text_muted"
+                    android:text="@string/home_relay_profile_label"
+                    android:textColor="@color/cp_text_muted"
                     android:textStyle="bold" />
 
                 <TextView
@@ -116,15 +116,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/pb_text_white"
+                    android:textColor="@color/cp_text_primary"
                     android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="@string/relay_status_last_wake_label"
-                    android:textColor="@color/pb_text_muted"
+                    android:text="@string/home_relay_last_wake_label"
+                    android:textColor="@color/cp_text_muted"
                     android:textStyle="bold" />
 
                 <TextView
@@ -132,7 +132,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/pb_text_white"
+                    android:textColor="@color/cp_text_primary"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -141,10 +141,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            app:cardBackgroundColor="@color/pb_bg_navy"
+            app:cardBackgroundColor="@color/cp_surface"
             app:cardCornerRadius="24dp"
             app:cardElevation="0dp"
-            app:strokeColor="@color/pb_border"
+            app:strokeColor="@color/cp_border"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -157,8 +157,8 @@
                     android:id="@+id/statusText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/relay_status_initial_title"
-                    android:textColor="@color/pb_green"
+                    android:text="@string/home_relay_status_initial_title"
+                    android:textColor="@color/cp_success"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -167,51 +167,45 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/relay_status_initial_detail"
-                    android:textColor="@color/pb_text_secondary"
+                    android:text="@string/home_relay_status_initial_detail"
+                    android:textColor="@color/cp_text_secondary"
                     android:textSize="14sp" />
 
-                <LinearLayout
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/checkRelayReadinessButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="56dp"
                     android:layout_marginTop="18dp"
-                    android:orientation="vertical">
+                    android:backgroundTint="@color/cp_action_wake_yellow"
+                    android:text="@string/home_relay_check_button"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cp_background"
+                    android:textStyle="bold"
+                    app:cornerRadius="18dp" />
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/checkRelayReadinessButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:backgroundTint="@color/pb_blue"
-                        android:text="@string/relay_check_button"
-                        android:textAllCaps="false"
-                        android:textColor="@color/pb_bg_black"
-                        android:textStyle="bold"
-                        app:cornerRadius="18dp" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/copyDiagnosticsButton"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/home_relay_copy_button"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cp_cyan"
+                    app:cornerRadius="18dp"
+                    app:strokeColor="@color/cp_cyan" />
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/copyDiagnosticsButton"
-                        style="@style/Widget.Material3.Button.OutlinedButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:layout_marginTop="12dp"
-                        android:text="@string/relay_copy_button"
-                        android:textAllCaps="false"
-                        android:textColor="@color/pb_cyan"
-                        app:cornerRadius="18dp"
-                        app:strokeColor="@color/pb_cyan" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/clearLogButton"
-                        style="@style/Widget.Material3.Button.OutlinedButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:layout_marginTop="12dp"
-                        android:text="@string/relay_clear_button"
-                        android:textAllCaps="false"
-                        android:textColor="@color/pb_aqua"
-                        app:cornerRadius="18dp"
-                        app:strokeColor="@color/pb_aqua" />
-                </LinearLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/clearLogButton"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/home_relay_clear_button"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cp_magenta"
+                    app:cornerRadius="18dp"
+                    app:strokeColor="@color/cp_magenta" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -219,10 +213,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            app:cardBackgroundColor="@color/pb_bg_navy"
+            app:cardBackgroundColor="@color/cp_surface"
             app:cardCornerRadius="24dp"
             app:cardElevation="0dp"
-            app:strokeColor="@color/pb_border"
+            app:strokeColor="@color/cp_border"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -234,8 +228,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/relay_log_title"
-                    android:textColor="@color/pb_aqua"
+                    android:text="@string/home_relay_log_title"
+                    android:textColor="@color/cp_cyan"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -244,7 +238,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/pb_text_muted"
+                    android:textColor="@color/cp_text_muted"
                     android:textSize="13sp" />
 
                 <TextView
@@ -252,10 +246,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:background="@color/pb_surface_raised"
+                    android:background="@color/cp_surface_raised"
                     android:fontFamily="monospace"
                     android:padding="14dp"
-                    android:textColor="@color/pb_text_secondary"
+                    android:textColor="@color/cp_text_secondary"
                     android:textIsSelectable="true"
                     android:textSize="13sp" />
             </LinearLayout>

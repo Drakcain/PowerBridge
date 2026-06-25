@@ -44,7 +44,7 @@ Not live yet:
 
 ## Next Phases
 
-* `Phase 14A` - Home Device Relay prototype skeleton
+* `Phase 14A` - Home Device Relay AIO correction + skeleton integration
 * `Phase 14B` - Home Device Relay local-only prototype flow
 * `Phase 15` - Alternate wake paths and guides
 * `Phase 16` - Packaging and release prep follow-through
@@ -54,16 +54,17 @@ Phase status:
 * `Phase 12` is complete
 * `Phase 13` is complete as contract/planning work
 * `Phase 13.5` is complete as cleanup/readiness work
-* `Phase 14A` is complete as the separate relay app/package skeleton
+* `Phase 14A` is complete as the AIO relay-mode correction inside the main Android app
 * `Phase 14B` is the next relay runtime prototype phase
 
 Phase 14A scope completed:
 
-* separate Android relay module/app skeleton
-* launchable relay prototype UI
+* relay prototype direction corrected to the main Android AIO app
+* launchable `Home Relay Mode` UI inside the main Android app
 * local-only transport placeholders
 * first-pass local diagnostics/logging
 * contract-model placeholders
+* main Android app icon updated
 
 Phase 14A intentionally does not include:
 
