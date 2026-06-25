@@ -15,26 +15,27 @@ Add-Type -AssemblyName WindowsBase
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="PowerBridge Windows Companion"
         Width="1220"
-        Height="1048"
+        Height="1096"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="#070A0F"
-        Foreground="#F8FAFC"
+        Background="#020713"
+        Foreground="#F4F7FA"
         FontFamily="Segoe UI">
     <Window.Resources>
-        <SolidColorBrush x:Key="BgBrush" Color="#070A0F" />
-        <SolidColorBrush x:Key="SurfaceBrush" Color="#111827" />
-        <SolidColorBrush x:Key="SurfaceRaisedBrush" Color="#151B26" />
-        <SolidColorBrush x:Key="BorderBrushTheme" Color="#263244" />
-        <SolidColorBrush x:Key="TextPrimaryBrush" Color="#F8FAFC" />
-        <SolidColorBrush x:Key="TextSecondaryBrush" Color="#CBD5E1" />
-        <SolidColorBrush x:Key="TextMutedBrush" Color="#94A3B8" />
-        <SolidColorBrush x:Key="YellowBrush" Color="#FCEE09" />
-        <SolidColorBrush x:Key="CyanBrush" Color="#00E5FF" />
-        <SolidColorBrush x:Key="MagentaBrush" Color="#FF2A6D" />
-        <SolidColorBrush x:Key="SuccessBrush" Color="#00D26A" />
+        <SolidColorBrush x:Key="BgBrush" Color="#020713" />
+        <SolidColorBrush x:Key="SurfaceBrush" Color="#061426" />
+        <SolidColorBrush x:Key="SurfaceRaisedBrush" Color="#0B1B31" />
+        <SolidColorBrush x:Key="BorderBrushTheme" Color="#184364" />
+        <SolidColorBrush x:Key="TextPrimaryBrush" Color="#F4F7FA" />
+        <SolidColorBrush x:Key="TextSecondaryBrush" Color="#D6E0EA" />
+        <SolidColorBrush x:Key="TextMutedBrush" Color="#B8C4D2" />
+        <SolidColorBrush x:Key="YellowBrush" Color="#008CFF" />
+        <SolidColorBrush x:Key="CyanBrush" Color="#00D8FF" />
+        <SolidColorBrush x:Key="MagentaBrush" Color="#00F0E6" />
+        <SolidColorBrush x:Key="SuccessBrush" Color="#7FEA42" />
         <SolidColorBrush x:Key="ErrorBrush" Color="#FF1744" />
-        <SolidColorBrush x:Key="DividerBrush" Color="#F8FAFC" />
+        <SolidColorBrush x:Key="DividerBrush" Color="#F4F7FA" />
+        <SolidColorBrush x:Key="GreenBrush" Color="#7FEA42" />
 
         <Style x:Key="CardBorderStyle" TargetType="Border">
             <Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
@@ -54,12 +55,28 @@ Add-Type -AssemblyName WindowsBase
             <Setter Property="Margin" Value="0,0,10,10" />
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Cursor" Value="Hand" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFFFFF" />
+                    <Setter Property="BorderBrush" Value="#FFFFFF" />
+                    <Setter Property="Foreground" Value="#000000" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="SecondaryButtonStyle" TargetType="Button" BasedOn="{StaticResource AccentButtonStyle}">
             <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
             <Setter Property="Background" Value="{StaticResource SurfaceRaisedBrush}" />
             <Setter Property="BorderBrush" Value="{StaticResource CyanBrush}" />
+        </Style>
+
+        <Style TargetType="ToolTip">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Foreground" Value="#000000" />
+            <Setter Property="BorderBrush" Value="{StaticResource CyanBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="8,6" />
+            <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
 
         <Style x:Key="FieldLabelStyle" TargetType="TextBlock">
@@ -94,6 +111,14 @@ Add-Type -AssemblyName WindowsBase
             <Setter Property="Background" Value="#FFFFFF" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
+
+        <LinearGradientBrush x:Key="TitleGradientBrush" StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#F4F7FA" Offset="0.00" />
+            <GradientStop Color="#008CFF" Offset="0.18" />
+            <GradientStop Color="#00D8FF" Offset="0.45" />
+            <GradientStop Color="#00F0E6" Offset="0.72" />
+            <GradientStop Color="#7FEA42" Offset="1.00" />
+        </LinearGradientBrush>
     </Window.Resources>
 
     <Grid Background="{StaticResource BgBrush}">
@@ -102,43 +127,73 @@ Add-Type -AssemblyName WindowsBase
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Padding="28,24,28,18" Background="{StaticResource BgBrush}">
+        <Border Grid.Row="0" Padding="28,22,28,12" Background="{StaticResource BgBrush}">
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="190" />
+                    <ColumnDefinition Width="24" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="320" />
+                    <ColumnDefinition Width="24" />
+                    <ColumnDefinition Width="190" />
                 </Grid.ColumnDefinitions>
 
-                <StackPanel>
-                    <TextBlock FontSize="34" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}">
-                        <Run Text="Power" />
-                        <Run Text="Bridge" Foreground="{StaticResource YellowBrush}" />
-                        <Run Text=" Windows Companion" />
+                <Border Grid.Column="0"
+                        Width="176"
+                        Height="112"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource SurfaceBrush}"
+                        BorderBrush="{StaticResource BorderBrushTheme}"
+                        BorderThickness="1"
+                        CornerRadius="18"
+                        Padding="8">
+                    <Image x:Name="HeaderBrandImage" Stretch="Uniform" />
+                </Border>
+
+                <StackPanel Grid.Column="2"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <TextBlock FontSize="34"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource TitleGradientBrush}"
+                               TextAlignment="Center">
+                        PowerBridge Windows Companion
                     </TextBlock>
-                    <TextBlock Margin="0,8,0,0" Foreground="{StaticResource TextSecondaryBrush}" FontSize="15" TextWrapping="Wrap">
-                        Select the adapter you want to pair, detect this PC, generate a scan-safe QR, and scan it from PowerBridge on Android to prepare a Local Wi-Fi Wake profile.
+                    <TextBlock Margin="0,8,0,0"
+                               Foreground="{StaticResource TextSecondaryBrush}"
+                               FontSize="15"
+                               TextAlignment="Center"
+                               TextWrapping="Wrap">
+                        Select an adapter, detect this PC, generate a scan-safe QR, and scan it from PowerBridge on Android.
                     </TextBlock>
                 </StackPanel>
 
-                <Border Grid.Column="1" Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderBrushTheme}" BorderThickness="1" CornerRadius="18" Padding="16">
-                    <StackPanel>
-                        <TextBlock Text="Import Flow" Foreground="{StaticResource YellowBrush}" FontSize="16" FontWeight="Bold" />
-                        <TextBlock Margin="0,8,0,0" Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap">
-                            1. Select adapter
-                            2. Detect This PC
-                            3. Generate QR Code
-                            4. On Android, tap Scan Setup QR and scan it
-                        </TextBlock>
-                    </StackPanel>
+                <Border Grid.Column="4"
+                        Width="176"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource SurfaceRaisedBrush}"
+                        BorderBrush="{StaticResource BorderBrushTheme}"
+                        BorderThickness="1"
+                        CornerRadius="18"
+                        Padding="10,10,10,0">
+                    <Button x:Name="UpdateButton"
+                            Content="Check for Updates"
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            MinWidth="156"
+                            Margin="0,0,0,10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            ToolTip="Check for a newer Windows Companion build." />
                 </Border>
             </Grid>
         </Border>
 
         <Grid Grid.Row="1" Margin="28,0,28,24">
             <Grid.RowDefinitions>
-                <RowDefinition Height="495" />
+                <RowDefinition Height="500" />
                 <RowDefinition Height="16" />
-                <RowDefinition Height="330" />
+                <RowDefinition Height="340" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.08*" />
@@ -156,10 +211,9 @@ Add-Type -AssemblyName WindowsBase
                     </TextBlock>
 
                     <WrapPanel Margin="0,0,0,8">
-                        <Button x:Name="DetectButton" Content="Detect This PC" Style="{StaticResource AccentButtonStyle}" MinWidth="170" />
-                        <Button x:Name="RefreshButton" Content="Refresh Adapters" Style="{StaticResource SecondaryButtonStyle}" MinWidth="150" />
-                        <Button x:Name="GenerateButton" Content="Generate QR Code" Style="{StaticResource SecondaryButtonStyle}" MinWidth="170" />
-                        <Button x:Name="UpdateButton" Content="Check for Updates" Style="{StaticResource SecondaryButtonStyle}" MinWidth="170" />
+                        <Button x:Name="DetectButton" Content="Detect This PC" Style="{StaticResource AccentButtonStyle}" MinWidth="170" ToolTip="Read the selected adapter and fill the setup fields." />
+                        <Button x:Name="RefreshButton" Content="Refresh Adapters" Style="{StaticResource SecondaryButtonStyle}" MinWidth="150" ToolTip="Reload the available wired and wireless adapters." />
+                        <Button x:Name="GenerateButton" Content="Generate QR Code" Style="{StaticResource SecondaryButtonStyle}" MinWidth="170" ToolTip="Create a fresh scan-safe QR from the detected setup." />
                     </WrapPanel>
 
                         <TextBlock Text="Selected Adapter" Style="{StaticResource FieldLabelStyle}" />
@@ -219,7 +273,7 @@ Add-Type -AssemblyName WindowsBase
                              TextWrapping="Wrap"
                              AcceptsReturn="True"
                              IsReadOnly="True"
-                             Height="180"
+                             Height="230"
                              VerticalScrollBarVisibility="Auto" />
                 </StackPanel>
             </Border>
@@ -288,6 +342,7 @@ $controls = @{
     RefreshButton      = $window.FindName('RefreshButton')
     GenerateButton     = $window.FindName('GenerateButton')
     UpdateButton       = $window.FindName('UpdateButton')
+    HeaderBrandImage   = $window.FindName('HeaderBrandImage')
     AdapterComboBox    = $window.FindName('AdapterComboBox')
     PcNameTextBox      = $window.FindName('PcNameTextBox')
     AdapterTypeTextBox = $window.FindName('AdapterTypeTextBox')
@@ -350,6 +405,26 @@ function Convert-QrBytesToImageSource {
     }
 }
 
+function Get-HeaderBrandImagePath {
+    return Join-Path (Split-Path -Parent $PSScriptRoot) 'assets\branding\powerbridge-header-art.png'
+}
+
+function Convert-FileToImageSource {
+    param([string]$Path)
+
+    if (-not (Test-Path -LiteralPath $Path)) {
+        return $null
+    }
+
+    $bitmap = [System.Windows.Media.Imaging.BitmapImage]::new()
+    $bitmap.BeginInit()
+    $bitmap.CacheOption = [System.Windows.Media.Imaging.BitmapCacheOption]::OnLoad
+    $bitmap.UriSource = [System.Uri]::new((Resolve-Path -LiteralPath $Path).Path)
+    $bitmap.EndInit()
+    $bitmap.Freeze()
+    return $bitmap
+}
+
 function Format-AdapterDisplayLabel {
     param($Candidate)
 
@@ -373,6 +448,10 @@ function Show-SelectedAdapterSummary {
         "Status: $($Candidate.Status)",
         $(if ($Candidate.HasDefaultRoute) { 'This adapter currently carries the default internet route.' } else { 'This adapter is available, but it is not the current default internet route.' })
     ) + @(Get-CompanionWarnings -SelectedAdapter $Candidate)
+}
+
+function Load-HeaderBrandImage {
+    $controls.HeaderBrandImage.Source = Convert-FileToImageSource -Path (Get-HeaderBrandImagePath)
 }
 
 function Detect-SelectedAdapter {
@@ -403,7 +482,7 @@ function Detect-SelectedAdapter {
 }
 
 function Load-AdapterInventory {
-    Set-Status -Message 'Loading available adapters...' -Color '#FCEE09'
+    Set-Status -Message 'Loading available adapters...' -Color '#008CFF'
     Clear-DetectedFields
 
     $candidates = @(Get-ScoredAdapterCandidates)
@@ -427,7 +506,7 @@ function Load-AdapterInventory {
     } else {
         'Loaded 1 adapter. Click Detect This PC to use it.'
     }
-    Set-Status -Message $message -Color '#00E5FF'
+    Set-Status -Message $message -Color '#00D8FF'
 }
 
 function Generate-SetupArtifactsFromSelection {
@@ -450,7 +529,7 @@ function Generate-SetupArtifactsFromSelection {
         $warnings = @('No issues detected for the selected adapter.')
     }
     Set-Warnings -Lines $warnings
-    Set-Status -Message 'Scan-safe QR generated. Ready for Android scan.' -Color '#00D26A'
+    Set-Status -Message 'Scan-safe QR generated. Ready for Android scan.' -Color '#7FEA42'
 }
 
 $controls.AdapterComboBox.Add_SelectionChanged({
@@ -459,14 +538,14 @@ $controls.AdapterComboBox.Add_SelectionChanged({
         Show-SelectedAdapterSummary -Candidate $controls.AdapterComboBox.SelectedItem
         $controls.QrImage.Source = $null
         $state.Artifacts = $null
-        Set-Status -Message "Adapter selected: $($controls.AdapterComboBox.SelectedItem.InterfaceAlias). Click Detect This PC to use it." -Color '#00E5FF'
+        Set-Status -Message "Adapter selected: $($controls.AdapterComboBox.SelectedItem.InterfaceAlias). Click Detect This PC to use it." -Color '#00D8FF'
     }
 })
 
 $controls.DetectButton.Add_Click({
     try {
         Detect-SelectedAdapter -Candidate $controls.AdapterComboBox.SelectedItem
-        Set-Status -Message "Detected settings for $($controls.AdapterComboBox.SelectedItem.InterfaceAlias)." -Color '#00D26A'
+        Set-Status -Message "Detected settings for $($controls.AdapterComboBox.SelectedItem.InterfaceAlias)." -Color '#7FEA42'
     } catch {
         Set-Warnings -Lines @($_.Exception.Message)
         Set-Status -Message $_.Exception.Message -Color '#FF1744'
@@ -494,7 +573,7 @@ $controls.GenerateButton.Add_Click({
 $controls.UpdateButton.Add_Click({
     try {
         Invoke-PowerBridgeCompanionSelfUpdate
-        Set-Status -Message 'Finished checking for companion updates.' -Color '#00E5FF'
+        Set-Status -Message 'Finished checking for companion updates.' -Color '#00D8FF'
     } catch {
         Set-Warnings -Lines @($_.Exception.Message)
         Set-Status -Message $_.Exception.Message -Color '#FF1744'
@@ -505,6 +584,7 @@ $window.Add_Closed({
     $state.Artifacts = $null
 })
 
+Load-HeaderBrandImage
 Load-AdapterInventory
 
 $window.ShowDialog() | Out-Null
