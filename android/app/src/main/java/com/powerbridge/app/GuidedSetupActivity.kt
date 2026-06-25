@@ -1,6 +1,7 @@
 package com.powerbridge.app
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.InputType
@@ -35,6 +36,7 @@ class GuidedSetupActivity : AppCompatActivity() {
     private lateinit var finalStatusTitleText: TextView
     private lateinit var finalStatusStateText: TextView
     private lateinit var finalStatusNextStepText: TextView
+    private lateinit var finalConfirmButton: MaterialButton
 
     private var importedProfileConfirmed: Boolean = false
     private var selectedLocationChoice: WakeLocationChoice = WakeLocationChoice.HOME_WIFI_ONLY
@@ -70,6 +72,7 @@ class GuidedSetupActivity : AppCompatActivity() {
         finalStatusTitleText = findViewById(R.id.finalStatusTitleText)
         finalStatusStateText = findViewById(R.id.finalStatusStateText)
         finalStatusNextStepText = findViewById(R.id.finalStatusNextStepText)
+        finalConfirmButton = findViewById(R.id.finalConfirmButton)
     }
 
     private fun wireActions() {
@@ -102,6 +105,10 @@ class GuidedSetupActivity : AppCompatActivity() {
 
         primaryActionButton.setOnClickListener {
             chooseCurrentPath()
+        }
+
+        finalConfirmButton.setOnClickListener {
+            completeGuidedSetup()
         }
     }
 
@@ -217,7 +224,11 @@ class GuidedSetupActivity : AppCompatActivity() {
         refreshCurrentSetup()
         val setupNeeded = AppConfigStore.isSetupNeeded(updated.config)
         showFinalStatus(
-            title = getString(R.string.guided_setup_home_final_title),
+            title = if (setupNeeded) {
+                getString(R.string.guided_setup_home_final_title)
+            } else {
+                getString(R.string.guided_setup_home_final_title_ready)
+            },
             state = if (setupNeeded) {
                 getString(R.string.guided_setup_label_needs_setup)
             } else {
@@ -328,6 +339,17 @@ class GuidedSetupActivity : AppCompatActivity() {
                 if (success) R.color.cp_success else R.color.cp_warning
             )
         )
+        finalConfirmButton.text = getString(
+            if (success) R.string.guided_setup_finish_confirm else R.string.guided_setup_finish_continue
+        )
+    }
+
+    private fun completeGuidedSetup() {
+        AppConfigStore.markWelcomeCompleted(prefs)
+        startActivity(Intent(this, MainActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        })
+        finish()
     }
 
     private fun launchQrImport() {

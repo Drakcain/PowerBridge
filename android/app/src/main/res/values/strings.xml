@@ -119,6 +119,7 @@
     <string name="guided_setup_label_advanced">Advanced</string>
     <string name="guided_setup_label_prototype">Prototype</string>
     <string name="guided_setup_home_final_title">Home Wi-Fi Wake selected</string>
+    <string name="guided_setup_home_final_title_ready">Setup Ready</string>
     <string name="guided_setup_home_final_next_step_ready">Use Wake PC from the main screen when %1$s and this phone are on the same home Wi-Fi.</string>
     <string name="guided_setup_home_final_next_step_needs_setup">Open Settings for %1$s only if you still need to finish local PC details such as MAC address or broadcast IP.</string>
     <string name="guided_setup_server_final_title">My Own Server selected</string>
@@ -131,6 +132,8 @@
     <string name="guided_setup_media_client_final_next_step">This path is planned for later. Use Home Wi-Fi Wake now, or use My Own Server if you already run a home server.</string>
     <string name="guided_setup_voice_final_next_step">This path is still research only. Use Home Wi-Fi Wake now, or My Own Server if you already have self-hosted gear.</string>
     <string name="guided_setup_hardware_final_next_step">This path is planned for later and depends on hardware behavior. Use Home Wi-Fi Wake now unless you already need an advanced self-hosted method.</string>
+    <string name="guided_setup_finish_confirm">Confirm</string>
+    <string name="guided_setup_finish_continue">Continue</string>
     <string name="guided_setup_other_smart_plug">Smart Plug Power-On</string>
     <string name="guided_setup_other_router_vpn">Router / VPN Setup</string>
     <string name="guided_setup_other_smart_home">Smart Home Wake</string>
