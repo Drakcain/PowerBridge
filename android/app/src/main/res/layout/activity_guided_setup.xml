@@ -48,21 +48,50 @@
                 android:padding="20dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/guided_setup_current_title"
-                    android:textAllCaps="true"
-                    android:textColor="@color/cp_text_muted"
-                    android:textSize="12sp"
+                    android:text="@string/guided_setup_step_scan_title"
+                    android:textColor="@color/cp_text_primary"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/guided_setup_step_scan_detail"
+                    android:textColor="@color/cp_text_secondary"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/scanQrButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="18dp"
+                    android:backgroundTint="@color/cp_action_wake_yellow"
+                    android:text="@string/guided_setup_scan_button"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cp_background"
+                    android:textStyle="bold"
+                    app:cornerRadius="18dp" />
+
+                <TextView
+                    android:id="@+id/importStatusText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/guided_setup_scan_waiting_status"
+                    android:textColor="@color/cp_warning"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/currentProfileText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:textColor="@color/cp_text_primary"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -107,81 +136,103 @@
                     android:textColor="@color/cp_text_secondary"
                     android:textSize="14sp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/homeWifiOptionButton"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
+                <RadioGroup
+                    android:id="@+id/methodOptionsGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:text="@string/guided_setup_choice_home_wifi_title"
-                    android:textAllCaps="false"
-                    android:textColor="@color/cp_cyan"
-                    app:strokeColor="@color/cp_cyan" />
+                    android:layout_marginTop="14dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="@string/guided_setup_choice_home_wifi_detail"
-                    android:textColor="@color/cp_text_secondary"
-                    android:textSize="13sp" />
+                    <RadioButton
+                        android:id="@+id/legacyMobileOption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/guided_setup_choice_legacy_mobile_title"
+                        android:textColor="@color/cp_text_primary"
+                        android:textSize="16sp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/oldPhoneOptionButton"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/guided_setup_choice_old_phone_title"
-                    android:textAllCaps="false"
-                    android:textColor="@color/cp_cyan"
-                    app:strokeColor="@color/cp_cyan" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/guided_setup_choice_legacy_mobile_detail"
+                        android:textColor="@color/cp_text_secondary"
+                        android:textSize="13sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="@string/guided_setup_choice_old_phone_detail"
-                    android:textColor="@color/cp_text_secondary"
-                    android:textSize="13sp" />
+                    <RadioButton
+                        android:id="@+id/mediaClientOption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/guided_setup_choice_media_client_title"
+                        android:textColor="@color/cp_text_primary"
+                        android:textSize="16sp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/serverOptionButton"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/guided_setup_choice_server_title"
-                    android:textAllCaps="false"
-                    android:textColor="@color/cp_cyan"
-                    app:strokeColor="@color/cp_cyan" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/guided_setup_choice_media_client_detail"
+                        android:textColor="@color/cp_text_secondary"
+                        android:textSize="13sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="@string/guided_setup_choice_server_detail"
-                    android:textColor="@color/cp_text_secondary"
-                    android:textSize="13sp" />
+                    <RadioButton
+                        android:id="@+id/voiceOption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/guided_setup_choice_voice_title"
+                        android:textColor="@color/cp_text_primary"
+                        android:textSize="16sp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/notSureOptionButton"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/guided_setup_choice_not_sure_title"
-                    android:textAllCaps="false"
-                    android:textColor="@color/cp_yellow"
-                    app:strokeColor="@color/cp_yellow" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/guided_setup_choice_voice_detail"
+                        android:textColor="@color/cp_text_secondary"
+                        android:textSize="13sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="@string/guided_setup_choice_not_sure_detail"
-                    android:textColor="@color/cp_text_secondary"
-                    android:textSize="13sp" />
+                    <RadioButton
+                        android:id="@+id/hardwareOption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/guided_setup_choice_hardware_title"
+                        android:textColor="@color/cp_text_primary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/guided_setup_choice_hardware_detail"
+                        android:textColor="@color/cp_text_secondary"
+                        android:textSize="13sp" />
+
+                    <RadioButton
+                        android:id="@+id/serverOption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/guided_setup_choice_server_title"
+                        android:textColor="@color/cp_text_primary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/guided_setup_choice_server_detail"
+                        android:textColor="@color/cp_text_secondary"
+                        android:textSize="13sp" />
+
+                </RadioGroup>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -232,7 +283,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/cp_success"
+                    android:textColor="@color/cp_warning"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -242,55 +293,11 @@
                     android:layout_height="56dp"
                     android:layout_marginTop="18dp"
                     android:backgroundTint="@color/cp_action_wake_yellow"
+                    android:text="@string/guided_setup_action_choose_method"
                     android:textAllCaps="false"
                     android:textColor="@color/cp_background"
                     android:textStyle="bold"
                     app:cornerRadius="18dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/secondaryActionButton"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:layout_marginTop="12dp"
-                    android:textAllCaps="false"
-                    android:textColor="@color/cp_cyan"
-                    app:cornerRadius="18dp"
-                    app:strokeColor="@color/cp_cyan" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            app:cardBackgroundColor="@color/cp_surface"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/cp_border"
-            app:strokeWidth="1dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/guided_setup_other_options_title"
-                    android:textColor="@color/cp_magenta"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/guided_setup_other_options_detail"
-                    android:textColor="@color/cp_text_secondary"
-                    android:textSize="14sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

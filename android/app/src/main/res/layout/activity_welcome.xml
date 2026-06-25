@@ -79,28 +79,6 @@
             app:cornerRadius="20dp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/importPcButton"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="12dp"
-            android:text="@string/welcome_import_pc_button"
-            android:textAllCaps="false"
-            android:textColor="@color/cp_cyan"
-            app:strokeColor="@color/cp_cyan" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/useAsRelayButton"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="12dp"
-            android:text="@string/welcome_use_as_relay_button"
-            android:textAllCaps="false"
-            android:textColor="@color/cp_cyan"
-            app:strokeColor="@color/cp_cyan" />
-
-        <com.google.android.material.button.MaterialButton
             android:id="@+id/continueToAppButton"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"

@@ -30,18 +30,6 @@ class WelcomeActivity : AppCompatActivity() {
             finish()
         }
 
-        findViewById<MaterialButton>(R.id.importPcButton).setOnClickListener {
-            AppConfigStore.markWelcomeCompleted(prefs)
-            startActivity(Intent(this, SettingsActivity::class.java))
-            finish()
-        }
-
-        findViewById<MaterialButton>(R.id.useAsRelayButton).setOnClickListener {
-            AppConfigStore.markWelcomeCompleted(prefs)
-            startActivity(Intent(this, HomeRelayActivity::class.java))
-            finish()
-        }
-
         findViewById<MaterialButton>(R.id.continueToAppButton).setOnClickListener {
             AppConfigStore.markWelcomeCompleted(prefs)
             openMainAndFinish()

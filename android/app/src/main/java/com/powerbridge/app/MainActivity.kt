@@ -211,12 +211,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun friendlyMethodName(methodId: WakeMethodId): String {
         return when (methodId) {
-            WakeMethodId.LOCAL_WIFI -> getString(R.string.guided_setup_choice_home_wifi_title)
+            WakeMethodId.LOCAL_WIFI -> "Home Wi-Fi"
             WakeMethodId.HOME_RELAY -> getString(R.string.guided_setup_choice_server_title)
-            WakeMethodId.SPARE_ANDROID -> getString(R.string.guided_setup_choice_old_phone_title)
+            WakeMethodId.SPARE_ANDROID -> getString(R.string.guided_setup_choice_legacy_mobile_title)
             WakeMethodId.SMART_PLUG -> getString(R.string.guided_setup_other_smart_plug)
             WakeMethodId.ADVANCED_ROUTER_VPN -> getString(R.string.guided_setup_other_router_vpn)
-            WakeMethodId.SMART_HOME -> getString(R.string.guided_setup_other_smart_home)
+            WakeMethodId.SMART_HOME -> getString(R.string.guided_setup_choice_voice_title)
         }
     }
 
