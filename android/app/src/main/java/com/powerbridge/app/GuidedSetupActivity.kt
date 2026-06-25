@@ -18,7 +18,7 @@ class GuidedSetupActivity : AppCompatActivity() {
     private lateinit var recommendationStatusText: TextView
     private lateinit var primaryActionButton: MaterialButton
     private lateinit var secondaryActionButton: MaterialButton
-    private var currentRecommendation: GuidedRecommendation = GuidedRecommendation.homeWifi(this)
+    private lateinit var currentRecommendation: GuidedRecommendation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppConfigStore.forceDarkMode()

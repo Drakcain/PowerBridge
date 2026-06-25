@@ -102,9 +102,17 @@ object AppConfigStore {
     const val KEY_REMOTE_PACKETS = "remoteBootPackets"
     const val KEY_THEME_MODE = "themeMode"
     const val KEY_THEME_STYLE = "themeStyle"
+    private const val KEY_WELCOME_COMPLETED = "welcomeCompleted"
 
     fun forceDarkMode() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+    }
+
+    fun hasCompletedWelcome(prefs: SharedPreferences): Boolean =
+        prefs.getBoolean(KEY_WELCOME_COMPLETED, false)
+
+    fun markWelcomeCompleted(prefs: SharedPreferences) {
+        prefs.edit().putBoolean(KEY_WELCOME_COMPLETED, true).apply()
     }
 
     fun createPrefs(context: Context): SharedPreferences {

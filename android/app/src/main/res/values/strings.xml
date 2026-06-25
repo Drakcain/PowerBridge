@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">PowerBridge</string>
+    <string name="welcome_title">Welcome to PowerBridge</string>
+    <string name="welcome_subtitle">PowerBridge helps you wake your PC from home Wi-Fi now, and prepares you for remote wake paths as they mature.</string>
+    <string name="welcome_step_title">Best first setup</string>
+    <string name="welcome_step_detail">1. Import your PC from Windows Companion.\n2. Use Setup Help to choose where wake should work.\n3. Test Wake PC from the main screen.</string>
+    <string name="welcome_get_started_button">Start Guided Setup</string>
+    <string name="welcome_import_pc_button">Import PC Setup QR</string>
+    <string name="welcome_use_as_relay_button">Use This Device as Home Relay</string>
+    <string name="welcome_continue_button">Skip to Main App</string>
     <string name="wake_button_label">Wake PC</string>
     <string name="boot_button_label">Boot PC</string>
     <string name="test_relay_button_label">Check Local Setup</string>
