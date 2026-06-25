@@ -15,9 +15,10 @@ Live now:
 
 Not live yet:
 
-* `Home Device Relay`
-* `Smart Plug Boot Assist`
-* `Smart Home Wake`
+* `Old Phone / Tablet Relay`
+* `Fire TV / Smart TV Relay`
+* `Smart Plug Power-On`
+* `Smart Speaker Wake`
 * `Advanced Network Setup` guides
 * Shutdown/restart/hibernate
 * Target-side remote control
@@ -45,10 +46,11 @@ Not live yet:
 * `Phase 14B` - Guided wake setup + method selection framework
 * `Phase 14C` - Wake-path readiness + honest method wiring
 * `Phase 14C.1` - Guided setup polish + Home Relay sharing + CI/version hygiene
+* `Phase 14D` - Main APK method guides and readiness follow-through
 
 ## Next Phases
 
-* `Phase 14D` - Main APK method guides and readiness follow-through
+* `Phase 14E` - Method-specific runtime prototype selection and implementation
 * `Phase 15` - Alternate wake paths and guides
 * `Phase 16` - Packaging and release prep follow-through
 
@@ -61,7 +63,8 @@ Phase status:
 * `Phase 14B` is complete as guided wake setup and plain-language method selection
 * `Phase 14C` is complete as honest wake-path readiness wiring for `Home Wi-Fi only`, `Away from home`, and `Not sure`
 * `Phase 14C.1` is complete as guided setup final-confirm verification, Home Relay text sharing, CI path filters, and phase-level version alignment
-* `Phase 14D` is the current roadmap phase focused on main-APK method guides and readiness follow-through
+* `Phase 14D` is complete as main-APK method guide and readiness realignment
+* `Phase 14E` is next for one selected method-specific runtime prototype
 
 Phase 14A scope completed:
 
@@ -107,14 +110,14 @@ Phase 14C.1 scope completed:
 * GitHub Actions now use path filters so Android and Windows checks only run when their side changes
 * development versioning now follows the phase-level 0.7.x progression
 
-Phase 14D scope should focus on:
+Phase 14D scope completed:
 
 * `My Own Server` advanced-path clarity and readiness guidance
 * `Smart Plug Power-On` checklist-first guidance
 * `Smart Speaker Wake` guide/research placeholder
 * `Fire TV / Smart TV Relay` guide/experimental explanation
 
-Phase 14D intentionally does not start:
+Phase 14E should choose one runtime path first. Do not start all of these at once:
 
 * old phone or tablet relay runtime
 * Firebase / FCM

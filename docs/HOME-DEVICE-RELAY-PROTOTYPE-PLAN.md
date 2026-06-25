@@ -95,11 +95,11 @@ Not implemented in Phase 14C.1:
 * smart speaker runtime
 * TV runtime
 
-## Phase 14D Goal
+## Phase 14D Result
 
-Phase 14D is a roadmap and product-follow-through phase centered on the main Android APK experience before deeper relay runtime work resumes.
+Phase 14D is complete as a roadmap and product-follow-through phase centered on the main Android APK experience before deeper relay runtime work resumes.
 
-The Phase 14D goal is:
+The Phase 14D result is:
 
 * make the current method families easier for normal users to understand
 * tighten readiness guidance around what is live now versus what is still planned
@@ -121,9 +121,11 @@ Reason:
 * Fire tablets are useful but may add sideloading and platform-policy complexity
 * TV-class devices should come after the basic relay contract and flow are proven
 
-## Phase 14D Method-Guidance Focus
+## Phase 14E Runtime Selection
 
-Recommended Phase 14D order:
+Phase 14E should choose one runtime path first instead of trying to build every ecosystem at once.
+
+Recommended selection order:
 
 1. `My Own Server`
 2. `Smart Plug Power-On`
@@ -133,8 +135,9 @@ Recommended Phase 14D order:
 
 Important boundary:
 
-* keep this phase in the main APK guidance/readiness layer
-* do not jump into relay runtime, cloud, or TV implementation during this pass
+* keep the main APK guidance/readiness layer honest
+* choose one method-specific runtime prototype
+* do not start phone relay, TV relay, smart plug, and smart speaker runtime in the same pass
 
 ## Deferred Runtime Requirements
 
@@ -175,7 +178,7 @@ Recommended continuing package strategy:
 
 ## Feature Flags / Staged UI Guidance
 
-Phase 14D should keep UI scope narrow.
+Phase 14E should keep UI scope narrow.
 
 Recommended guidance:
 
@@ -208,7 +211,7 @@ At minimum, later runtime diagnostics should record:
 
 ## Security Requirements
 
-Phase 14D and later work must still respect the design boundaries:
+Phase 14E and later work must still respect the design boundaries:
 
 * no raw unauthenticated public wake endpoint
 * no PC passwords
@@ -232,7 +235,7 @@ Key deferred runtime risks:
 
 ## What Is Explicitly Not Built Yet
 
-Phase 14D should not include:
+The current build still does not include:
 
 * production cloud broker
 * FCM production setup
@@ -248,19 +251,18 @@ Phase 14D should not include:
 * silent update
 * analytics
 
-## Success Criteria For Phase 14D
+## Success Criteria For Phase 14E
 
-Phase 14D should be considered successful only if it delivers:
+Phase 14E should be considered successful only if it delivers:
 
-* clearer consumer-facing method guidance in the main APK
-* better readiness truth for live versus planned paths
-* stronger advanced-path guidance for `My Own Server`
-* practical guide-first framing for smart plug, smart speaker, and TV-class paths
-* no false claim that remote relay runtime is already complete
+* one chosen method-specific prototype wired end-to-end far enough to test
+* clear setup and failure text for that one method
+* no false claim that the other planned methods are live
+* diagnostics that explain whether the controller, relay, or target wake step failed
 
-## Phase 14D Entry Criteria
+## Phase 14E Entry Criteria
 
-Before Phase 14D implementation starts:
+Before Phase 14E implementation starts:
 
 * [HOME-DEVICE-RELAY-ARCHITECTURE.md](HOME-DEVICE-RELAY-ARCHITECTURE.md) is accepted
 * [HOME-DEVICE-RELAY-CONTRACTS.md](HOME-DEVICE-RELAY-CONTRACTS.md) is accepted
@@ -268,12 +270,13 @@ Before Phase 14D implementation starts:
 * method-guidance-first direction is approved
 * deferred runtime order is accepted
 * consumer setup workflow remains the top priority
+* [WAKE-METHODS.md](WAKE-METHODS.md) is used as the wake-method source of truth
 
-## Phase 14D Implementation Checklist
+## Phase 14E Implementation Checklist
 
-Before the first Phase 14D commit:
+Before the first Phase 14E runtime commit:
 
-* confirm `Phase 14D` is the active next runtime phase across README and docs
+* choose exactly one runtime method target
 * confirm the AIO app direction is preserved
 * confirm local-only first transport is approved
 * confirm `My Own Server` remains the only advanced live remote direction

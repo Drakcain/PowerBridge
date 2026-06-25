@@ -6,6 +6,7 @@ This folder contains the public-facing project docs for the PowerBridge monorepo
 
 * [PHASE-PLAN.md](PHASE-PLAN.md) - public roadmap and current phase truth
 * [POWERBRIDGE-ROADMAP.md](POWERBRIDGE-ROADMAP.md) - concise roadmap reset and current product model
+* [WAKE-METHODS.md](WAKE-METHODS.md) - wake-method truth, implementation status, and external ecosystem notes
 * [PRIVACY.md](PRIVACY.md) - privacy stance and user-controlled data handling
 * [PUBLIC-SANITIZATION.md](PUBLIC-SANITIZATION.md) - public safety and publish hygiene rules
 * [RELEASE-CHECKLIST.md](RELEASE-CHECKLIST.md) - release prep and publish validation checklist
@@ -28,10 +29,11 @@ Current completed relay prep and setup-flow phases:
 * `Phase 14B` - Guided setup and welcome flow
 * `Phase 14C` - Honest wake-method readiness wiring
 * `Phase 14C.1` - Final confirm, Home Relay Share Report, GitHub Actions cleanup, and version alignment
+* `Phase 14D` - Main APK method guides and readiness follow-through
 
 Current roadmap phase:
 
-* `Phase 14D` - Main APK method guides and readiness follow-through
+* `Phase 14E` - Method-specific runtime prototype selection and implementation
 
 PowerBridge should be understood as:
 

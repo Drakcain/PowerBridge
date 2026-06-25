@@ -48,8 +48,8 @@ android {
         applicationId = "com.powerbridge.app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 10
-        versionName = "0.7.5"
+        versionCode = 11
+        versionName = "0.7.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

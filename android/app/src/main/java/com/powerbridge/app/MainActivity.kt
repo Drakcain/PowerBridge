@@ -214,6 +214,7 @@ class MainActivity : AppCompatActivity() {
             WakeMethodId.LOCAL_WIFI -> "Home Wi-Fi"
             WakeMethodId.HOME_RELAY -> getString(R.string.guided_setup_choice_server_title)
             WakeMethodId.SPARE_ANDROID -> getString(R.string.guided_setup_choice_legacy_mobile_title)
+            WakeMethodId.MEDIA_CLIENT -> getString(R.string.guided_setup_choice_media_client_title)
             WakeMethodId.SMART_PLUG -> getString(R.string.guided_setup_other_smart_plug)
             WakeMethodId.ADVANCED_ROUTER_VPN -> getString(R.string.guided_setup_other_router_vpn)
             WakeMethodId.SMART_HOME -> getString(R.string.guided_setup_choice_voice_title)

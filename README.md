@@ -18,7 +18,7 @@ v0.6.1
 Current development version:
 
 ```text
-0.7.5
+0.7.6
 ```
 
 ## What Works Now
@@ -52,11 +52,13 @@ Architecture status note:
 * `Phase 14B` added guided wake setup and plain-language method selection
 * `Phase 14C` completed the honest wake-path readiness wiring for `Home Wi-Fi only`, `Away from home`, and `Not sure`
 * `Phase 14C.1` polished guided setup completion, Home Relay report sharing, CI path filters, and phase-aligned versioning
-* `Phase 14D` is the current roadmap phase for main-APK method guides and readiness follow-through
+* `Phase 14D` completed the main-APK method guide and readiness realignment
+* `Phase 14E` is the next method-specific runtime prototype phase
 * see [docs/HOME-DEVICE-RELAY-ARCHITECTURE.md](docs/HOME-DEVICE-RELAY-ARCHITECTURE.md)
 * see [docs/HOME-DEVICE-RELAY-CONTRACTS.md](docs/HOME-DEVICE-RELAY-CONTRACTS.md)
 * see [docs/HOME-DEVICE-RELAY-PROTOTYPE-PLAN.md](docs/HOME-DEVICE-RELAY-PROTOTYPE-PLAN.md)
 * see [docs/POWERBRIDGE-ROADMAP.md](docs/POWERBRIDGE-ROADMAP.md)
+* see [docs/WAKE-METHODS.md](docs/WAKE-METHODS.md)
 * see [docs/README.md](docs/README.md)
 
 ## Consumer Setup Flow
@@ -124,7 +126,7 @@ Live now:
 Prototype or partial:
 
 * `Home Relay Mode`
-* `Old Phone / Tablet Relay` concept
+* `Old Phone / Tablet Relay`
 
 Coming later or not live:
 

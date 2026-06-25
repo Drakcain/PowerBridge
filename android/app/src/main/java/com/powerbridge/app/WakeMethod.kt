@@ -66,8 +66,19 @@ enum class WakeMethodId(
     ),
     SPARE_ANDROID(
         storageValue = "spare_android",
-        displayName = "Home Device Relay",
-        description = "Planned for an old phone, tablet, Fire TV, Android TV, or Google TV device left plugged in at home to receive a secure request and send the local Wake-on-LAN packet.",
+        displayName = "Old Phone / Tablet Relay",
+        description = "Planned for a spare Android phone or tablet left plugged in at home. The relay device would receive a secure request and send the local Wake-on-LAN packet.",
+        statusLabel = "Prototype",
+        supportsCellular = true,
+        requiresAlwaysOnBridge = true,
+        difficulty = WakeDifficulty.FUTURE,
+        testButtonLabel = "Method Not Available",
+        implemented = false
+    ),
+    MEDIA_CLIENT(
+        storageValue = "media_client",
+        displayName = "Fire TV / Smart TV Relay",
+        description = "Planned for a Fire TV, Chromecast with Google TV, Android TV, or Google TV device left powered at home to act as the wake helper.",
         statusLabel = "Coming later",
         supportsCellular = true,
         requiresAlwaysOnBridge = true,
@@ -145,6 +156,10 @@ object WakeMethodRegistry {
         WakeMethodId.HOME_RELAY to HomeRelayWakeMethod(),
         WakeMethodId.SPARE_ANDROID to ComingSoonWakeMethod(
             WakeMethodId.SPARE_ANDROID,
+            listOf(WakeConfigField.TARGET_MAC)
+        ),
+        WakeMethodId.MEDIA_CLIENT to ComingSoonWakeMethod(
+            WakeMethodId.MEDIA_CLIENT,
             listOf(WakeConfigField.TARGET_MAC)
         ),
         WakeMethodId.SMART_PLUG to ComingSoonWakeMethod(

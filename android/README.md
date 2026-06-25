@@ -11,7 +11,7 @@ v0.6.1
 Current development version truth:
 
 ```text
-0.7.5
+0.7.6
 ```
 
 Current phase truth:
@@ -23,7 +23,8 @@ Current phase truth:
 * `Phase 14B` is complete as guided wake setup and method selection
 * `Phase 14C` is complete as wake-path readiness wiring and honest setup-state labeling
 * `Phase 14C.1` is complete as guided setup polish, Home Relay report sharing, CI filter cleanup, and version alignment
-* `Phase 14D` is the current roadmap phase for main-APK method guides and readiness follow-through
+* `Phase 14D` is complete as main-APK method guide and readiness realignment
+* `Phase 14E` is next for one selected method-specific runtime prototype
 
 PowerBridge v1 is intentionally focused on wake and boot. Shutdown, restart, hibernate, remote desktop control, and target-side command execution are out of scope because they require a separate backend, always-on agent, operating-system access, or device-specific integration.
 
@@ -99,29 +100,25 @@ These methods are planned or under research. They are not live wake engines yet.
 
 | Method                   | Intended shape                                                                                                      | Current status |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------- | -------------- |
-| `Home Device Relay`      | Use the same PowerBridge Android app on an old phone or tablet in `Home Relay Mode` as the future local wake anchor | Runtime prototype next |
-| `Smart Plug Boot Assist` | Power-cycle a smart plug and rely on BIOS or UEFI restore-after-power-loss behavior to boot the PC                  | Coming later   |
-| `Smart Home Wake`        | Integrate with smart-home ecosystems such as Alexa, Google Home, or Home Assistant where platform support allows it | Research       |
-| `Advanced Network Setup` | Provide router, VPN, NAS, server, and custom-network guidance                                                       | Guides later   |
+| `Old Phone / Tablet Relay` | Use a spare Android phone or tablet left plugged in at home as the future local wake anchor                       | Prototype      |
+| `Fire TV / Smart TV Relay` | Use a TV-class Android device left powered at home as the future wake helper                                      | Coming later   |
+| `Smart Plug Power-On`      | Power-cycle a smart plug and rely on BIOS or UEFI restore-after-power-loss behavior to boot the PC                | Coming later   |
+| `Smart Speaker Wake`       | Integrate with smart-home ecosystems such as Alexa, Google Home, or Home Assistant where platform support allows it | Research     |
+| `Advanced Network Setup`   | Provide router, VPN, NAS, server, and custom-network guidance                                                     | Guides later   |
 
-## Phase 14D Direction
+## Phase 14E Direction
 
-Phase 14D should focus on the live app experience around method clarity and readiness follow-through:
-
-* `My Own Server` guidance and advanced-path clarity
-* `Smart Plug Power-On` checklist-first guidance
-* `Smart Speaker Wake` guide/research placeholder
-* `Fire TV / Smart TV Relay` guide/experimental explanation
-
-Phase 14D should not start:
+Phase 14D completed the method-clarity and readiness pass. Phase 14E should choose one method-specific runtime prototype instead of trying to implement every ecosystem at once:
 
 * old phone or tablet relay runtime
-* Firebase / FCM
-* cloud broker
-* TV runtime
-* smart plug vendor APIs
-* smart speaker vendor APIs
-* a second Android APK
+* Fire TV / Smart TV relay runtime
+* smart plug integration prototype
+* smart speaker integration research spike
+* persistent server setup helper
+
+Phase 14E should not start all of these at once. Pick one path, wire it honestly, test it, then move to the next.
+
+See [../docs/WAKE-METHODS.md](../docs/WAKE-METHODS.md) for the current method truth.
 
 ## Recommended Setup Paths
 
