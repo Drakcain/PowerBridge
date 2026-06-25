@@ -43,10 +43,11 @@ Not live yet:
 * `Phase 13.5` - Pre-prototype cleanup and Phase 14 readiness audit
 * `Phase 14A` - Home Device Relay AIO correction + skeleton integration
 * `Phase 14B` - Guided wake setup + method selection framework
+* `Phase 14C` - Wake-path readiness + honest method wiring
 
 ## Next Phases
 
-* `Phase 14C` - Home Device Relay local-only prototype flow
+* `Phase 14D` - Home Device Relay local-only prototype flow
 * `Phase 15` - Alternate wake paths and guides
 * `Phase 16` - Packaging and release prep follow-through
 
@@ -57,7 +58,8 @@ Phase status:
 * `Phase 13.5` is complete as cleanup/readiness work
 * `Phase 14A` is complete as the AIO relay-mode correction inside the main Android app
 * `Phase 14B` is complete as guided wake setup and plain-language method selection
-* `Phase 14C` is the next relay pairing/runtime prototype phase
+* `Phase 14C` is complete as honest wake-path readiness wiring for `Home Wi-Fi only`, `Away from home`, and `Not sure`
+* `Phase 14D` is the next relay pairing/runtime prototype phase
 
 Phase 14A scope completed:
 
@@ -87,6 +89,14 @@ Phase 14B scope completed:
 * app recommends `Home Wi-Fi`, `Old Phone / Tablet Relay`, or `My Own Server`
 * live methods can be selected from guided setup without risky broad auto-save
 * `Home Relay Mode` remains clearly marked as not fully active yet
+
+Phase 14C scope completed:
+
+* `Home Wi-Fi only` is now a first-class guided setup path
+* remote method families are shown only under `Away from home`
+* `Not sure` now gives a plain-language recommendation instead of a technical list
+* final setup status now shows `Ready now`, `Needs setup`, `Prototype`, `Coming later`, or `Advanced`
+* only live paths can look ready in guided setup
 
 See:
 

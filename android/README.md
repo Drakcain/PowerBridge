@@ -21,7 +21,8 @@ Current phase truth:
 * `Phase 13.5` is complete as cleanup/readiness work
 * `Phase 14A` is complete as the AIO relay-mode correction pass
 * `Phase 14B` is complete as guided wake setup and method selection
-* `Phase 14C` is the next local-only relay pairing/runtime phase
+* `Phase 14C` is complete as wake-path readiness wiring and honest setup-state labeling
+* `Phase 14D` is the next local-only relay pairing/runtime phase
 
 PowerBridge v1 is intentionally focused on wake and boot. Shutdown, restart, hibernate, remote desktop control, and target-side command execution are out of scope because they require a separate backend, always-on agent, operating-system access, or device-specific integration.
 
@@ -158,6 +159,31 @@ It does not:
 * Solve remote cellular wake by itself
 
 ## Current User Flow
+
+### First-Run Guided Setup
+
+1. Open PowerBridge.
+2. Tap `Setup Guide`.
+3. Scan the QR from PowerBridge Windows Companion.
+4. Review the detected PC and keep or rename the profile.
+5. Confirm the PC.
+6. Choose where wake should work:
+   * `Home Wi-Fi only`
+   * `Away from home`
+   * `Not sure`
+7. If the user chooses `Away from home`, PowerBridge shows these five remote families:
+   * `Old Phone / Tablet Relay`
+   * `Fire TV / Smart TV Relay`
+   * `Smart Speaker Wake`
+   * `Smart Plug Power-On`
+   * `My Own Server`
+8. PowerBridge shows an honest readiness state:
+   * `Ready now`
+   * `Needs setup`
+   * `Prototype`
+   * `Coming later`
+   * `Advanced`
+9. The final setup-status card explains what to do next.
 
 ### Windows
 
@@ -297,7 +323,8 @@ These categories guide future development. They are not all implemented today.
 | `Phase 13.5` | Pre-Prototype Cleanup + Readiness Audit | Tighten docs, examples, and repo hygiene before runtime work |
 | `Phase 14A` | Home Relay Mode AIO Correction  | Move relay prototype direction into the main Android app      |
 | `Phase 14B` | Guided Wake Setup Framework     | Add plain-language wake setup and method selection guidance   |
-| `Phase 14C` | Home Device Relay Prototype     | Build the first local-only home-device relay implementation   |
+| `Phase 14C` | Wake Path Readiness + Honest Wiring | Make guided setup honest about what is ready now, what needs setup, and what is still planned |
+| `Phase 14D` | Home Device Relay Prototype     | Build the first local-only home-device relay implementation   |
 | `Phase 15` | Alternate Wake Paths + Guides    | Smart plug, smart-home, NAS, router, and advanced setup guides |
 | `Phase 16` | Project Packaging + Release Prep | Repo structure, shared contracts, release packaging, checksums |
 

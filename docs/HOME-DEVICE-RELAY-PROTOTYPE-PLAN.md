@@ -54,7 +54,28 @@ Not implemented in Phase 14B:
 * cloud broker
 * TV-specific runtime work
 
-## Phase 14 Prototype Goal
+## Phase 14C Status
+
+Phase 14C completed the setup-truth and readiness-wiring pass before deeper relay runtime.
+
+Completed in Phase 14C:
+
+* `Home Wi-Fi only` is now a first-class setup choice
+* `Away from home` now gates the five remote method families behind a simpler first question
+* `Not sure` now gives a plain recommendation instead of making users decode architecture terms
+* guided setup now shows honest final states such as `Ready now`, `Needs setup`, `Prototype`, `Coming later`, and `Advanced`
+* only currently live or advanced self-hosted paths can appear ready in guided setup
+
+Not implemented in Phase 14C:
+
+* real pairing
+* real controller-to-relay transport
+* real relay-triggered WOL execution
+* Firebase / FCM
+* cloud broker
+* TV-specific runtime work
+
+## Phase 14D Prototype Goal
 
 Phase 14 should deliver the first narrow `Home Device Relay` prototype without trying to solve the full remote-wake product in one pass.
 
@@ -114,7 +135,7 @@ Useful secondary targets later:
 
 ## Architecture Choice Recommendation
 
-Recommended Phase 14 direction:
+Recommended Phase 14D direction:
 
 * keep the PowerBridge Android app as the single user-facing Android app
 * keep relay behavior inside the same app under a clearly marked `Home Relay Mode`
@@ -218,7 +239,7 @@ Phase 14 prototype should be considered successful only if it proves:
 * one relay can send WOL to one validated target profile
 * result and diagnostics are understandable enough to troubleshoot failures
 
-## Phase 14 Entry Criteria
+## Phase 14D Entry Criteria
 
 Before implementation starts:
 
@@ -233,7 +254,7 @@ Before implementation starts:
 
 Before the first runtime commit:
 
-* confirm `Phase 14C` is the active next runtime phase across README and docs
+* confirm `Phase 14D` is the active next runtime phase across README and docs
 * confirm the AIO app direction is preserved
 * confirm local-only first transport is approved
 * confirm one Android phone or tablet is selected as the first relay target
@@ -246,7 +267,7 @@ Before the first runtime commit:
 
 ## Recommended Next Safe Step
 
-For the next runtime step after Phase 14B:
+For the next runtime step after Phase 14C:
 
 1. implement a local-only controller-to-relay prototype flow
 2. keep the first relay target to a standard Android phone or tablet
